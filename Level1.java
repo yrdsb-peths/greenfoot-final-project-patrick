@@ -8,15 +8,42 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Level1 extends World
 {
-    public static final int HEIGHT = 400;
-    public static final int WIDTH = 600;
-
+    public static final int WIDTH = 800;
+    public static final int HEIGHT = 850;
+    SimpleTimer timer = new SimpleTimer();
+    
     public Level1() {
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(WIDTH, HEIGHT, 1);
-        Platform platform = new Platform();
+        // generate platforms
+        for (int i = 0, x = 340, y = 790; i < 6; i++, y -= 130) {
+            Platform p = new Platform();
+            if (i % 2 == 0) x += 110;            
+            else x -= 110;
+            addObject(p, x, y);
+        }
+        // generate ladders
+        for (int i = 0, x = 640, y = 712; i < 5; i++, y -= 130) {
+            Ladder l = new Ladder();
+            if (i % 2 == 0) x -= 500;
+            else x += 500;
+            addObject(l, x, y);
+        }
+        
+        // spawn player
         Player player = new Player();
-        addObject(platform, WIDTH / 2, HEIGHT / 2);
-        addObject(player, WIDTH / 2, HEIGHT / 2 - 200);
+        addObject(player, WIDTH / 2, HEIGHT - 100);
+        // spawn ball dispenser
+        BallDispenser ballDispenser = new BallDispenser();
+        addObject(ballDispenser, 640, 90);
+    }
+    
+    public void act() {
+        // continuousy spawn balls
+        if (timer.millisElapsed() > 1000) {
+            Ball b = new Ball();
+            addObject(b, 620, 110);
+            timer.mark();
+        }
     }
 }
