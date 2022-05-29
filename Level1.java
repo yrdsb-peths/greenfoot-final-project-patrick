@@ -38,12 +38,13 @@ public class Level1 extends World
         addObject(ballDispenser, 640, 90);
     }
     
-    public void act() {
-        // continuousy spawn balls
-        if (timer.millisElapsed() > 1000) {
-            Ball b = new Ball();
-            addObject(b, 620, 110);
-            timer.mark();
-        }
+    public void gameOver() {
+        GameOverWorld gameOverWorld = new GameOverWorld();
+        Greenfoot.setWorld(gameOverWorld);
+    }
+    
+    public void levelWin() {
+        LevelWinWorld levelWinWorld = new LevelWinWorld();
+        Greenfoot.setWorld(levelWinWorld);
     }
 }

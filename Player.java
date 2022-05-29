@@ -8,12 +8,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player extends MainObjects
 {
-    public int jumpHeight = -10;
+    public int speed = 3;
+    public int jumpHeight = -11;
+    public int verticalSpeed = 0;
+    public int acceleration = 1;
     
     public void act()
     {
         checkMovement();
         checkFalling();
+        checkOffMap();
     }
     
     public void checkMovement() {
@@ -41,5 +45,23 @@ public class Player extends MainObjects
             verticalSpeed = jumpHeight;
             fall();
         }        
+    }
+    
+    public void checkFalling() {
+        if (!isOnGround() && !isTouching(Ladder.class)) {
+            fall();
+        }
+    }
+    
+    public void fall() {
+        setLocation(getX(), getY() + verticalSpeed);
+        verticalSpeed += acceleration;
+    }
+    
+    public void checkOffMap() {
+        if (getY() == Level1.HEIGHT - 1) { // on the floor of the world
+            Level1 world = (Level1) getWorld();
+            world.gameOver();
+        }
     }
 }

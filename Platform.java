@@ -14,8 +14,4 @@ public class Platform extends Actor
     public Platform() {
         getImage().scale(WIDTH, HEIGHT);
     }
-    
-    public void act() {
-        // Add your action code here.
-    }
 }

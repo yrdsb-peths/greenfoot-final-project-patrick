@@ -8,13 +8,19 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Ball extends MainObjects
 {
-    public int speed = 2;
+    public int speed = 4;
     public int ladderCount = 0;
     public String prevState = "not on ladder";
     public String curState = "not on ladder";
     
     public void act()
     {        
+        move();
+        checkGameOver();
+        checkAtWorldEdge();
+    }
+    
+    public void move() {
         Actor ladderBelow = getOneObjectAtOffset(0, 50, Ladder.class);
         if ((isTouching(Ladder.class) && !isOnGround()) || ladderBelow != null) {
             curState = "on ladder";
@@ -31,6 +37,20 @@ public class Ball extends MainObjects
             else move(speed);        
         }
         
-        prevState = curState;
+        prevState = curState;        
+    }
+    
+    public void checkGameOver() {
+        if (isTouching(Player.class)) {
+            Level1 world = (Level1) getWorld();
+            world.gameOver();
+        }
+    }
+    
+    public void checkAtWorldEdge() {
+        if (isAtEdge()) {
+            Level1 world = (Level1) getWorld();
+            world.removeObject(this);
+        }
     }
 }
