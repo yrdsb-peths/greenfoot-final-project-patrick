@@ -106,8 +106,8 @@ public class Player extends MainObjects
     
     public void checkOffMap() {
         if (getY() == Level1.HEIGHT - 1) { // on the floor of the world
-            Level1 level1 = (Level1) getWorld();
-            level1.gameOver();
+            Level1 world = (Level1) getWorld();
+            world.gameOver();
         }
     }
     
