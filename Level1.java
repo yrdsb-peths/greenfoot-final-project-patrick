@@ -35,7 +35,7 @@ public class Level1 extends World
         addObject(player, WIDTH / 2, HEIGHT - 100);
         // spawn ball dispenser
         BallDispenser ballDispenser = new BallDispenser();
-        addObject(ballDispenser, 640, 90);
+        addObject(ballDispenser, 640, 100);
     }
     
     public void gameOver() {

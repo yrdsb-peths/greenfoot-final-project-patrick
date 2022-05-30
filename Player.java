@@ -9,25 +9,40 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Player extends MainObjects
 {
     public int speed = 3;
-    public int jumpHeight = -11;
+    public int jumpHeight = -12;
     public int verticalSpeed = 0;
     public int acceleration = 1;
     public int run_index = 0;
+    public int run_size = 6;
+    public int idle_index = 0;
+    public int idle_size = 4;
     public boolean facingRight = false;
     SimpleTimer animTimer = new SimpleTimer();
-    GreenfootImage[] runFacingRight = new GreenfootImage[10];
-    GreenfootImage[] runFacingLeft = new GreenfootImage[10];
+    GreenfootImage[] runFacingRight = new GreenfootImage[run_size];
+    GreenfootImage[] runFacingLeft = new GreenfootImage[run_size];
+    GreenfootImage[] idleFacingRight = new GreenfootImage[idle_size];
+    GreenfootImage[] idleFacingLeft = new GreenfootImage[idle_size];
     
     public Player() {
-        for (int i = 0; i <= 9; i++) {
-            int x = i + 1;
-            runFacingRight[i] = new GreenfootImage("./sprites/knight/Run (" + x + ").png");
-            runFacingRight[i].scale(60, 60);
-            runFacingLeft[i] = new GreenfootImage("./sprites/knight/Run (" + x + ").png");
-            runFacingLeft[i].scale(60, 60);
+        // init run sprites
+        int catWidth = 50;
+        int catHeight = 40;
+        for (int i = 0; i < run_size; i++) {            
+            runFacingRight[i] = new GreenfootImage("./sprites/street-animals/cat-walk/tile00" + i +".png");
+            runFacingRight[i].scale(catWidth, catHeight);
+            runFacingLeft[i] = new GreenfootImage("./sprites/street-animals/cat-walk/tile00" + i +".png");
+            runFacingLeft[i].scale(catWidth, catHeight);
             runFacingLeft[i].mirrorHorizontally();
         }
-        setImage(runFacingLeft[0]);
+        // init idle sprites
+        for (int i = 0; i < idle_size; i++) {
+            idleFacingRight[i] = new GreenfootImage("./sprites/street-animals/cat-idle/tile00" + i +".png");
+            idleFacingRight[i].scale(catWidth, catHeight);
+            idleFacingLeft[i] = new GreenfootImage("./sprites/street-animals/cat-idle/tile00" + i +".png");
+            idleFacingLeft[i].scale(catWidth, catHeight);
+            idleFacingLeft[i].mirrorHorizontally();
+        }
+        setImage(idleFacingLeft[0]);
     }
     
     public void act()
@@ -40,33 +55,42 @@ public class Player extends MainObjects
     
     public void checkMovement() {
         Actor ladderBelow = getOneObjectAtOffset(0, 50, Ladder.class);
+        boolean up = Greenfoot.isKeyDown("w");
+        boolean down = Greenfoot.isKeyDown("s");
+        boolean left = Greenfoot.isKeyDown("a");
+        boolean right = Greenfoot.isKeyDown("d");
+        boolean jump = Greenfoot.isKeyDown("space");
+        
         if (isTouching(Ladder.class)) {
-            if (Greenfoot.isKeyDown("w")) {
+            if (up) {
                 setLocation(getX(), getY() - speed);
             }
-            if (Greenfoot.isKeyDown("s") && !isOnGround()) {
+            if (down && !isOnGround()) {
                 setLocation(getX(), getY() + speed);
             }
         }
         if (ladderBelow != null) {
-            if (Greenfoot.isKeyDown("s")) {
+            if (down) {
                 setLocation(getX(), getY() + speed);
             }
         }
-        if (Greenfoot.isKeyDown("d")) {
+        if (right) {
             facingRight = true;
             move(speed);
             runAnimate();
         }
-        if (Greenfoot.isKeyDown("a")) {
+        if (left) {
             facingRight = false;
             move(speed * -1);
             runAnimate();
         }
-        if (Greenfoot.isKeyDown("space") && isOnGround()) {
+        if (jump && isOnGround()) {
             verticalSpeed = jumpHeight;
             fall();
-        }        
+        }
+        if (!up && !down && !left && !right && !jump) {
+            idleAnimate();
+        }
     }
     
     public void checkFalling() {
@@ -96,7 +120,21 @@ public class Player extends MainObjects
                 setImage(runFacingLeft[run_index]);    
             }
             run_index++;
-            run_index %= 10;
+            run_index %= run_size;
+            animTimer.mark();
+        }
+    }
+    
+    public void idleAnimate() {
+        if (animTimer.millisElapsed() > 120) {
+            if (facingRight) {
+                setImage(idleFacingRight[idle_index]);
+            }
+            else {
+                setImage(idleFacingLeft[idle_index]);    
+            }
+            idle_index++;
+            idle_index %= idle_size;
             animTimer.mark();
         }
     }

@@ -15,4 +15,6 @@ comment6.params=
 comment6.target=void\ checkOffMap()
 comment7.params=
 comment7.target=void\ runAnimate()
-numComments=8
+comment8.params=
+comment8.target=void\ idleAnimate()
+numComments=9

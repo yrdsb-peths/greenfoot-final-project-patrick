@@ -2,9 +2,13 @@
 comment0.target=BallDispenser
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ BallDispenser\ here.\r\n\ \r\n\ Patrick\ and\ Anna\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=
-comment1.target=void\ act()
+comment1.target=BallDispenser()
 comment2.params=
-comment2.target=void\ spawnBall()
+comment2.target=void\ act()
 comment3.params=
-comment3.target=void\ checkWin()
-numComments=4
+comment3.target=void\ spawnBall()
+comment4.params=
+comment4.target=void\ checkWin()
+comment5.params=
+comment5.target=void\ idleAnimate()
+numComments=6
