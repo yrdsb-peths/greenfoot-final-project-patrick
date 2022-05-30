@@ -13,6 +13,7 @@ public class Level1 extends World
     SimpleTimer timer = new SimpleTimer();
     
     public Level1() {
+        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(WIDTH, HEIGHT, 1);
         // generate platforms
         for (int i = 0, x = 340, y = 790; i < 6; i++, y -= 130) {
