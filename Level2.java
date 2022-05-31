@@ -17,7 +17,8 @@ public class Level2 extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 700, 1);
-        Platform a = new Platform();
+        Platform a = new Platform(700, 30);
+        
         addObject(a, 26, 99);
     }
 }
