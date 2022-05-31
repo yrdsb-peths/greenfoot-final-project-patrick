@@ -28,17 +28,17 @@ public class Player extends MainObjects
         int catWidth = 50;
         int catHeight = 40;
         for (int i = 0; i < run_size; i++) {            
-            runFacingRight[i] = new GreenfootImage("./sprites/street-animals/cat-walk/tile00" + i +".png");
+            runFacingRight[i] = new GreenfootImage("./sprites/Ninjarun/run" + i +".png");
             runFacingRight[i].scale(catWidth, catHeight);
-            runFacingLeft[i] = new GreenfootImage("./sprites/street-animals/cat-walk/tile00" + i +".png");
+            runFacingLeft[i] = new GreenfootImage("./sprites/Ninjarun/run" + i +".png");
             runFacingLeft[i].scale(catWidth, catHeight);
             runFacingLeft[i].mirrorHorizontally();
         }
         // init idle sprites
-        for (int i = 0; i < idle_size; i++) {
-            idleFacingRight[i] = new GreenfootImage("./sprites/street-animals/cat-idle/tile00" + i +".png");
+        for (int i = 0; i < 3; i++) {
+            idleFacingRight[i] = new GreenfootImage("./sprites/Ninjarun/run" + i +".png");
             idleFacingRight[i].scale(catWidth, catHeight);
-            idleFacingLeft[i] = new GreenfootImage("./sprites/street-animals/cat-idle/tile00" + i +".png");
+            idleFacingLeft[i] = new GreenfootImage("./sprites/Ninjarun/run" + i +".png");
             idleFacingLeft[i].scale(catWidth, catHeight);
             idleFacingLeft[i].mirrorHorizontally();
         }
