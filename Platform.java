@@ -8,11 +8,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Platform extends Actor
 {
-    public final int WIDTH = 700;
-    public final int HEIGHT = 30;
+    // level1 width = 700;
+    // level1 height = 30;
     
-    public Platform(int width, int height) 
-    {
+    public Platform(int width, int height) {
         getImage().scale(width, height);
     }
 }

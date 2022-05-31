@@ -17,7 +17,7 @@ public class Level1 extends World
         super(WIDTH, HEIGHT, 1);
         // generate platforms
         for (int i = 0, x = 340, y = 790; i < 6; i++, y -= 130) {
-            Platform p = new Platform(WIDTH, HEIGHT);
+            Platform p = new Platform(700, 30);
             if (i % 2 == 0) x += 110;            
             else x -= 110;
             addObject(p, x, y);
