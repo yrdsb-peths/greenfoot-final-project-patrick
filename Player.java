@@ -10,7 +10,7 @@ public class Player extends MainObjects
 {
     public int speed = 3;
     public int jumpHeight = -12;
-    public int verticalSpeed = 0;
+    public int verticalSpeed = 4;
     public int acceleration = 1;
     public int run_index = 0;
     public int run_size = 6;
@@ -50,10 +50,10 @@ public class Player extends MainObjects
         checkMovement();
         checkFalling();
         checkOffMap();
-        
     }
     
-    public void checkMovement() {
+    public void checkMovement() 
+    {
         Actor ladderBelow = getOneObjectAtOffset(0, 50, Ladder.class);
         boolean up = Greenfoot.isKeyDown("w");
         boolean down = Greenfoot.isKeyDown("s");
@@ -61,7 +61,8 @@ public class Player extends MainObjects
         boolean right = Greenfoot.isKeyDown("d");
         boolean jump = Greenfoot.isKeyDown("space");
         
-        if (isTouching(Ladder.class)) {
+        if (isTouching(Ladder.class)) 
+        {
             if (up) {
                 setLocation(getX(), getY() - speed);
             }

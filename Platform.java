@@ -11,7 +11,8 @@ public class Platform extends Actor
     public final int WIDTH = 700;
     public final int HEIGHT = 30;
     
-    public Platform() {
-        getImage().scale(WIDTH, HEIGHT);
+    public Platform(int width, int height) 
+    {
+        getImage().scale(width, height);
     }
 }
