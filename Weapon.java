@@ -7,12 +7,30 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (a version number or a date)
  */
 public class Weapon extends Actor
-{
-    private int bulletSpeed = 0;
-    private int bulletDmg = 0;
+{   
+    public Weapon() {
+        
+    }
     
-    public Weapon(int bulletSpeed, int bulletDmg) {
-        this.bulletSpeed = bulletSpeed;
-        this.bulletDmg = bulletDmg;
+    public void act() {
+        
+    }
+    
+    public void faceCursor() {
+        MouseInfo mi = Greenfoot.getMouseInfo();
+        if (mi != null) {
+            turnTowards(mi.getX(), mi.getY());
+        }
+    }
+    
+    public void checkFire() {
+        MouseInfo mi = Greenfoot.getMouseInfo();
+        if (mi != null && mi.getButton() == 1) {
+            Bullet bullet = new Bullet(false);
+            GameWorld world = (GameWorld)getWorld();
+            world.addObject(bullet, getX() + 10, getY() - 10);     
+            bullet.turnTowards(mi.getX(), mi.getY());    
+        }
+       
     }
 }

@@ -19,10 +19,11 @@ public class Enemy extends Actor
         if (shootTimer.millisElapsed() > 500) {
             Bullet bullet = new Bullet(true);
             Actor player = (Actor)getWorld().getObjects(Player.class).get(0);
-            bullet.turnTowards(player.getX(), player.getY());
             World world = getWorld();
             world.addObject(bullet, getX(), getY());
-            
+            bullet.turnTowards(player.getX(), player.getY());
+            //bullet.turnTowards(player.getX(), player.getY());
+            //bullet.turnTowards(player.getX(), player.getY());            
             shootTimer.mark();
         }        
     }

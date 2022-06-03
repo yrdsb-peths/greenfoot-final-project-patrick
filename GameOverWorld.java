@@ -1,14 +1,14 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class LevelWinWorld here.
+ * Write a description of class GameOverWorld here.
  * 
- * @ Patrick Hu
+ * @author (your name) 
  * @version (a version number or a date)
  */
-public class LevelWinWorld extends World
+public class GameOverWorld extends World
 {
-    public LevelWinWorld()
+    public GameOverWorld()
     {    
         super(GameWorld.WIDTH, GameWorld.HEIGHT, 1);
     }

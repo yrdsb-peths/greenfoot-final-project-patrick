@@ -6,28 +6,24 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @ Patrick Hu
  * @version (a version number or a date)
  */
-public class Level1 extends World
+public class GameWorld extends World
 {
-    public static final int WIDTH = 900;
-    public static final int HEIGHT = 600;
-    Pistol pistol;    
+    public static final int WIDTH = 1000;
+    public static final int HEIGHT = 800;
+       
     
-    public Level1() {
+    public GameWorld() {
         super(WIDTH, HEIGHT, 1, false);
-        GameInfo.levelNumber = 1;
         GameInfo.currentWeapon = "pistol";
-        // spawn player and pistol
+        // spawn player
         Player player = new Player();
         addObject(player, WIDTH / 2, HEIGHT / 2);
-        pistol = new Pistol();
+        // spawn pistol
+        Pistol pistol  = new Pistol();
         addObject(pistol, WIDTH / 2 + 30, HEIGHT / 2 + 30);
         // spawn enemies
         Enemy enemy = new Enemy();
-        addObject(enemy, 100, 100);
-    }
-    
-    public Pistol getPistol() {
-        return pistol;
+        addObject(enemy, 500, 500);
     }
     
     public void gameOver() {
@@ -39,14 +35,4 @@ public class Level1 extends World
         LevelWinWorld levelWinWorld = new LevelWinWorld();
         Greenfoot.setWorld(levelWinWorld);
     }
-    
-    /*
-     * should there only be one GameWorld?
-     * if only one game world,
-     * in order to access an object from another class,
-     * need to grab level1, then call a getter function
-     * 
-     * if multiple game worlds,
-     * need to switch (GameInfo.levelNumber) if we want to access the current world 
-     */
 }

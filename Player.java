@@ -42,11 +42,7 @@ public class Player extends Actor
         }
         
         // move the player's weapon
-        switch (GameInfo.levelNumber) {
-            case 1:
-                Level1 level1 = (Level1) getWorld();
-                Pistol pistol = level1.getPistol();
-                pistol.setLocation(getX() + 10, getY() + 10);
-        }
+        Actor weapon = (Actor)getWorld().getObjects(Weapon.class).get(0);
+        weapon.setLocation(getX() + 10, getY() + 10);
     }
 }
