@@ -15,19 +15,4 @@ public class Weapon extends Actor
         this.bulletSpeed = bulletSpeed;
         this.bulletDmg = bulletDmg;
     }
-    
-    public void checkMovement() {
-        if (Greenfoot.isKeyDown("w")) {
-            setLocation(getX(), getY() - Player.speed);
-        }
-        if (Greenfoot.isKeyDown("a")) {
-            move(Player.speed * -1);
-        }
-        if (Greenfoot.isKeyDown("s")) {
-            setLocation(getX(), getY() + Player.speed);
-        }
-        if (Greenfoot.isKeyDown("d")) {
-            move(Player.speed);
-        }
-    }
 }

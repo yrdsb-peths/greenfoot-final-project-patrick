@@ -10,10 +10,8 @@ public class Player extends Actor
 {
     public static int speed = 3;
     private boolean facingRight = false;
-    private String curWeapon = "";
     
-    public Player(String curWeapon) {
-        // attach gun to player
+    public Player() {
         
     }
     
@@ -41,6 +39,14 @@ public class Player extends Actor
         }
         if (!Greenfoot.isKeyDown("w") && !Greenfoot.isKeyDown("a") && !Greenfoot.isKeyDown("s") && !Greenfoot.isKeyDown("d") && !Greenfoot.isKeyDown("space")) {
             //idleAnimate();
+        }
+        
+        // move the player's weapon
+        switch (GameInfo.levelNumber) {
+            case 1:
+                Level1 level1 = (Level1) getWorld();
+                Pistol pistol = level1.getPistol();
+                pistol.setLocation(getX() + 10, getY() + 10);
         }
     }
 }
