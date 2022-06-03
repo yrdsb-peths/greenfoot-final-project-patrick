@@ -23,11 +23,15 @@ public class Weapon extends Actor
         }
     }
     
-    public void checkFire() {
+    public void checkFire(String weaponType) {
         MouseInfo mi = Greenfoot.getMouseInfo();
         if (mi != null && mi.getButton() == 1) {
-            Bullet bullet = new Bullet(false);
-            GameWorld world = (GameWorld)getWorld();
+            
+            switch (weaponType) {
+                case "pistol":
+                    
+            }
+            World world = getWorld();
             world.addObject(bullet, getX() + 10, getY() - 10);     
             bullet.turnTowards(mi.getX(), mi.getY());    
         }

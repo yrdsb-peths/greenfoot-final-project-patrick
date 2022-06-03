@@ -10,14 +10,9 @@ public class Enemy extends Actor
 {
     SimpleTimer shootTimer = new SimpleTimer();
     
-    public void act()
-    {
-        shoot();
-    }
-    
     public void shoot() {
         if (shootTimer.millisElapsed() > 500) {
-            Bullet bullet = new Bullet(true);
+            EnemyBullet bullet = new EnemyBullet();
             Actor player = (Actor)getWorld().getObjects(Player.class).get(0);
             World world = getWorld();
             world.addObject(bullet, getX(), getY());
