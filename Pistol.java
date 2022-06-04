@@ -24,7 +24,7 @@ public class Pistol extends Actor
     
     public void fire() {
         MouseInfo mi = Greenfoot.getMouseInfo();
-        if (Greenfoot.isKeyDown("space") && fireTimer.millisElapsed() > 300) {
+        if (mi != null && Greenfoot.isKeyDown("space") && fireTimer.millisElapsed() > 300) {
             PlayerBullet bullet = new PlayerBullet();
             World world = getWorld();
             world.addObject(bullet, getX() + 10, getY() - 10);     

@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @ Patrick Hu
  * @version (a version number or a date)
  */
-public class EnemyBullet extends Bullet
+public class EnemyBullet extends Projectile
 {
     private int speed = 3; // speed needs to be higher than 1 or else loss in accuracy of bullet
     

@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @ Patrick Hu
  * @version (a version number or a date)
  */
-public class PlayerBullet extends Bullet
+public class PlayerBullet extends Projectile
 {
     private int speed = 6;
     

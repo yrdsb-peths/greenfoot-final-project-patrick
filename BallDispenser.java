@@ -15,8 +15,9 @@ public class BallDispenser extends Enemy
         this.shotDirection = shotDirection;
     }
     
-    public void act()
-    {
-        
+    public void fireBall() {
+        GameWorld world = (GameWorld) getWorld();
+        Ball ball = new Ball(shotDirection);
+        world.addObject(ball, getX(), getY());
     }
 }

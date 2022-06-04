@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Patrick Hu
  * @version (a version number or a date)
  */
-public class Bullet extends Actor
+public class Projectile extends Actor
 {   
     public void checkAtWall() {
         GameWorld world = (GameWorld) getWorld();

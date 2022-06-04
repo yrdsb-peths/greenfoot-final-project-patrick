@@ -29,6 +29,11 @@ public class Level1 extends GameWorld
             addObject(wall, x, y);
             y -= wall.getImage().getHeight();
         }
+        // spawn ball dispensers
+        
+        // spawn watermelon
+        Watermelon melon = new Watermelon();
+        addObject(melon, getWidth() / 2, 45);
     }
     
     public void act() {
