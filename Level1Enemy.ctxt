@@ -1,6 +1,0 @@
-#BlueJ class context
-comment0.target=Level1Enemy
-comment0.text=\r\n\ Level1Enemy\ does\ not\ move\ and\ only\ shoots\ at\ the\ player.\r\n\ \r\n\ @\ Patrick\ Hu\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=
-comment1.target=void\ act()
-numComments=2

@@ -3,20 +3,20 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Bullet here.
  * 
- * @author (your name) 
+ * Patrick Hu
  * @version (a version number or a date)
  */
 public class Bullet extends Actor
 {   
-    public double scaleSmall = 0.5;
-    public double scaleLarge = 6;
-    
-    public Bullet() {
-        
+    public void checkAtWall() {
+        GameWorld world = (GameWorld) getWorld();
+         // check if bullet at wall
+        if (isTouching(WallTile.class)) {
+            world.removeObject(this);
+        }
+        // check if bullet at edge of world
+        else if (getX() == world.getWidth() - 1 || getX() == 0 || getY() == world.getHeight() - 1 || getY() == 0) {
+            world.removeObject(this);    
+        }
     }
-    
-    public void act()
-    {
-        
-    }    
 }
