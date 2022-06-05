@@ -9,14 +9,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Projectile extends Actor
 {   
     public void checkAtWall() {
-        GameWorld world = (GameWorld) getWorld();
-         // check if bullet at wall
+        if (getWorld() == null) return;
+        // check if bullet at wall       
         if (isTouching(Wall.class)) {
-            world.removeObject(this);
+            getWorld().removeObject(this);
         }
         // check if bullet at edge of world
-        else if (getX() == world.getWidth() - 1 || getX() == 0 || getY() == world.getHeight() - 1 || getY() == 0) {
-            world.removeObject(this);    
+        // note: short circuit evaluation with getWorld() != null in the condition sometimes fails
+        else if (getX() == getWorld().getWidth() - 1 || getX() == 0 || getY() == getWorld().getHeight() - 1 || getY() == 0) {
+            getWorld().removeObject(this);    
         }
     }
 }

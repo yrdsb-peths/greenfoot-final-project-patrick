@@ -14,4 +14,10 @@ public class Level1Pass extends LevelPassWorld
         Label l = new Label("You Passed Level 1!", 40);
         addObject(l, getWidth() / 2, getHeight() / 2);
     }
+    
+    public void act() {
+        if (Greenfoot.isKeyDown("enter")) {
+            Greenfoot.setWorld(new Level2());
+        }
+    }
 }

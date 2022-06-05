@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player extends Actor
 {
-    public static int speed = 2;
+    private int speed = 2;
     private boolean facingRight = false;
     private int idle_size = 4, idle_index = 0;
     private int run_size = 4, run_index = 0;
@@ -77,8 +77,11 @@ public class Player extends Actor
     }
     
     public void moveGun() {
-        Actor pistol = (Actor)getWorld().getObjects(Pistol.class).get(0);
-        pistol.setLocation(getX() + 21, getY() + 30);
+        var arr = getWorld().getObjects(Bow.class);
+        if (arr.size() > 0) {
+            Actor bow = arr.get(0);    
+            bow.setLocation(getX() + 19, getY() + 27);
+        }        
     }
     
     public void idleAnimate() {

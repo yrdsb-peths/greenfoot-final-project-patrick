@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=Image
+comment0.text=\r\n\ Just\ an\ actor\ with\ a\ GreenfootImage.\r\n\ \r\n\ @\ Patrick\ Hu\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=img
+comment1.target=Image(greenfoot.GreenfootImage)
+numComments=2

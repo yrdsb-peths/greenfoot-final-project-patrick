@@ -9,10 +9,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class PlayerBullet extends Projectile
 {
     private int speed = 6;
+    private double scale = 1.2;
     
     public PlayerBullet() {
-        setImage("sprites/guns/PNG/small_bullet.png");    
-        getImage().scale((int)(getImage().getWidth() * 0.7), (int)(getImage().getHeight() * 0.7));
+        setImage("sprites/bow/weapon_arrow.png");    
+        getImage().scale((int)(getImage().getWidth() * scale), (int)(getImage().getHeight() * scale));
     }
     
     public void act()
@@ -24,10 +25,10 @@ public class PlayerBullet extends Projectile
     
     public void checkEnemyHit() {
         Enemy enemy = (Enemy) getOneIntersectingObject(Enemy.class);
-        if (enemy != null && enemy.killable) {
+        if (enemy != null) {
             removeTouching(Enemy.class);
-            GameWorld world = (GameWorld) getWorld();
-            world.removeObject(this);
+            if (getWorld() == null) return;
+            else getWorld().removeObject(this);
         }
     }
 }

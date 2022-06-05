@@ -12,16 +12,14 @@ public class Level1 extends GameWorld
     private int actCount = 0;
     private boolean flip = false;
     SimpleTimer enemyShootTimer = new SimpleTimer();
-    ArrayList<BallDispenser> enemies = new ArrayList<BallDispenser>();
+    ArrayList<Skeleton> enemies = new ArrayList<Skeleton>();
     
     public Level1() {
         super(800, 600, 1);
         // spawn player
         Player player = new Player();
         addObject(player, getWidth() / 2, getHeight() - 50);
-        // spawn pistol
-        Pistol pistol = new Pistol();
-        addObject(pistol, getWidth() / 2, getHeight() / 2);
+                
         // generate walls
         for (int x = 170, y = getHeight(); y >= -20;) { // condition of y >= -20 to ensure last wall gets placed
             Wall wall = new Wall("vertical");
@@ -35,9 +33,9 @@ public class Level1 extends GameWorld
         }
         // spawn ball dispensers
         for (int i = 0, x = 220, y = 140; x < 620; x += 70, i++) {
-            BallDispenser ballDispenser = new BallDispenser(false, "down");
-            addObject(ballDispenser, x, y);
-            enemies.add(ballDispenser);
+            Skeleton Skeleton = new Skeleton("down");
+            addObject(Skeleton, x, y);
+            enemies.add(Skeleton);
         }
         
         // spawn watermelon

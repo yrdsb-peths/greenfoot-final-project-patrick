@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=Skeleton
+comment0.text=\r\n\ Skeletons\ only\ shoot\ in\ one\ direction\ and\ cannot\ move.\r\n\ Their\ shots\ do\ not\ track\ the\ player.\r\n\ Skeletons\ die\ upon\ touch\ and\ when\ hit\ by\ an\ arrow.\r\n\ \r\n\ @\ Patrick\ Hu\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=shotDirection
+comment1.target=Skeleton(java.lang.String)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ fireBall()
+comment4.params=
+comment4.target=void\ idleAnimate()
+comment5.params=
+comment5.target=void\ checkDeath()
+numComments=6

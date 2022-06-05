@@ -1,25 +1,26 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class BallDispenser here.
+ * Skeletons only shoot in one direction and cannot move.
+ * Their shots do not track the player.
+ * Skeletons die upon touch and when hit by an arrow.
  * 
  * @ Patrick Hu
  * @version (a version number or a date)
  */
-public class BallDispenser extends Enemy
+public class Skeleton extends Enemy
 {
     String shotDirection;
     private int idle_size = 4, idle_index = 0;
     private int actCount = 0;
     GreenfootImage[] idle = new GreenfootImage[idle_size];
     
-    public BallDispenser(boolean killable, String shotDirection) {
-        super(killable);
+    public Skeleton(String shotDirection) {
         this.shotDirection = shotDirection;
         // initialize idle sprites
         for (int i = 0; i < idle_size; i++) {
-            idle[i] = new GreenfootImage("./sprites/orc-shaman/orc_shaman_idle_anim_f" + i + ".png");
-            idle[i].scale((int)(getImage().getWidth() * 3.3), (int)(getImage().getHeight() * 3.3));
+            idle[i] = new GreenfootImage("./sprites/skeleton/skelet_idle_anim_f" + i + ".png");
+            idle[i].scale((int)(getImage().getWidth() * 2.5), (int)(getImage().getHeight() * 2.2));
         }
     }
     
@@ -44,9 +45,9 @@ public class BallDispenser extends Enemy
     }
     
     public void checkDeath() {
+        if (getWorld() == null) return;
         if (isTouching(Player.class)) {
-            GameWorld world = (GameWorld) getWorld();
-            world.removeObject(this);
+            getWorld().removeObject(this);
         }
     }
 }
