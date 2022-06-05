@@ -10,7 +10,7 @@ public class GameOverWorld extends World
 {    
     public GameOverWorld()
     {    
-        super(600, 600, 1);
+        super(800, 600, 1);
         Label l = new Label("Game Over!", 40);
         addObject(l, getWidth() / 2, getHeight() / 2); 
     }

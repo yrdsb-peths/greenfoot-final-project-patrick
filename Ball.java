@@ -13,11 +13,19 @@ public class Ball extends Projectile
     
     public Ball(String direction) {
         this.direction = direction;
+        setImage("./sprites/bullets/orc-shaman-bullet.png");
+        getImage().scale((int)(getImage().getWidth() * 3.2), (int)(getImage().getHeight() * 3.2));
     }
     
     public void act()
     {
-        int dx = 0, dy = 0;
+        move();
+        checkPlayerHit();
+        checkAtWall();
+    }
+    
+    public void move() {
+        int dx = 0, dy = 0; 
         switch (direction) {
             case "up":
                 dy -= speed;
@@ -29,5 +37,12 @@ public class Ball extends Projectile
                 dx += speed;
         }
         setLocation(getX() + dx, getY() + dy);
+    }
+    
+    public void checkPlayerHit() {
+        if (isTouching(Player.class)) {
+            GameWorld world = (GameWorld)getWorld();
+            world.gameOver();
+        }
     }
 }

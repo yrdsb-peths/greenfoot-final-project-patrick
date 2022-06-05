@@ -11,7 +11,7 @@ public class Projectile extends Actor
     public void checkAtWall() {
         GameWorld world = (GameWorld) getWorld();
          // check if bullet at wall
-        if (isTouching(WallTile.class)) {
+        if (isTouching(Wall.class)) {
             world.removeObject(this);
         }
         // check if bullet at edge of world

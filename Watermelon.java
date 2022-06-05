@@ -3,33 +3,47 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Watermelon here.
  * 
- * @author (your name) 
+ * @ Patrick Hu 
  * @version (a version number or a date)
  */
 public class Watermelon extends Actor
 {
-    private int idle_size = 8, idle_index = 0;
-    GreenfootImage[] idle = new GreenfootImage[8];
-    SimpleTimer idleTimer = new SimpleTimer();
+    private int idle_size = 10, idle_index = 0;
+    private int actCount = 0;
+    private int level;
+    GreenfootImage[] idle = new GreenfootImage[idle_size];
     
-    public Watermelon() {
+    public Watermelon(int level) {
+        this.level = level;
         for (int i = 0; i < idle_size; i++) {
             idle[i] = new GreenfootImage("./sprites/watermelon/idle" + i + ".png");
-            idle[i].scale((int)(getImage().getWidth() * 0.7), (int)(getImage().getHeight() * 0.7));
+            idle[i].scale((int)(getImage().getWidth() * 0.25), (int)(getImage().getHeight() * 0.3));
         }
     }
     
     public void act()
     {
+        actCount++;
         idleAnimate();
+        checkWin();
     }
     
     public void idleAnimate() {
-        if (idleTimer.millisElapsed() > 150) {
+        if (actCount % 8 == 0) {
             setImage(idle[idle_index]);
             idle_index++;
             idle_index %= idle_size;
-            idleTimer.mark();
+        }
+    }
+    
+    public void checkWin() {
+        if (isTouching(Player.class)) {
+            switch (level) {
+                case 1:
+                    Level1 world = (Level1) getWorld();
+                    world.levelPass();
+                    break;
+            }
         }
     }
 }
