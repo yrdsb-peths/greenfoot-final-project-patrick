@@ -31,10 +31,10 @@ public class Bow extends Actor
         MouseInfo mi = Greenfoot.getMouseInfo();
         if (mi != null && Greenfoot.isKeyDown("space") && fireTimer.millisElapsed() > 300) {
             numArrows--;
-            PlayerBullet bullet = new PlayerBullet();
+            Arrow arrow = new Arrow();
             World world = getWorld();
-            world.addObject(bullet, getX() + 10, getY() - 10);     
-            bullet.turnTowards(mi.getX(), mi.getY()); 
+            world.addObject(arrow, getX() + 10, getY() - 10);     
+            arrow.turnTowards(mi.getX(), mi.getY()); 
             fireTimer.mark();
         }
     }

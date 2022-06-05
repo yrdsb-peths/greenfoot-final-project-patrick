@@ -13,35 +13,43 @@ public class Player extends Actor
     private int idle_size = 4, idle_index = 0;
     private int run_size = 4, run_index = 0;
     private int actCount = 0;
+    private int level;
+    private int spear_dx = 13, spear_dy = 0;
+    private int bow_dx = 12, bow_dy = 17;
     private double playerScale = 2.5;
+    private String curWeapon = "spear"; // player always starts a level with the spear
     GreenfootImage[] idleFacingRight = new GreenfootImage[idle_size];
     GreenfootImage[] idleFacingLeft = new GreenfootImage[idle_size];
     GreenfootImage[] runFacingRight = new GreenfootImage[run_size];
     GreenfootImage[] runFacingLeft = new GreenfootImage[run_size];
     
-    public Player() {
+    public Player(int level) {
+        this.level = level;
         // initialize sprites
         for (int i = 0; i < idle_size; i++) {
             idleFacingRight[i] = new GreenfootImage("./sprites/player/lizard_m_idle_anim_f" + i + ".png");
-            idleFacingRight[i].scale((int)(getImage().getWidth() * playerScale), (int)(getImage().getHeight() * (playerScale - 0.5)));
+            idleFacingRight[i].scale((int)(idleFacingRight[i].getWidth() * playerScale), (int)(idleFacingRight[i].getHeight() * playerScale));
             idleFacingLeft[i] = new GreenfootImage("./sprites/player/lizard_m_idle_anim_f" + i + ".png");
-            idleFacingLeft[i].scale((int)(getImage().getWidth() * playerScale), (int)(getImage().getHeight() * (playerScale - 0.5)));
+            idleFacingLeft[i].scale((int)(idleFacingLeft[i].getWidth() * playerScale), (int)(idleFacingLeft[i].getHeight() * playerScale));
             idleFacingLeft[i].mirrorHorizontally();
         }
         for (int i = 0; i < run_size; i++) {
             runFacingRight[i] = new GreenfootImage("./sprites/player/lizard_m_run_anim_f" + i + ".png");
-            runFacingRight[i].scale((int)(getImage().getWidth() * playerScale), (int)(getImage().getHeight() * (playerScale - 0.5)));
+            runFacingRight[i].scale((int)(runFacingRight[i].getWidth() * playerScale), (int)(runFacingRight[i].getHeight() * playerScale));
             runFacingLeft[i] = new GreenfootImage("./sprites/player/lizard_m_run_anim_f" + i + ".png");
-            runFacingLeft[i].scale((int)(getImage().getWidth() * playerScale), (int)(getImage().getHeight() * (playerScale - 0.5)));
+            runFacingLeft[i].scale((int)(runFacingLeft[i].getWidth() * playerScale), (int)(runFacingLeft[i].getHeight() * playerScale));
             runFacingLeft[i].mirrorHorizontally();
         }
+        setImage(idleFacingRight[0]);
     }
     
     public void act()
     {
         actCount++;
         move();
-        moveGun();
+        selectWeapon();
+        moveWeapon();
+        checkTouchingEnemy();
     }
     
     public void move() {
@@ -76,12 +84,44 @@ public class Player extends Actor
             setLocation(getX(), getY() - dy);
     }
     
-    public void moveGun() {
-        var arr = getWorld().getObjects(Bow.class);
-        if (arr.size() > 0) {
-            Actor bow = arr.get(0);    
-            bow.setLocation(getX() + 19, getY() + 27);
+    public void selectWeapon() {
+        if (Greenfoot.isKeyDown("1") && curWeapon == "bow") {
+            // switch to spear
+            Bow b = getWorld().getObjects(Bow.class).get(0);
+            getWorld().removeObject(b);
+            Spear s = new Spear();
+            getWorld().addObject(s, getX() + spear_dx, getY() + spear_dy);
+            curWeapon = "spear";
+        }
+        else if (Greenfoot.isKeyDown("2") && curWeapon == "spear" && level > 1) {
+            // switch to bow
+            Spear s = getWorld().getObjects(Spear.class).get(0);
+            getWorld().removeObject(s);
+            Bow b = new Bow();
+            getWorld().addObject(b, getX() + bow_dx, getY() + bow_dy);
+            curWeapon = "bow";
+        }
+    }
+    
+    public void moveWeapon() {
+        var spearArr = getWorld().getObjects(Spear.class);
+        var bowArr = getWorld().getObjects(Bow.class);
+        if (spearArr.size() == 1) {
+            Actor spear = spearArr.get(0);    
+            spear.setLocation(getX() + spear_dx, getY() + spear_dy);
+        }
+        else if (bowArr.size() == 1) {
+            Actor bow = bowArr.get(0);    
+            bow.setLocation(getX() + bow_dx, getY() + bow_dy);
         }        
+    }
+    
+    public void checkTouchingEnemy() {
+        if (getWorld() == null) return;
+        if (isTouching(Enemy.class)) {
+            GameWorld world = (GameWorld) getWorld();
+            world.gameOver();
+        }
     }
     
     public void idleAnimate() {
@@ -94,7 +134,7 @@ public class Player extends Actor
     }
     
     public void runAnimate() {
-        if (actCount % 9 == 0) {
+        if (actCount % 7 == 0) {
             if (facingRight) setImage(runFacingRight[run_index]);
             else setImage(runFacingLeft[run_index]);
             run_index++;

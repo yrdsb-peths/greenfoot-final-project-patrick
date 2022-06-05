@@ -17,9 +17,11 @@ public class Level1 extends GameWorld
     public Level1() {
         super(800, 600, 1);
         // spawn player
-        Player player = new Player();
+        Player player = new Player(1);
         addObject(player, getWidth() / 2, getHeight() - 50);
-                
+        // spawn spear
+        Spear s = new Spear();
+        addObject(s, getWidth() / 2, getHeight() - 50);
         // generate walls
         for (int x = 170, y = getHeight(); y >= -20;) { // condition of y >= -20 to ensure last wall gets placed
             Wall wall = new Wall("vertical");

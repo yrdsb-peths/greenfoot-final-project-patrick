@@ -3,18 +3,19 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Ball here.
  * 
- * @ Patrick Hu
+ * @author (your name) 
  * @version (a version number or a date)
  */
 public class Ball extends Projectile
 {
     private int speed = 3;
+    private double scale = 3.2;
     String direction;
     
     public Ball(String direction) {
         this.direction = direction;
         setImage("./sprites/bullets/orc-shaman-bullet.png");
-        getImage().scale((int)(getImage().getWidth() * 3.2), (int)(getImage().getHeight() * 3.2));
+        getImage().scale((int)(getImage().getWidth() * scale), (int)(getImage().getHeight() * scale));
     }
     
     public void act()
@@ -41,7 +42,7 @@ public class Ball extends Projectile
     
     public void checkPlayerHit() {
         if (isTouching(Player.class)) {
-            GameWorld world = (GameWorld)getWorld();
+            GameWorld world = (GameWorld) getWorld();
             world.gameOver();
         }
     }

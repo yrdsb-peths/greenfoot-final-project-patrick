@@ -1,16 +1,20 @@
 #BlueJ class context
 comment0.target=Player
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ Player\ here.\r\n\ \r\n\ @\ Patrick\ Hu\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=
-comment1.target=Player()
+comment1.params=level
+comment1.target=Player(int)
 comment2.params=
 comment2.target=void\ act()
 comment3.params=
 comment3.target=void\ move()
 comment4.params=
-comment4.target=void\ moveGun()
+comment4.target=void\ selectWeapon()
 comment5.params=
-comment5.target=void\ idleAnimate()
+comment5.target=void\ moveWeapon()
 comment6.params=
-comment6.target=void\ runAnimate()
-numComments=7
+comment6.target=void\ checkTouchingEnemy()
+comment7.params=
+comment7.target=void\ idleAnimate()
+comment8.params=
+comment8.target=void\ runAnimate()
+numComments=9

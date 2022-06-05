@@ -19,6 +19,7 @@ public class Watermelon extends Actor
             idle[i] = new GreenfootImage("./sprites/watermelon/idle" + i + ".png");
             idle[i].scale((int)(getImage().getWidth() * 0.25), (int)(getImage().getHeight() * 0.3));
         }
+        setImage(idle[0]);
     }
     
     public void act()

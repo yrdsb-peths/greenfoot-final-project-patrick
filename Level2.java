@@ -13,11 +13,11 @@ public class Level2 extends GameWorld
         super(800, 600, 1);
         resetArrowCount();
         // spawn player
-        Player player = new Player();
+        Player player = new Player(2);
         addObject(player, getWidth() / 2, getHeight() - 100);
-        // spawn bow
-        Bow bow = new Bow();
-        addObject(bow, getWidth() / 2, getHeight() - 100);
+        // spawn spear
+        Spear s = new Spear();
+        addObject(s, getWidth() / 2, getHeight() - 100);
         // create num arrow label
         initNumArrowLabel();
     }

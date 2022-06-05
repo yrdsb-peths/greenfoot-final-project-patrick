@@ -13,6 +13,7 @@ public class Skeleton extends Enemy
     String shotDirection;
     private int idle_size = 4, idle_index = 0;
     private int actCount = 0;
+    private double scale = 2.5;
     GreenfootImage[] idle = new GreenfootImage[idle_size];
     
     public Skeleton(String shotDirection) {
@@ -20,14 +21,14 @@ public class Skeleton extends Enemy
         // initialize idle sprites
         for (int i = 0; i < idle_size; i++) {
             idle[i] = new GreenfootImage("./sprites/skeleton/skelet_idle_anim_f" + i + ".png");
-            idle[i].scale((int)(getImage().getWidth() * 2.5), (int)(getImage().getHeight() * 2.2));
+            idle[i].scale((int)(idle[i].getWidth() * scale), (int)(idle[i].getHeight() * scale));
         }
+        setImage(idle[0]);
     }
     
     public void act() {
         actCount++;
         idleAnimate();
-        checkDeath();
     }
     
     public void fireBall() {
@@ -41,13 +42,6 @@ public class Skeleton extends Enemy
             setImage(idle[idle_index]);
             idle_index++;
             idle_index %= idle_size;
-        }
-    }
-    
-    public void checkDeath() {
-        if (getWorld() == null) return;
-        if (isTouching(Player.class)) {
-            getWorld().removeObject(this);
         }
     }
 }

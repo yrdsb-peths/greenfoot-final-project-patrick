@@ -1,13 +1,13 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Bullet here.
+ * Write a description of class Projectile here.
  * 
- * Patrick Hu
+ * @author (your name) 
  * @version (a version number or a date)
  */
-public class Projectile extends Actor
-{   
+public class Projectile extends SmoothMover
+{
     public void checkAtWall() {
         if (getWorld() == null) return;
         // check if bullet at wall       

@@ -9,6 +9,4 @@ comment3.params=
 comment3.target=void\ fireBall()
 comment4.params=
 comment4.target=void\ idleAnimate()
-comment5.params=
-comment5.target=void\ checkDeath()
-numComments=6
+numComments=5
