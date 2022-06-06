@@ -33,9 +33,9 @@ public class Level1 extends GameWorld
             addObject(wall, x, y);
             y -= wall.getImage().getHeight();
         }
-        // spawn ball dispensers
-        for (int i = 0, x = 220, y = 140; x < 620; x += 70, i++) {
-            Skeleton Skeleton = new Skeleton("down");
+        // spawn skeletons
+        for (int i = 0, x = 220, y = 140; x < 620; x += 72, i++) {
+            Skeleton Skeleton = new Skeleton("down", 0, false);
             addObject(Skeleton, x, y);
             enemies.add(Skeleton);
         }
@@ -52,7 +52,7 @@ public class Level1 extends GameWorld
             // even numbers attack
             for (int i = 0; i < enemies.size(); i += 2) {
                 if (enemies.get(i).getWorld() != null)
-                    enemies.get(i).fireBall();
+                    enemies.get(i).fire();
             }
             flip = false;
         }
@@ -60,7 +60,7 @@ public class Level1 extends GameWorld
             // odd numbers attack
             for (int i = 1; i < enemies.size(); i += 2) {
                 if (enemies.get(i).getWorld() != null)
-                    enemies.get(i).fireBall();
+                    enemies.get(i).fire();
             }
             flip = true;
         }

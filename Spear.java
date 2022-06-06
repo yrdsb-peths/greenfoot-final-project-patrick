@@ -56,14 +56,22 @@ public class Spear extends SmoothMover
             attack_index++;
             attackTimer.mark();
             checkEnemyHit();
-            timerThreshold -= 4;
+            timerThreshold -= 4; // accelerate the animation
         }
     }
     
     public void checkEnemyHit() {
-        Enemy enemy = (Enemy) getOneIntersectingObject(Enemy.class);
-        if (enemy != null) {
+        Enemy e = (Enemy) getOneIntersectingObject(Enemy.class);
+        if (e != null) {
             removeTouching(Enemy.class);
+        }
+    }
+    
+    // currently not using 
+    public void checkEnemyProjectileHit() {
+        EnemyProjectile p = (EnemyProjectile) getOneIntersectingObject(EnemyProjectile.class);
+        if (p != null) {
+            removeTouching(EnemyProjectile.class);
         }
     }
 }

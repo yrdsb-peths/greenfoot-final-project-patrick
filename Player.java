@@ -16,7 +16,7 @@ public class Player extends Actor
     private int level;
     private int spear_dx = 13, spear_dy = 0;
     private int bow_dx = 12, bow_dy = 17;
-    private double playerScale = 2.5;
+    private double scale = 2.5;
     private String curWeapon = "spear"; // player always starts a level with the spear
     GreenfootImage[] idleFacingRight = new GreenfootImage[idle_size];
     GreenfootImage[] idleFacingLeft = new GreenfootImage[idle_size];
@@ -28,16 +28,16 @@ public class Player extends Actor
         // initialize sprites
         for (int i = 0; i < idle_size; i++) {
             idleFacingRight[i] = new GreenfootImage("./sprites/player/lizard_m_idle_anim_f" + i + ".png");
-            idleFacingRight[i].scale((int)(idleFacingRight[i].getWidth() * playerScale), (int)(idleFacingRight[i].getHeight() * playerScale));
+            idleFacingRight[i].scale((int)(idleFacingRight[i].getWidth() * scale), (int)(idleFacingRight[i].getHeight() * scale));
             idleFacingLeft[i] = new GreenfootImage("./sprites/player/lizard_m_idle_anim_f" + i + ".png");
-            idleFacingLeft[i].scale((int)(idleFacingLeft[i].getWidth() * playerScale), (int)(idleFacingLeft[i].getHeight() * playerScale));
+            idleFacingLeft[i].scale((int)(idleFacingLeft[i].getWidth() * scale), (int)(idleFacingLeft[i].getHeight() * scale));
             idleFacingLeft[i].mirrorHorizontally();
         }
         for (int i = 0; i < run_size; i++) {
             runFacingRight[i] = new GreenfootImage("./sprites/player/lizard_m_run_anim_f" + i + ".png");
-            runFacingRight[i].scale((int)(runFacingRight[i].getWidth() * playerScale), (int)(runFacingRight[i].getHeight() * playerScale));
+            runFacingRight[i].scale((int)(runFacingRight[i].getWidth() * scale), (int)(runFacingRight[i].getHeight() * scale));
             runFacingLeft[i] = new GreenfootImage("./sprites/player/lizard_m_run_anim_f" + i + ".png");
-            runFacingLeft[i].scale((int)(runFacingLeft[i].getWidth() * playerScale), (int)(runFacingLeft[i].getHeight() * playerScale));
+            runFacingLeft[i].scale((int)(runFacingLeft[i].getWidth() * scale), (int)(runFacingLeft[i].getHeight() * scale));
             runFacingLeft[i].mirrorHorizontally();
         }
         setImage(idleFacingRight[0]);

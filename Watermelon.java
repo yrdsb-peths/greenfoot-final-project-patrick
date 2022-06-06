@@ -40,10 +40,16 @@ public class Watermelon extends Actor
     public void checkWin() {
         if (isTouching(Player.class)) {
             switch (level) {
-                case 1:
+                case 1: {
                     Level1 world = (Level1) getWorld();
                     world.levelPass();
                     break;
+                }
+                case 2: {
+                    Level2 world = (Level2) getWorld();
+                    world.levelPass();
+                    break;
+                }
             }
         }
     }

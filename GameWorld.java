@@ -22,8 +22,8 @@ public class GameWorld extends World
         arrow.scale((int)(arrow.getWidth() * 1.2), (int)(arrow.getHeight() * 1.2));
         Image arrowActor = new Image(arrow);
         
-        addObject(l, getWidth() - 70, getHeight() - 50);
-        addObject(arrowActor, getWidth() - 40, getHeight() - 50);
+        addObject(l, getWidth() - 50, getHeight() - 30);
+        addObject(arrowActor, getWidth() - 20, getHeight() - 30);
     }
     
     public void updateNumArrowLabel() {

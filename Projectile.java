@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class Projectile here.
  * 
- * @author (your name) 
+ * @ Patrick Hu
  * @version (a version number or a date)
  */
 public class Projectile extends SmoothMover
