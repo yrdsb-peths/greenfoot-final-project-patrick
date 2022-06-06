@@ -15,7 +15,6 @@ public class Level2 extends GameWorld
     public Level2()
     {
         super(800, 600, 1);
-        resetArrowCount();
         // spawn player
         Player player = new Player(2);
         addObject(player, 100, getHeight() / 2);
@@ -23,7 +22,7 @@ public class Level2 extends GameWorld
         Spear s = new Spear();
         addObject(s, 100, getHeight() / 2);
         // create num arrow label
-        initNumArrowLabel();
+        initNumArrowLabel(5);
         // spawn two walls
         for (int i = 0, x = 190, y = 118; i < 3; i++) {
             Wall w = new Wall("vertical");
@@ -45,11 +44,11 @@ public class Level2 extends GameWorld
         Skeleton skel4 = new Skeleton("left", skelFireRate, true);
         addObject(skel4, skelX, 338);
         // spawn shamans
-        Shaman sha1 = new Shaman("vertical");
+        Shaman sha1 = new Shaman("vertical", false);
         addObject(sha1, shamanX, 225);
-        Shaman sha2 = new Shaman("vertical");
+        Shaman sha2 = new Shaman("vertical", false);
         addObject(sha2, shamanX, 525);
-        Shaman sha3 = new Shaman("vertical");
+        Shaman sha3 = new Shaman("vertical", false);
         addObject(sha3, shamanX - 100, 375);
         // spawn watermelon
         Watermelon melon = new Watermelon(2);
@@ -59,10 +58,7 @@ public class Level2 extends GameWorld
     public void act() {
         updateNumArrowLabel();
     }
-    
-    public void resetArrowCount() {
-        Bow.numArrows = Bow.STARTING_NUM_ARROWS;
-    }
+
     
     public void levelPass() {
         Greenfoot.setWorld(new Level2Pass());

@@ -11,8 +11,7 @@ public class Level1 extends GameWorld
 {   
     private int actCount = 0;
     private boolean flip = false;
-    SimpleTimer enemyShootTimer = new SimpleTimer();
-    ArrayList<Skeleton> enemies = new ArrayList<Skeleton>();
+    ArrayList<Skeleton> skellies = new ArrayList<Skeleton>();
     
     public Level1() {
         super(800, 600, 1);
@@ -35,9 +34,9 @@ public class Level1 extends GameWorld
         }
         // spawn skeletons
         for (int i = 0, x = 220, y = 140; x < 620; x += 72, i++) {
-            Skeleton Skeleton = new Skeleton("down", 0, false);
-            addObject(Skeleton, x, y);
-            enemies.add(Skeleton);
+            Skeleton skel = new Skeleton("down", 0, false);
+            addObject(skel, x, y);
+            skellies.add(skel);
         }
         
         // spawn watermelon
@@ -50,17 +49,17 @@ public class Level1 extends GameWorld
         // periodically make ball dispensers shoot
         if (actCount % 70 == 0 && flip) {
             // even numbers attack
-            for (int i = 0; i < enemies.size(); i += 2) {
-                if (enemies.get(i).getWorld() != null)
-                    enemies.get(i).fire();
+            for (int i = 0; i < skellies.size(); i += 2) {
+                if (skellies.get(i).getWorld() != null)
+                    skellies.get(i).fire();
             }
             flip = false;
         }
         else if (actCount % 70 == 0 && !flip) {
             // odd numbers attack
-            for (int i = 1; i < enemies.size(); i += 2) {
-                if (enemies.get(i).getWorld() != null)
-                    enemies.get(i).fire();
+            for (int i = 1; i < skellies.size(); i += 2) {
+                if (skellies.get(i).getWorld() != null)
+                    skellies.get(i).fire();
             }
             flip = true;
         }

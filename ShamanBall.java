@@ -17,7 +17,7 @@ public class ShamanBall extends EnemyProjectile
     
     public ShamanBall() {
         for (int i = 0; i < anim_size; i++) {
-            animation[i] = new GreenfootImage("./sprites/fireball/fireball" + i + ".png");
+            animation[i] = new GreenfootImage("./sprites/fireball-v2/fireball" + i + ".png");
             animation[i].scale((int)(animation[i].getWidth() * scale), (int)(animation[i].getHeight() * scale));
         }
         setImage(animation[0]);

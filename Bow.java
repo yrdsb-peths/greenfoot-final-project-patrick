@@ -8,8 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Bow extends Actor
 {
-    public static final int STARTING_NUM_ARROWS = 20;
-    public static int numArrows = STARTING_NUM_ARROWS;
+    public static int numArrows;
     private double scale = 2;
     SimpleTimer fireTimer = new SimpleTimer();
     

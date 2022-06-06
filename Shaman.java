@@ -14,6 +14,7 @@ public class Shaman extends Enemy
     private int run_size = 4, run_index = 0;
     private int actCount = 0;
     private double scale = 3.5;
+    private boolean facingRight;
     String pattern, curDirection;
     GreenfootImage[] idleFacingRight = new GreenfootImage[idle_size];
     GreenfootImage[] idleFacingLeft = new GreenfootImage[idle_size];
@@ -21,8 +22,9 @@ public class Shaman extends Enemy
     GreenfootImage[] runFacingLeft = new GreenfootImage[run_size];
     SimpleTimer moveTimer = new SimpleTimer();
     
-    public Shaman(String pattern) {
+    public Shaman(String pattern, boolean facingRight) {
         this.pattern = pattern;
+        this.facingRight = facingRight;
         if (pattern == "vertical") {
             curDirection = "up";
         }
@@ -44,7 +46,8 @@ public class Shaman extends Enemy
             runFacingLeft[i].scale((int)(runFacingLeft[i].getWidth() * scale), (int)(runFacingLeft[i].getHeight() * scale));
             runFacingLeft[i].mirrorHorizontally();
         }
-        setImage(idleFacingLeft[0]);
+        if (facingRight) setImage(idleFacingRight[0]);
+        else setImage(idleFacingLeft[0]);
     }
     
     public void act()

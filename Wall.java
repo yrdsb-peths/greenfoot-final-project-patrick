@@ -13,12 +13,24 @@ public class Wall extends Actor
     public Wall(String type) {
         this.type = type;
         switch (type) {
-            case "vertical":
+            case "vertical": {
                 setImage("./sprites/walls/simple/vertical-wall.png");
                 break;
-            case "horizontal":
+            }                
+            case "horizontal": {
                 setImage("./sprites/walls/simple/horizontal-wall.png");
                 break;
+            }
+            case "diagonal-facing-up": {
+                setImage("./sprites/walls/simple/vertical-wall.png");
+                setRotation(45);
+                break;
+            }
+            case "diagonal-facing-down": {
+                setImage("./sprites/walls/simple/vertical-wall.png");
+                setRotation(-45);
+                break;
+            }
         }
         getImage().scale((int)(getImage().getWidth() * 3), (int)(getImage().getHeight() * 3));
     }
