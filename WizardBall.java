@@ -54,7 +54,7 @@ public class WizardBall extends EnemyProjectile
     }
     
     public void animate() {
-        if (actCount % 7 == 0) {
+        if (actCount % 11 == 0) {
             setImage(animation[anim_index]);
             anim_index++;
             anim_index %= anim_size;

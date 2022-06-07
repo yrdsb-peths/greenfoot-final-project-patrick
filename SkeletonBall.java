@@ -14,7 +14,7 @@ public class SkeletonBall extends EnemyProjectile
     
     public SkeletonBall(String direction) {
         this.direction = direction;
-        setImage("./sprites/bullets/orc-shaman-bullet.png");
+        setImage("./sprites/bullets/skeleton-bullet.png");
         getImage().scale((int)(getImage().getWidth() * scale), (int)(getImage().getHeight() * scale));
     }
     
