@@ -8,12 +8,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class WizardBall extends EnemyProjectile
 {
-    private int speed = 1;
-    private int acceleration = 1;
+    private double speed = 1.5;
+    private double acceleration = 0.5;
     private int actCount = 0;
-    private int anim_size = 3, anim_index = 0;
+    private int anim_size = 5, anim_index = 0, anim_speed = 12;  
     private int t1 = 2000, t2 = 2300;
-    private double scale = 1.6;
+    private double scale = 1.9;
     GreenfootImage[] animation = new GreenfootImage[anim_size];
     SimpleTimer timer = new SimpleTimer();
     
@@ -44,17 +44,18 @@ public class WizardBall extends EnemyProjectile
         // between the 1st and 1.4th second
         if (timer.millisElapsed() > t1 && timer.millisElapsed() < t2) {
             turnTowards(player.getX(), player.getY());
+            anim_speed = 6;
         }
         // after 1st second
         if (timer.millisElapsed() > t2) {
             move(speed);
-            if (speed < 12)
+            if (speed < 15)
                 speed += acceleration;
         }
     }
     
     public void animate() {
-        if (actCount % 11 == 0) {
+        if (actCount % anim_speed == 0) {
             setImage(animation[anim_index]);
             anim_index++;
             anim_index %= anim_size;

@@ -10,7 +10,7 @@ public class Level4 extends GameWorld
 {
     public Level4()
     {
-        super(1000, 800, 1);
+        super(900, 700, 1);
         // spawn player
         Player p = new Player(3);
         addObject(p, getWidth() / 2, getHeight()  - 50);

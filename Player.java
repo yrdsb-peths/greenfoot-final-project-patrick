@@ -8,20 +8,23 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player extends SmoothMover
 {
-    private int speed = 2;
-    private boolean facingRight = false;
+    private int speed = 2;    
     private int idle_size = 4, idle_index = 0;
     private int run_size = 4, run_index = 0;
     private int actCount = 0;
     private int level;
     private int spear_dx = 13, spear_dy = 0;
     private int bow_dx = 12, bow_dy = 17;
+    private boolean facingRight = false;
+    private boolean isDashing = false;
+    private int dashLength = 0;
     private double scale = 2.5;
     private String curWeapon = "spear"; // player always starts a level with the spear
     GreenfootImage[] idleFacingRight = new GreenfootImage[idle_size];
     GreenfootImage[] idleFacingLeft = new GreenfootImage[idle_size];
     GreenfootImage[] runFacingRight = new GreenfootImage[run_size];
     GreenfootImage[] runFacingLeft = new GreenfootImage[run_size];
+    SimpleTimer dashTimer = new SimpleTimer();
     
     public Player(int level) {
         this.level = level;
@@ -49,6 +52,11 @@ public class Player extends SmoothMover
         move();
         selectWeapon();
         moveWeapon();
+        checkDashing();
+        if (isDashing) {
+            dash();
+            dashTimer.mark();
+        }
         checkTouchingEnemy();
     }
     
@@ -71,8 +79,7 @@ public class Player extends SmoothMover
             facingRight = true;
             dx += speed;
             runAnimate();
-        }
-        if (!Greenfoot.isKeyDown("w") && !Greenfoot.isKeyDown("a") && !Greenfoot.isKeyDown("s") && !Greenfoot.isKeyDown("d") && !Greenfoot.isKeyDown("space")) {
+        }if (!Greenfoot.isKeyDown("w") && !Greenfoot.isKeyDown("a") && !Greenfoot.isKeyDown("s") && !Greenfoot.isKeyDown("d") && !Greenfoot.isKeyDown("space")) {
             idleAnimate();
         }
         setLocation(getX() + dx, getY());
@@ -114,6 +121,30 @@ public class Player extends SmoothMover
             Actor bow = bowArr.get(0);    
             bow.setLocation(getX() + bow_dx, getY() + bow_dy);
         }        
+    }
+    
+    public void checkDashing() {
+        if (Greenfoot.isKeyDown("shift")) {
+            isDashing = true;
+        }
+        else if (dashLength > 25) {
+            isDashing = false;
+            dashLength = 0;
+        }
+    }
+    
+    public void dash() {
+        if (dashLength > 25) return;
+        
+        MouseInfo mi = Greenfoot.getMouseInfo();
+        if (mi != null)
+            turnTowards(mi.getX(), mi.getY());
+        for (int i = 0; i < 4; i++) {
+            move(speed + 2);
+            dashLength++;
+        }
+        // turn back
+        setRotation(0); 
     }
     
     public void checkTouchingEnemy() {

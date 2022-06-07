@@ -55,14 +55,19 @@ public class Wizard extends Enemy
     public void fire() {
         // fix ball spread
         Player player = (Player) getWorld().getObjects(Player.class).get(0);
+        // initially have all 3 balls face player
         WizardBall b1 = new WizardBall();
-        b1.turnTowards(player.getX() + 700, player.getY() + 700);
-        getWorld().addObject(b1, getX(), getY());
+        b1.turnTowards(player.getX(), player.getY());
         WizardBall b2 = new WizardBall();
-        b2.turnTowards(player.getX() - 700, player.getY() - 700);
-        getWorld().addObject(b2, getX(), getY());
+        b2.turnTowards(player.getX(), player.getY());
         WizardBall b3 = new WizardBall();
-        b3.turnTowards(player.getX() - 350, player.getY() - 350);
+        b3.turnTowards(player.getX(), player.getY());
+        // turn b1 and b3, b2 stays facing the player
+        b1.turn(45);
+        b3.turn(-45);
+        // add all objects to world
+        getWorld().addObject(b1, getX(), getY());        
+        getWorld().addObject(b2, getX(), getY());
         getWorld().addObject(b3, getX(), getY());
     }
     
