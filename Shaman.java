@@ -22,7 +22,8 @@ public class Shaman extends Enemy
     GreenfootImage[] runFacingLeft = new GreenfootImage[run_size];
     SimpleTimer moveTimer = new SimpleTimer();
     
-    public Shaman(String pattern, boolean facingRight) {
+    public Shaman(int health, String pattern, boolean facingRight) {
+        super(health);
         this.pattern = pattern;
         this.facingRight = facingRight;
         if (pattern == "vertical") {

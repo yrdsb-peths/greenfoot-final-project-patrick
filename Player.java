@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player extends SmoothMover
 {
-    private int speed = 2;    
+    private double speed = 2.6;    
     private int idle_size = 4, idle_index = 0;
     private int run_size = 4, run_index = 0;
     private int actCount = 0;
@@ -52,10 +52,11 @@ public class Player extends SmoothMover
         move();
         selectWeapon();
         moveWeapon();
-        checkDashing();
-        if (isDashing) {
-            dash();
-            dashTimer.mark();
+        if (level >= 4) {
+            checkDashing();
+            if (isDashing) {
+                dash();
+            }    
         }
         checkTouchingEnemy();
     }

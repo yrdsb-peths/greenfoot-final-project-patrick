@@ -23,7 +23,7 @@ public class Level3 extends GameWorld
         Spear s = new Spear();
         addObject(s, getWidth() - 60, getHeight() / 2);
         // create num arrow label
-        initNumArrowLabel(4);
+        initNumArrowLabel(20);
         // spawn walls
             // right side
         for (int i = 0, x = 670, y = 70; i < 3; i++) {
@@ -56,13 +56,13 @@ public class Level3 extends GameWorld
         addObject(w4, 720, 4);
         // spawn skellies
         for (int i = 0, x = 602, y = 95; i < 9; i++) {
-            Skeleton skel = new Skeleton("down", 150, false);
+            Skeleton skel = new Skeleton(1, "down", 150, false);
             addObject(skel, x, y);
             skellies.add(skel);
             x -= 48;
         }
         // spawn shaman
-        Shaman sha = new Shaman("vertical", true);
+        Shaman sha = new Shaman(3, "vertical", true);
         addObject(sha, 100, 505);
         // spawn watermelon
         Watermelon melon = new Watermelon(3);

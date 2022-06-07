@@ -16,7 +16,8 @@ public class Skeleton extends Enemy
     private double scale = 2.5;
     GreenfootImage[] idle = new GreenfootImage[idle_size];
     
-    public Skeleton(String shotDirection, int fireRate, boolean autoFire) {
+    public Skeleton(int health, String shotDirection, int fireRate, boolean autoFire) {
+        super(health);
         this.shotDirection = shotDirection;
         this.fireRate = fireRate;
         this.autoFire = autoFire;

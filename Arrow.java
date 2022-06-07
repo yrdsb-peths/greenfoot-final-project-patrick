@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Arrow extends Projectile
 {
+    private int damage = 1;
     private int speed = 15;
     private int decceleration = 2;
     private int actCount = 0;
@@ -18,8 +19,7 @@ public class Arrow extends Projectile
         getImage().scale((int)(getImage().getWidth() * scale), (int)(getImage().getHeight() * scale));
     }
     
-    public void act()
-    {
+    public void act() {
         actCount++;
         move(speed);
         checkEnemyHit();
@@ -30,7 +30,12 @@ public class Arrow extends Projectile
     public void checkEnemyHit() {
         Enemy enemy = (Enemy) getOneIntersectingObject(Enemy.class);
         if (enemy != null) {
-            removeTouching(Enemy.class);
+            if (enemy.health - damage <= 0) {
+                removeTouching(Enemy.class);
+            }
+            else enemy.health -= damage;
+            
+            // remove arrow from world
             if (getWorld() == null) return;
             else getWorld().removeObject(this);
         }

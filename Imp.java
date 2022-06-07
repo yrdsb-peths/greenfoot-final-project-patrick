@@ -20,7 +20,8 @@ public class Imp extends Enemy
     GreenfootImage[] runFacingRight = new GreenfootImage[run_size];
     GreenfootImage[] runFacingLeft = new GreenfootImage[run_size];
     
-    public Imp() {
+    public Imp(int health) {
+        super(health);
         // init sprites
         for (int i = 0; i < idle_size; i++) {
             idleFacingRight[i] = new GreenfootImage("./sprites/imp/tiny_zombie_idle_anim_f" + i + ".png");

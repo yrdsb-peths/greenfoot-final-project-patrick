@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Spear extends SmoothMover
 {
+    private int damage = 1;
     private int attack_size = 13, attack_index = 0;
     private double scale = 0.13;
     private boolean isAttacking = false;
@@ -63,7 +64,10 @@ public class Spear extends SmoothMover
     public void checkEnemyHit() {
         Enemy e = (Enemy) getOneIntersectingObject(Enemy.class);
         if (e != null) {
-            removeTouching(Enemy.class);
+            if (e.health - damage == 0) {
+                removeTouching(Enemy.class);    
+            }
+            else e.health -= damage; 
         }
     }
     

@@ -8,8 +8,22 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Enemy extends SmoothMover
 {
-    public void act()
-    {
-        // Add your action code here.
+    public int health;
+    
+    public Enemy(int health) {
+        this.health = health;
+    }
+    
+    public void initHealthLabel() {
+        HealthLabel l = new HealthLabel(health, 20);
+        
+    }
+    
+    public void updateHealthLabel() {
+        
+    }
+    
+    public void moveHealthLabel() {
+        
     }
 }

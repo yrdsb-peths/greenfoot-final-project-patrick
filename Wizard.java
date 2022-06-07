@@ -9,7 +9,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Wizard extends Enemy
 {
     private int speed = 3;
-    private int health;
     private int idle_size = 4, idle_index = 0;
     private int run_size = 4, run_index = 0;
     private int actCount = 0;
@@ -21,7 +20,7 @@ public class Wizard extends Enemy
     GreenfootImage[] runFacingLeft = new GreenfootImage[run_size];
     
     public Wizard(int health) {
-        this.health = health;
+        super(health);
         for (int i = 0; i < idle_size; i++) {
             idleFacingRight[i] = new GreenfootImage("./sprites/wizard/wizzard_m_idle_anim_f" + i + ".png");
             idleFacingRight[i].scale((int)(idleFacingRight[i].getWidth() * scale), (int)(idleFacingRight[i].getHeight() * scale));
@@ -39,8 +38,7 @@ public class Wizard extends Enemy
         setImage(idleFacingLeft[0]);
     }
     
-    public void act()
-    {
+    public void act() {
         actCount++;
         teleport();
         if (actCount % 180 == 0)

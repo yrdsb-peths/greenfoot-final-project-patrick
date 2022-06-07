@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=NumArrowLabel
-comment0.text=\r\n\ An\ exact\ copy\ of\ the\ Label\ class\ but\ has\ the\ class\ name\ NumArrowLabel\ for\ better\ identification\ and\ specificity.\r\n\ \r\n\ @\ Patrick\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ An\ exact\ copy\ of\ the\ Label\ class\ but\ has\ the\ class\ name\ NumArrowLabel\ for\ better\ identification\ and\ specificity.\r\n\ \r\n\ @\ Patrick\ Hu\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=value\ fontSize
 comment1.target=NumArrowLabel(int,\ int)
 comment2.params=value\ fontSize
