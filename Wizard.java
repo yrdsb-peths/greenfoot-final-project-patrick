@@ -23,16 +23,16 @@ public class Wizard extends Enemy
     public Wizard(int health) {
         this.health = health;
         for (int i = 0; i < idle_size; i++) {
-            idleFacingRight[i] = new GreenfootImage("./sprites/player/wizzard_m_idle_anim_f0" + i + ".png");
+            idleFacingRight[i] = new GreenfootImage("./sprites/wizard/wizzard_m_idle_anim_f" + i + ".png");
             idleFacingRight[i].scale((int)(idleFacingRight[i].getWidth() * scale), (int)(idleFacingRight[i].getHeight() * scale));
-            idleFacingLeft[i] = new GreenfootImage("./sprites/player/wizzard_m_idle_anim_f0" + i + ".png");
+            idleFacingLeft[i] = new GreenfootImage("./sprites/wizard/wizzard_m_idle_anim_f" + i + ".png");
             idleFacingLeft[i].scale((int)(idleFacingLeft[i].getWidth() * scale), (int)(idleFacingLeft[i].getHeight() * scale));
             idleFacingLeft[i].mirrorHorizontally();
         }
         for (int i = 0; i < run_size; i++) {
-            runFacingRight[i] = new GreenfootImage("./sprites/player/wizzard_m_run_anim_f0" + i + ".png");
+            runFacingRight[i] = new GreenfootImage("./sprites/wizard/wizzard_m_run_anim_f" + i + ".png");
             runFacingRight[i].scale((int)(runFacingRight[i].getWidth() * scale), (int)(runFacingRight[i].getHeight() * scale));
-            runFacingLeft[i] = new GreenfootImage("./sprites/player/wizzard_m_run_anim_f0" + i + ".png");
+            runFacingLeft[i] = new GreenfootImage("./sprites/wizard/wizzard_m_run_anim_f" + i + ".png");
             runFacingLeft[i].scale((int)(runFacingLeft[i].getWidth() * scale), (int)(runFacingLeft[i].getHeight() * scale));
             runFacingLeft[i].mirrorHorizontally();
         }
@@ -41,16 +41,29 @@ public class Wizard extends Enemy
     
     public void act()
     {
-        move();
-        fire();
+        actCount++;
+        teleport();
+        if (actCount % 180 == 0)
+            fire();
     }
     
-    public void move() {
-        // teleporting
+    public void teleport() {
+        Player player = (Player) getWorld().getObjects(Player.class).get(0);
+        turnTowards(player.getX(), player.getY());
     }
     
     public void fire() {
-        
+        // fix ball spread
+        Player player = (Player) getWorld().getObjects(Player.class).get(0);
+        WizardBall b1 = new WizardBall();
+        b1.turnTowards(player.getX() + 700, player.getY() + 700);
+        getWorld().addObject(b1, getX(), getY());
+        WizardBall b2 = new WizardBall();
+        b2.turnTowards(player.getX() - 700, player.getY() - 700);
+        getWorld().addObject(b2, getX(), getY());
+        WizardBall b3 = new WizardBall();
+        b3.turnTowards(player.getX() - 350, player.getY() - 350);
+        getWorld().addObject(b3, getX(), getY());
     }
     
     public void idleAnimate() {

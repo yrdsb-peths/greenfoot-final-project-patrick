@@ -41,13 +41,6 @@ public class ShamanBall extends EnemyProjectile
         move(speed);
     }
     
-    public void checkPlayerHit() {
-        if (isTouching(Player.class)) {
-            GameWorld world = (GameWorld) getWorld();
-            world.gameOver();
-        }
-    }
-    
     public void animate() {
         if (actCount % 5 == 0) {
             setImage(animation[anim_index]);
