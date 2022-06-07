@@ -1,8 +1,8 @@
 #BlueJ class context
-comment0.target=Shaman
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Shaman\ here.\r\n\ \r\n\ @\ Patrick\ Hu\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=pattern\ facingRight
-comment1.target=Shaman(java.lang.String,\ boolean)
+comment0.target=Wizard
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Wizard\ here.\r\n\ \r\n\ @\ Patrick\ Hu\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=health
+comment1.target=Wizard(int)
 comment2.params=
 comment2.target=void\ act()
 comment3.params=

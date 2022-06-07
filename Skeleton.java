@@ -1,9 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Skeletons only shoot in one direction and cannot move.
- * Their shots do not track the player.
- * Skeletons die upon touch and when hit by an arrow.
+ * Write a description of class Skeleton here.
  * 
  * @ Patrick Hu
  * @version (a version number or a date)

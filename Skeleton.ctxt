@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Skeleton
-comment0.text=\r\n\ Skeletons\ only\ shoot\ in\ one\ direction\ and\ cannot\ move.\r\n\ Their\ shots\ do\ not\ track\ the\ player.\r\n\ Skeletons\ die\ upon\ touch\ and\ when\ hit\ by\ an\ arrow.\r\n\ \r\n\ @\ Patrick\ Hu\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Skeleton\ here.\r\n\ \r\n\ @\ Patrick\ Hu\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=shotDirection\ fireRate\ autoFire
 comment1.target=Skeleton(java.lang.String,\ int,\ boolean)
 comment2.params=

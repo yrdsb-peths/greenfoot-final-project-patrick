@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class OrcShaman here.
+ * Write a description of class Shaman here.
  * 
  * @ Patrick Hu
  * @version (a version number or a date)
