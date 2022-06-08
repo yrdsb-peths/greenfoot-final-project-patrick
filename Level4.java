@@ -20,7 +20,7 @@ public class Level4 extends GameWorld
         // create num arrow label
         
         // spawn wizard
-        Wizard w = new Wizard(6);
+        Wizard w = new Wizard(6, true);
         addObject(w, 50, getHeight() / 2);
     }
     

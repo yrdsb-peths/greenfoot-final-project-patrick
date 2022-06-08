@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Enemy extends SmoothMover
 {
     public int health;
-    private int healthBar_dy = -50;
+    public int healthBar_dy = -50;
     
     public Enemy(int health) {
         this.health = health;

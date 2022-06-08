@@ -12,15 +12,18 @@ public class Wizard extends Enemy
     private int idle_size = 4, idle_index = 0;
     private int run_size = 4, run_index = 0;
     private int actCount = 0;
+    private int transparency = 255;
     private double scale = 2.5;
-    private boolean facingRight = false;
+    private boolean facingRight;
+    private boolean isFading = false;
     GreenfootImage[] idleFacingRight = new GreenfootImage[idle_size];
     GreenfootImage[] idleFacingLeft = new GreenfootImage[idle_size];
-    GreenfootImage[] runFacingRight = new GreenfootImage[run_size];
-    GreenfootImage[] runFacingLeft = new GreenfootImage[run_size];
+    SimpleTimer fadeTimer = new SimpleTimer();
+    SimpleTimer mainTimer = new SimpleTimer();
     
-    public Wizard(int health) {
+    public Wizard(int health, boolean facingRight) {
         super(health);
+        this.facingRight = facingRight;
         for (int i = 0; i < idle_size; i++) {
             idleFacingRight[i] = new GreenfootImage("./sprites/wizard/wizzard_m_idle_anim_f" + i + ".png");
             idleFacingRight[i].scale((int)(idleFacingRight[i].getWidth() * scale), (int)(idleFacingRight[i].getHeight() * scale));
@@ -28,26 +31,65 @@ public class Wizard extends Enemy
             idleFacingLeft[i].scale((int)(idleFacingLeft[i].getWidth() * scale), (int)(idleFacingLeft[i].getHeight() * scale));
             idleFacingLeft[i].mirrorHorizontally();
         }
-        for (int i = 0; i < run_size; i++) {
-            runFacingRight[i] = new GreenfootImage("./sprites/wizard/wizzard_m_run_anim_f" + i + ".png");
-            runFacingRight[i].scale((int)(runFacingRight[i].getWidth() * scale), (int)(runFacingRight[i].getHeight() * scale));
-            runFacingLeft[i] = new GreenfootImage("./sprites/wizard/wizzard_m_run_anim_f" + i + ".png");
-            runFacingLeft[i].scale((int)(runFacingLeft[i].getWidth() * scale), (int)(runFacingLeft[i].getHeight() * scale));
-            runFacingLeft[i].mirrorHorizontally();
-        }
-        setImage(idleFacingLeft[0]);
+        if (facingRight) setImage(idleFacingRight[0]);
+        else setImage(idleFacingLeft[0]);
     }
     
     public void act() {
         actCount++;
-        teleport();
+        if (actCount == 1) {
+            initHealthBar(); // cannot do this in constructor since initHealthBar() requires the enemy to already be constructed in the world
+        }
+        checkTeleportingState();
+        if (isFading) {
+            fade();
+        }
+        idleAnimate();
+        updateHealthBar();
         if (actCount % 180 == 0)
             fire();
     }
     
+    public void checkTeleportingState() {
+        // in this time frame the wizard is fading away
+        if (mainTimer.millisElapsed() > 2000 && transparency > 0) {
+            isFading = true;
+        }
+        if (transparency == 0) {
+            teleport();
+            moveHealthBar();
+            transparency = 255;
+            // since different parts of the sprites array are now more transparent from fade(), we have to reset the transparency of all sprites to 255
+            for (int i = 0; i < idle_size; i++) {
+                idleFacingRight[i].setTransparency(255);
+                idleFacingLeft[i].setTransparency(255);
+            }
+            mainTimer.mark();
+            isFading = false;
+        }
+    }
+    
     public void teleport() {
-        Player player = (Player) getWorld().getObjects(Player.class).get(0);
-        turnTowards(player.getX(), player.getY());
+        // grab the health bar before teleporting
+        var arr = getObjectsAtOffset(0, healthBar_dy, HealthBar.class);
+        // teleport to a random location
+        int rand_x = Greenfoot.getRandomNumber(getWorld().getWidth());
+        int rand_y = Greenfoot.getRandomNumber(getWorld().getHeight());
+        setLocation(rand_x, rand_y);
+        // teleport the health bar
+        if (arr.size() == 1) {
+            HealthBar bar = arr.get(0);
+            bar.setLocation(getX(), getY() + healthBar_dy);
+        }
+    }
+    
+    public void fade() {
+        // slowly reduce the transparency of the image
+        if (fadeTimer.millisElapsed() > 10 && transparency > 0) {
+            getImage().setTransparency(transparency);
+            transparency -= 15;
+            fadeTimer.mark();
+        }
     }
     
     public void fire() {
@@ -75,15 +117,6 @@ public class Wizard extends Enemy
             else setImage(idleFacingLeft[idle_index]);
             idle_index++;
             idle_index %= idle_size;
-        }
-    }
-    
-    public void runAnimate() {
-        if (actCount % 7 == 0) {
-            if (facingRight) setImage(runFacingRight[run_index]);
-            else setImage(runFacingLeft[run_index]);
-            run_index++;
-            run_index %= run_size;
         }
     }
 }
