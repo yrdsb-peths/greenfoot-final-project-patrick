@@ -24,6 +24,7 @@ public class Level3 extends GameWorld
         addObject(s, getWidth() - 60, getHeight() / 2);
         // create num arrow label
         NumArrowLabel numArrowLabel = new NumArrowLabel(20);
+        addObject(numArrowLabel, getWidth() - 40, getHeight() - 40);
         // spawn walls
             // right side
         for (int i = 0, x = 670, y = 70; i < 3; i++) {
