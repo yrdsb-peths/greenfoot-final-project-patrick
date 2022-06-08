@@ -14,16 +14,16 @@ public class Enemy extends SmoothMover
         this.health = health;
     }
     
-    public void initHealthLabel() {
-        HealthLabel l = new HealthLabel(health, 20);
+    public void initHealthBar() {
+        //HealthBar l = new HealthBar(health, 20);
         
     }
     
-    public void updateHealthLabel() {
+    public void updateHealthBar() {
         
     }
     
-    public void moveHealthLabel() {
+    public void moveHealthBar() {
         
     }
 }

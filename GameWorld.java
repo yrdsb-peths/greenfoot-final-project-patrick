@@ -16,22 +16,6 @@ public class GameWorld extends World
         setBackground(floor);
     }
     
-    public void initNumArrowLabel(int numArrows) {
-        Bow.numArrows = numArrows;
-        NumArrowLabel l = new NumArrowLabel(numArrows, 35);
-        GreenfootImage arrow = new GreenfootImage("./sprites/bow/weapon_arrow_facing_up.png   ");
-        arrow.scale((int)(arrow.getWidth() * 1.2), (int)(arrow.getHeight() * 1.2));
-        Image arrowActor = new Image(arrow);
-        
-        addObject(l, getWidth() - 50, getHeight() - 30);
-        addObject(arrowActor, getWidth() - 20, getHeight() - 30);
-    }
-    
-    public void updateNumArrowLabel() {
-        NumArrowLabel l = getObjects(NumArrowLabel.class).get(0);
-        l.setValue(Bow.numArrows);
-    }
-    
     public void gameOver() {
         Greenfoot.setWorld(new GameOverWorld());
     }

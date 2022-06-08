@@ -87,7 +87,7 @@ public class Label extends Actor
     /**
      * Update the image on screen to show the current value.
      */
-    private void updateImage()
+    public void updateImage()
     {
         setImage(new GreenfootImage(value, fontSize, fillColor, transparent, lineColor));
     }

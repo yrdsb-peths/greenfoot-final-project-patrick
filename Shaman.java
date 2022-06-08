@@ -59,7 +59,7 @@ public class Shaman extends Enemy
             idleAnimate();
         else if (pattern == "horizontal")
             runAnimate();
-        if (actCount % 180 == 0) {
+        if (actCount % 220 == 0) {
             fire();
         }
     }

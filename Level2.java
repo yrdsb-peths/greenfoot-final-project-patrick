@@ -22,7 +22,8 @@ public class Level2 extends GameWorld
         Spear s = new Spear();
         addObject(s, 100, getHeight() / 2);
         // create num arrow label
-        initNumArrowLabel(20);
+        NumArrowLabel numArrowLabel = new NumArrowLabel(20);
+        addObject(numArrowLabel, getWidth() - 40, getHeight() - 40);
         // spawn two walls
         for (int i = 0, x = 190, y = 118; i < 3; i++) {
             Wall w = new Wall("vertical");
@@ -56,7 +57,7 @@ public class Level2 extends GameWorld
     }
     
     public void act() {
-        updateNumArrowLabel();
+        //updateNumArrowLabel();
     }
 
     

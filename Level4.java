@@ -10,7 +10,7 @@ public class Level4 extends GameWorld
 {
     public Level4()
     {
-        super(900, 700, 1);
+        super(800, 600, 1);
         // spawn player
         Player p = new Player(4);
         addObject(p, getWidth() / 2, getHeight()  - 50);
@@ -18,13 +18,13 @@ public class Level4 extends GameWorld
         Spear s = new Spear();
         addObject(s, getWidth() / 2, getHeight()  - 50);
         // create num arrow label
-        initNumArrowLabel(20);
+        
         // spawn wizard
         Wizard w = new Wizard(6);
         addObject(w, 50, getHeight() / 2);
     }
     
     public void act() {
-        updateNumArrowLabel();
+        
     }
 }
