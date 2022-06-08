@@ -54,6 +54,9 @@ public class Shaman extends Enemy
     public void act()
     {
         actCount++;
+        if (actCount == 1) {
+            initHealthBar(); // cannot do this in constructor since initHealthBar() requires the enemy to already be constructed in the world
+        }
         move();
         if (pattern == "none" || pattern == "vertical")
             idleAnimate();
@@ -62,6 +65,8 @@ public class Shaman extends Enemy
         if (actCount % 220 == 0) {
             fire();
         }
+        moveHealthBar();
+        updateHealthBar();
     }
     
     public void move() {

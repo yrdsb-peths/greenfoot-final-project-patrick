@@ -24,13 +24,14 @@ public class Arrow extends Projectile
         move(speed);
         checkEnemyHit();
         checkAtWall();
-        deccelerate();
+        //deccelerate();
     }
     
     public void checkEnemyHit() {
         Enemy enemy = (Enemy) getOneIntersectingObject(Enemy.class);
         if (enemy != null) {
             if (enemy.health - damage <= 0) {
+                enemy.removeHealthBar();
                 removeTouching(Enemy.class);
             }
             else enemy.health -= damage;

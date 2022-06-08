@@ -31,11 +31,16 @@ public class Skeleton extends Enemy
     
     public void act() {
         actCount++;
+        if (actCount == 1) {
+            initHealthBar(); // cannot do this in constructor since initHealthBar() requires the enemy to already be constructed in the world
+        }
         idleAnimate();
         if (autoFire) {
             if (actCount % fireRate == 0)
                 fire();
         }
+        moveHealthBar();
+        updateHealthBar();
     }
     
     public void fire() {

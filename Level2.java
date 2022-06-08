@@ -46,18 +46,18 @@ public class Level2 extends GameWorld
         addObject(skel4, skelX, 338);
         // spawn shamans
         Shaman sha1 = new Shaman(2, "vertical", false);
-        addObject(sha1, shamanX, 225);
+        addObject(sha1, shamanX, 245);
         Shaman sha2 = new Shaman(2, "vertical", false);
-        addObject(sha2, shamanX, 525);
-        Shaman sha3 = new Shaman(2, "vertical", false);
-        addObject(sha3, shamanX - 100, 375);
+        addObject(sha2, shamanX, 545);
+        //Shaman sha3 = new Shaman(2, "vertical", false);
+        //addObject(sha3, shamanX - 100, 375);
         // spawn watermelon
         Watermelon melon = new Watermelon(2);
         addObject(melon, getWidth() - 50, getHeight() / 2);
     }
     
     public void act() {
-        //updateNumArrowLabel();
+        
     }
 
     

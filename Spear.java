@@ -62,12 +62,13 @@ public class Spear extends SmoothMover
     }
     
     public void checkEnemyHit() {
-        Enemy e = (Enemy) getOneIntersectingObject(Enemy.class);
-        if (e != null) {
-            if (e.health - damage == 0) {
+        Enemy enemy = (Enemy) getOneIntersectingObject(Enemy.class);
+        if (enemy != null) {
+            if (enemy.health - damage == 0) {
+                enemy.removeHealthBar();
                 removeTouching(Enemy.class);    
             }
-            else e.health -= damage; 
+            else enemy.health -= damage; 
         }
     }
     
