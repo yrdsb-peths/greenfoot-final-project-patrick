@@ -7,13 +7,13 @@ import java.util.ArrayList;
  * @ Patrick Hu
  * @version (a version number or a date)
  */
-public class Level3 extends GameWorld {
+public class Level3 extends GameWorld
+{
     private int actCount = 0;
     private boolean flip = false;
     ArrayList<Skeleton> skellies = new ArrayList<Skeleton>();
     
-    public Level3()
-    {
+    public Level3() {
         super(800, 600, 1);
         // spawn player
         Player p = new Player(3);

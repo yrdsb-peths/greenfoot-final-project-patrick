@@ -12,8 +12,7 @@ public class Level2 extends GameWorld
     private int skelX = 680;
     private int shamanX = 550;
     
-    public Level2()
-    {
+    public Level2() {
         super(800, 600, 1);
         // spawn player
         Player player = new Player(2);

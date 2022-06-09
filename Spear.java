@@ -64,7 +64,7 @@ public class Spear extends SmoothMover
     
     public void checkEnemyHit() {
         Enemy enemy = (Enemy) getOneIntersectingObject(Enemy.class);
-        if (enemy != null && attackTimer.millisElapsed() > 1000) {
+        if (enemy != null && attackTimer.millisElapsed() > 400) {
             if (enemy.health - damage == 0) {
                 enemy.removeHealthBar();
                 removeTouching(Enemy.class);    

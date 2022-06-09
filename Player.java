@@ -46,8 +46,7 @@ public class Player extends SmoothMover
         setImage(idleFacingRight[0]);
     }
     
-    public void act()
-    {
+    public void act() {
         actCount++;
         move();
         selectWeapon();

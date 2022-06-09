@@ -25,8 +25,7 @@ public class WizardBall extends EnemyProjectile
         setImage(animation[0]);
     }
     
-    public void act()
-    {
+    public void act() {
         actCount++;
         move();
         animate();
