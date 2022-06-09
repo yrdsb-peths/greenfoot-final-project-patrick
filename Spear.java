@@ -13,8 +13,9 @@ public class Spear extends SmoothMover
     private double scale = 0.13;
     private boolean isAttacking = false;
     GreenfootImage[] attackImages = new GreenfootImage[attack_size];
+    SimpleTimer animTimer = new SimpleTimer();
+    private int animTimerThreshold = 20;
     SimpleTimer attackTimer = new SimpleTimer();
-    private int timerThreshold = 20;
     
     public Spear() {
         for (int i = 0; i < attack_size; i++) {
@@ -52,23 +53,24 @@ public class Spear extends SmoothMover
     
     public void attackAnimate() {
         if (attack_index >= attack_size) return;
-        if (attackTimer.millisElapsed() > timerThreshold) {
+        if (animTimer.millisElapsed() > animTimerThreshold) {
             setImage(attackImages[attack_index]);
             attack_index++;
-            attackTimer.mark();
+            animTimer.mark();
             checkEnemyHit();
-            timerThreshold -= 4; // accelerate the animation
+            animTimerThreshold -= 4; // accelerate the animation
         }
     }
     
     public void checkEnemyHit() {
         Enemy enemy = (Enemy) getOneIntersectingObject(Enemy.class);
-        if (enemy != null) {
+        if (enemy != null && attackTimer.millisElapsed() > 1000) {
             if (enemy.health - damage == 0) {
                 enemy.removeHealthBar();
                 removeTouching(Enemy.class);    
             }
-            else enemy.health -= damage; 
+            else enemy.health -= damage;
+            attackTimer.mark();
         }
     }
     

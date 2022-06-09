@@ -118,7 +118,7 @@ public class Shaman extends Enemy
     }
     
     public void idleAnimate() {
-        if (actCount % 7 == 0) {
+        if (actCount % 10 == 0) {
             if (curDirection == "right") setImage(idleFacingRight[idle_index]);
             else setImage(idleFacingLeft[idle_index]);
             idle_index++;

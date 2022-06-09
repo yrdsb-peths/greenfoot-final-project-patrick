@@ -46,7 +46,7 @@ public class Wizard extends Enemy
         }
         idleAnimate();
         updateHealthBar();
-        if (actCount % 180 == 0)
+        if (actCount % 200 == 0)
             fire();
     }
     
@@ -72,14 +72,21 @@ public class Wizard extends Enemy
     public void teleport() {
         // grab the health bar before teleporting
         var arr = getObjectsAtOffset(0, healthBar_dy, HealthBar.class);
-        // teleport to a random location
-        int rand_x = Greenfoot.getRandomNumber(getWorld().getWidth());
-        int rand_y = Greenfoot.getRandomNumber(getWorld().getHeight());
+        // get random coordinates that aren't too close to player
+        Player player = getWorld().getObjects(Player.class).get(0);
+        int rand_x;
+        int rand_y;
+        double distance;
+        do {
+            rand_x = Greenfoot.getRandomNumber(getWorld().getWidth());
+            rand_y = Greenfoot.getRandomNumber(getWorld().getHeight());
+            distance = getDistanceBetween(rand_x, player.getX(), rand_y, player.getY());    
+        } while (distance < 350);
         setLocation(rand_x, rand_y);
         // teleport the health bar
         if (arr.size() == 1) {
             HealthBar bar = arr.get(0);
-            bar.setLocation(getX(), getY() + healthBar_dy);
+            bar.setLocation(getX(), getY() + (healthBar_dy));
         }
     }
     
@@ -93,22 +100,25 @@ public class Wizard extends Enemy
     }
     
     public void fire() {
-        // fix ball spread
-        Player player = (Player) getWorld().getObjects(Player.class).get(0);
-        // initially have all 3 balls face player
         WizardBall b1 = new WizardBall();
-        b1.turnTowards(player.getX(), player.getY());
         WizardBall b2 = new WizardBall();
-        b2.turnTowards(player.getX(), player.getY());
-        WizardBall b3 = new WizardBall();
-        b3.turnTowards(player.getX(), player.getY());
-        // turn b1 and b3, b2 stays facing the player
-        b1.turn(45);
-        b3.turn(-45);
+        WizardBall b3 = new WizardBall();        
         // add all objects to world
         getWorld().addObject(b1, getX(), getY());        
         getWorld().addObject(b2, getX(), getY());
         getWorld().addObject(b3, getX(), getY());
+        Player player = (Player) getWorld().getObjects(Player.class).get(0);
+        // initially have all 3 balls face player
+        b1.turnTowards(player.getX(), player.getY());
+        b2.turnTowards(player.getX(), player.getY());
+        b3.turnTowards(player.getX(), player.getY());
+        // turn b1 and b3 to make a fork pattern
+        b1.turn(45);
+        b3.turn(-45);
+    }
+    
+    public double getDistanceBetween(int x1, int y1, int x2, int y2) {
+        return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
     }
     
     public void idleAnimate() {

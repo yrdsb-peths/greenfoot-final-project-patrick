@@ -56,11 +56,11 @@ public class Level3 extends GameWorld
         Wall w4 = new Wall("diagonal-facing-up");
         addObject(w4, 720, 4);
         // spawn skellies
-        for (int i = 0, x = 602, y = 95; i < 9; i++) {
+        for (int i = 0, x = 595, y = 95; i < 9; i++) {
             Skeleton skel = new Skeleton(1, "down", 150, false);
             addObject(skel, x, y);
             skellies.add(skel);
-            x -= 48;
+            x -= 47;
         }
         // spawn shaman
         Shaman sha = new Shaman(3, "vertical", true);
