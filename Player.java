@@ -125,7 +125,7 @@ public class Player extends SmoothMover
     }
     
     public void checkDashing() {
-        if (Greenfoot.isKeyDown("shift")) {
+        if (Greenfoot.isKeyDown("alt")) {
             isDashing = true;
         }
         else if (dashLength > 25) {

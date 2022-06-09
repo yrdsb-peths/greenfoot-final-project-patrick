@@ -8,8 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class WizardBall extends EnemyProjectile
 {
-    private double speed = 1.5;
-    private double acceleration = 0.5;
+    private double speed = 1.4;
+    private double acceleration = 0.4;
     private int actCount = 0;
     private int anim_size = 5, anim_index = 0, anim_speed = 12;  
     private int t1 = 2000, t2 = 2300;

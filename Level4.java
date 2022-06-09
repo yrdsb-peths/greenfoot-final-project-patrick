@@ -22,7 +22,7 @@ public class Level4 extends GameWorld {
         Spear s = new Spear();
         addObject(s, getWidth() / 2, getHeight()  - 50);
         // create num arrow label
-        NumArrowLabel numArrowLabel = new NumArrowLabel(20);
+        NumArrowLabel numArrowLabel = new NumArrowLabel(35);
         addObject(numArrowLabel, getWidth() - 40, getHeight() - 40);
     }
     
