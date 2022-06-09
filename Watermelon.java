@@ -55,6 +55,11 @@ public class Watermelon extends Actor
                     world.levelPass();
                     break;
                 }
+                case 4: {
+                    Level4 world = (Level4) getWorld();
+                    world.levelPass();
+                    break;
+                }
             }
         }
     }

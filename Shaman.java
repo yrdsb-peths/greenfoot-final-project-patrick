@@ -13,7 +13,7 @@ public class Shaman extends Enemy
     private int idle_size = 4, idle_index = 0;
     private int run_size = 4, run_index = 0;
     private int actCount = 0;
-    private double scale = 3.5;
+    private double scale = 3.1;
     private boolean facingRight;
     String pattern, curDirection;
     GreenfootImage[] idleFacingRight = new GreenfootImage[idle_size];
@@ -22,16 +22,11 @@ public class Shaman extends Enemy
     GreenfootImage[] runFacingLeft = new GreenfootImage[run_size];
     SimpleTimer moveTimer = new SimpleTimer();
     
-    public Shaman(int health, String pattern, boolean facingRight) {
+    public Shaman(int health, String pattern, String curDirection, boolean facingRight) {
         super(health);
         this.pattern = pattern;
         this.facingRight = facingRight;
-        if (pattern == "vertical") {
-            curDirection = "up";
-        }
-        else if (pattern == "horizontal") {
-            curDirection = "left";   
-        }
+        this.curDirection = curDirection;
         // init sprites
         for (int i = 0; i < idle_size; i++) {
             idleFacingRight[i] = new GreenfootImage("./sprites/orc-shaman/orc_shaman_idle_anim_f" + i + ".png");
@@ -127,7 +122,7 @@ public class Shaman extends Enemy
     }
     
     public void runAnimate() {
-        if (actCount % 7 == 0) {
+        if (actCount % 9 == 0) {
             if (curDirection == "right") setImage(runFacingRight[run_index]);
             else setImage(runFacingLeft[run_index]);
             run_index++;

@@ -6,10 +6,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @ Patrick Hu
  * @version (a version number or a date)
  */
-public class Enemy extends SmoothMover
-{
+public class Enemy extends SmoothMover {
     public int health;
-    public int healthBar_dy = -40;
+    public int healthBar_dy = -45;
     
     public Enemy(int health) {
         this.health = health;

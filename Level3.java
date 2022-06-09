@@ -7,8 +7,7 @@ import java.util.ArrayList;
  * @ Patrick Hu
  * @version (a version number or a date)
  */
-public class Level3 extends GameWorld
-{
+public class Level3 extends GameWorld {
     private int actCount = 0;
     private boolean flip = false;
     ArrayList<Skeleton> skellies = new ArrayList<Skeleton>();
@@ -63,7 +62,7 @@ public class Level3 extends GameWorld
             x -= 47;
         }
         // spawn shaman
-        Shaman sha = new Shaman(3, "vertical", true);
+        Shaman sha = new Shaman(3, "vertical", "up", true);
         addObject(sha, 100, 505);
         // spawn watermelon
         Watermelon melon = new Watermelon(3);

@@ -6,9 +6,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @ Patrick Hu
  * @version (a version number or a date)
  */
-public class Imp extends Enemy
-{
-    private int speed = 3;
+public class Imp extends Enemy {
+    private int speed = 2;
     private int idle_size = 4, idle_index = 0;
     private int run_size = 4, run_index = 0;
     private int actCount = 0;
@@ -24,25 +23,29 @@ public class Imp extends Enemy
         super(health);
         // init sprites
         for (int i = 0; i < idle_size; i++) {
-            idleFacingRight[i] = new GreenfootImage("./sprites/imp/tiny_zombie_idle_anim_f" + i + ".png");
+            idleFacingRight[i] = new GreenfootImage("./sprites/imp/imp_idle_anim_f" + i + ".png");
             idleFacingRight[i].scale((int)(idleFacingRight[i].getWidth() * scale), (int)(idleFacingRight[i].getHeight() * scale));
-            idleFacingLeft[i] = new GreenfootImage("./sprites/imp/tiny_zombie_idle_anim_f" + i + ".png");
+            idleFacingLeft[i] = new GreenfootImage("./sprites/imp/imp_idle_anim_f" + i + ".png");
             idleFacingLeft[i].scale((int)(idleFacingLeft[i].getWidth() * scale), (int)(idleFacingLeft[i].getHeight() * scale));
             idleFacingLeft[i].mirrorHorizontally();
         }
         for (int i = 0; i < run_size; i++) {
-            runFacingRight[i] = new GreenfootImage("./sprites/imp/tiny_zombie_run_anim_f" + i + ".png");
+            runFacingRight[i] = new GreenfootImage("./sprites/imp/imp_run_anim_f" + i + ".png");
             runFacingRight[i].scale((int)(runFacingRight[i].getWidth() * scale), (int)(runFacingRight[i].getHeight() * scale));
-            runFacingLeft[i] = new GreenfootImage("./sprites/imp/tiny_zombie_run_anim_f" + i + ".png");
+            runFacingLeft[i] = new GreenfootImage("./sprites/imp/imp_run_anim_f" + i + ".png");
             runFacingLeft[i].scale((int)(runFacingLeft[i].getWidth() * scale), (int)(runFacingLeft[i].getHeight() * scale));
             runFacingLeft[i].mirrorHorizontally();
         }
         setImage(idleFacingRight[0]);
     }
     
-    public void act()
-    {
+    public void act() {
         actCount++;
+        if (actCount == 1) {
+            initHealthBar();
+        }
+        moveHealthBar();
+        updateHealthBar();
         checkDirection();
         move();
         runAnimate();

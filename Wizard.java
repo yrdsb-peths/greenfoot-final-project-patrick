@@ -6,8 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @ Patrick Hu
  * @version (a version number or a date)
  */
-public class Wizard extends Enemy
-{
+public class Wizard extends Enemy {
     private int speed = 3;
     private int idle_size = 4, idle_index = 0;
     private int run_size = 4, run_index = 0;
@@ -78,8 +77,8 @@ public class Wizard extends Enemy
         int rand_y;
         double distance;
         do {
-            rand_x = Greenfoot.getRandomNumber(getWorld().getWidth());
-            rand_y = Greenfoot.getRandomNumber(getWorld().getHeight());
+            rand_x = getRandomNumber(20, getWorld().getWidth() - 20);
+            rand_y = getRandomNumber(20, getWorld().getHeight() - 20);
             distance = getDistanceBetween(rand_x, player.getX(), rand_y, player.getY());    
         } while (distance < 350);
         setLocation(rand_x, rand_y);
@@ -115,6 +114,11 @@ public class Wizard extends Enemy
         // turn b1 and b3 to make a fork pattern
         b1.turn(45);
         b3.turn(-45);
+    }
+    
+    public int getRandomNumber(int start, int end) {
+        int x = Greenfoot.getRandomNumber(end - start);
+        return x + start;
     }
     
     public double getDistanceBetween(int x1, int y1, int x2, int y2) {
