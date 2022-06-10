@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class GameOverWorld here.
+ * The game over world where the player is taken once they die.
  * 
  * @ Patrick Hu
  * @version (a version number or a date)

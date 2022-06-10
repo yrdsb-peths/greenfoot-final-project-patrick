@@ -29,16 +29,16 @@ public class Shaman extends Enemy
         this.curDirection = curDirection;
         // init sprites
         for (int i = 0; i < idle_size; i++) {
-            idleFacingRight[i] = new GreenfootImage("./sprites/orc-shaman/orc_shaman_idle_anim_f" + i + ".png");
+            idleFacingRight[i] = new GreenfootImage("./sprites/shaman/orc_shaman_idle_anim_f" + i + ".png");
             idleFacingRight[i].scale((int)(idleFacingRight[i].getWidth() * scale), (int)(idleFacingRight[i].getHeight() * scale));
-            idleFacingLeft[i] = new GreenfootImage("./sprites/orc-shaman/orc_shaman_idle_anim_f" + i + ".png");
+            idleFacingLeft[i] = new GreenfootImage("./sprites/shaman/orc_shaman_idle_anim_f" + i + ".png");
             idleFacingLeft[i].scale((int)(idleFacingLeft[i].getWidth() * scale), (int)(idleFacingLeft[i].getHeight() * scale));
             idleFacingLeft[i].mirrorHorizontally();
         }
         for (int i = 0; i < run_size; i++) {
-            runFacingRight[i] = new GreenfootImage("./sprites/orc-shaman/orc_shaman_run_anim_f" + i + ".png");
+            runFacingRight[i] = new GreenfootImage("./sprites/shaman/orc_shaman_run_anim_f" + i + ".png");
             runFacingRight[i].scale((int)(runFacingRight[i].getWidth() * scale), (int)(runFacingRight[i].getHeight() * scale));
-            runFacingLeft[i] = new GreenfootImage("./sprites/orc-shaman/orc_shaman_run_anim_f" + i + ".png");
+            runFacingLeft[i] = new GreenfootImage("./sprites/shaman/orc_shaman_run_anim_f" + i + ".png");
             runFacingLeft[i].scale((int)(runFacingLeft[i].getWidth() * scale), (int)(runFacingLeft[i].getHeight() * scale));
             runFacingLeft[i].mirrorHorizontally();
         }
@@ -122,7 +122,7 @@ public class Shaman extends Enemy
     }
     
     public void runAnimate() {
-        if (actCount % 9 == 0) {
+        if (actCount % 8 == 0) {
             if (curDirection == "right") setImage(runFacingRight[run_index]);
             else setImage(runFacingLeft[run_index]);
             run_index++;

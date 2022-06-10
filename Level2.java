@@ -56,7 +56,6 @@ public class Level2 extends GameWorld
     }
     
     public void act() {
-        
     }
 
     

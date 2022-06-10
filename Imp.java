@@ -46,7 +46,7 @@ public class Imp extends Enemy {
         }
         moveHealthBar();
         updateHealthBar();
-        checkDirection();
+        //checkDirection();
         move();
         runAnimate();
     }

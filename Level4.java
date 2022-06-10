@@ -10,7 +10,7 @@ public class Level4 extends GameWorld
 {
     SimpleTimer spawnTimer = new SimpleTimer();
     Shaman sha1, sha2, sha3;
-    Wizard wiz1, wiz2;
+    Wizard wiz1, wiz2, wiz3;
     Imp i1, i2, i3, i4;
     boolean[] spawned = new boolean[5];
     boolean watermelonSpawned = false;
@@ -24,7 +24,7 @@ public class Level4 extends GameWorld
         Spear s = new Spear();
         addObject(s, getWidth() / 2, getHeight() / 2);
         // create num arrow label
-        NumArrowLabel numArrowLabel = new NumArrowLabel(35);
+        NumArrowLabel numArrowLabel = new NumArrowLabel(40);
         addObject(numArrowLabel, getWidth() - 40, getHeight() - 40);
     }
     
@@ -39,7 +39,7 @@ public class Level4 extends GameWorld
         }
         // once both shamans have been killed, spawn a wizard
         if (spawned[0] && sha1.getWorld() == null && sha2.getWorld() == null && !spawned[1]) {
-            wiz1 = new Wizard(5, true);
+            wiz1 = new Wizard(6, true);
             addObject(wiz1, 50, getHeight() / 2);
             
             spawned[1] = true;
@@ -56,13 +56,15 @@ public class Level4 extends GameWorld
             spawned[2] = true;
         }
         if (spawned[2] && i1.getWorld() == null && i2.getWorld() == null && i3.getWorld() == null && i4.getWorld() == null && !spawned[3]) {
-            wiz2 = new Wizard(7, false);
+            wiz2 = new Wizard(5, false);
             addObject(wiz2, getWidth() - 50, getHeight() / 2);
-            sha3 = new Shaman(5, "vertical", "down", true);
-            addObject(sha3, 50, getHeight() / 2);
+            wiz3 = new Wizard(5, false);
+            addObject(wiz3, getWidth() / 2, 50);
+            //sha3 = new Shaman(5, "vertical", "down", true);
+            //addObject(sha3, 50, getHeight() / 2);
             spawned[3] = true;
         }
-        if (spawned[3] && wiz2.getWorld() == null && sha3.getWorld() == null && !watermelonSpawned) {
+        if (spawned[3] && wiz2.getWorld() == null && wiz3.getWorld() == null && !watermelonSpawned) {
             // spawn watermelon
             Watermelon melon = new Watermelon(4);
             addObject(melon, getWidth() / 2, getHeight() / 2);

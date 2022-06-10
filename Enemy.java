@@ -39,9 +39,12 @@ public class Enemy extends SmoothMover {
     
     public void removeHealthBar() {
         var arr = getObjectsAtOffset(0, healthBar_dy, HealthBar.class);
-        if (arr.size() == 1) {
-            HealthBar bar = arr.get(0);
-            getWorld().removeObject(bar);
+        if (arr.size() >= 1) {
+            // sometimes getObjectsAtOffset may grab the wrong enemy's health bar if they are stacked on top of each other
+            // since this case only occurs with multiple imps in the stage, just remove all health bars grabbed because they imps will likely all die
+            for (HealthBar bar : arr) {
+                getWorld().removeObject(bar);
+            }
         }
     }
 }

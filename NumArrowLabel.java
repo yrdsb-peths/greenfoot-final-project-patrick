@@ -26,7 +26,7 @@ public class NumArrowLabel extends Actor
         GreenfootImage value = new GreenfootImage(s, fontSize, fillColor, transparent, lineColor);
         canvas.drawImage(value, value_x, value_y);
         // add image of arrow on right
-        GreenfootImage arrow = new GreenfootImage("./sprites/bow/weapon_arrow_facing_up.png");
+        GreenfootImage arrow = new GreenfootImage("./sprites/bow/weapon_arrow_facing_down.png");
         canvas.drawImage(arrow, arrow_x, arrow_y);
         
         setImage(canvas);
@@ -44,7 +44,7 @@ public class NumArrowLabel extends Actor
         GreenfootImage value = new GreenfootImage(s, fontSize, fillColor, transparent, lineColor);
         canvas.drawImage(value, value_x, value_y);
         // add image of arrow on right
-        GreenfootImage arrow = new GreenfootImage("./sprites/bow/weapon_arrow_facing_up.png");
+        GreenfootImage arrow = new GreenfootImage("./sprites/bow/weapon_arrow_facing_down.png");
         canvas.drawImage(arrow, arrow_x, arrow_y);
         
         setImage(canvas);
