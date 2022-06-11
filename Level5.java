@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.List;
 
 /**
  * Write a description of class Level5 here.
@@ -8,6 +9,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Level5 extends GameWorld
 {
+    BigDemon demon;
+    private int actCount = 0;
+    private int wallTransparency = 255;
+    
     public Level5() {
         super(800, 600, 1);
         // spawn player
@@ -20,7 +25,7 @@ public class Level5 extends GameWorld
         NumArrowLabel numArrowLabel = new NumArrowLabel(40);
         addObject(numArrowLabel, getWidth() - 40, getHeight() - 40);
         // spawn big demon
-        BigDemon demon = new BigDemon(25, 2.6, 2.5);
+        demon = new BigDemon(25, 2.6, 2.5);
         addObject(demon, getWidth() / 2, getHeight() / 2);
         // spawn friend
         Friend friend = new Friend();
@@ -37,5 +42,33 @@ public class Level5 extends GameWorld
             addObject(w, x, y);
             x -= w.getImage().getWidth();
         }
+    }
+    
+    public void act() {
+        // once the demon's been killed
+        if (demon.getWorld() == null) {
+            fadeWalls();
+            if (wallTransparency <= 0) {
+                List<Wall> walls = getObjects(Wall.class);
+                for (Wall w : walls) {
+                    removeObject(w);
+                }
+            }
+        }
+    }
+    
+    public void fadeWalls() {
+        if (wallTransparency == 0) return;
+        if (actCount % 10 == 0) {
+            List<Wall> walls = getObjects(Wall.class);
+            for (Wall w : walls) {
+                w.getImage().setTransparency(wallTransparency);
+            }
+            wallTransparency -= 5;
+        }
+    }
+
+    public void levelPass() {
+        Greenfoot.setWorld(new GameWinWorld());
     }
 }

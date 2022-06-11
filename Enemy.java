@@ -39,6 +39,8 @@ public class Enemy extends SmoothMover {
             runFacingLeft[i].scale((int)(runFacingLeft[i].getWidth() * scale), (int)(runFacingLeft[i].getHeight() * scale));
             runFacingLeft[i].mirrorHorizontally();
         }
+
+        setImage(idleFacingRight[0]);
     }
     
     public void act() {

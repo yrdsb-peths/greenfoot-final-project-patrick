@@ -15,17 +15,18 @@ public class BigDemon extends Enemy
     public void act() {
         super.act();
         // move
-        int t1 = 50;
+        int t1 = 60;
         // spread attack
         int t2 = t1 + 30;
-        int t3 = t2 + 5;
+        int t3 = t2 + 3;
         // targeted attack
         int t4 = t3 + 80;
         int t5 = t4 + 50;
         // large size attack
-        int t6 = t5 + 50;
-        int t7 = t6 + 5;
-        int x = actCount % (t7 + 20);
+        int t6 = t5 + 80;
+        int t7 = t6 + 30;
+        // calculate the number to mod by
+        int x = actCount % (t7 + 30);
         
         if (x < t1) {
             move();
@@ -55,10 +56,10 @@ public class BigDemon extends Enemy
     }
     
     public void spreadAttack() {
-        // fires a bunch of fireballs in a circular pattern
+        // fires 12 of fireballs in a circular pattern
         int turnAmount = 0;
         for (int i = 0; i < 12; i++) {
-            BigDemonBall b = new BigDemonBall(3, 0.1, false);
+            BigDemonBall b = new BigDemonBall(2.5, 0.1, false);
             getWorld().addObject(b, getX(), getY());
             b.turn(turnAmount);
             turnAmount += 30;
@@ -67,7 +68,7 @@ public class BigDemon extends Enemy
     
     public void targetedAttack() {
         if (actCount % 10 == 0) {
-            BigDemonBall b = new BigDemonBall(0.1, 0.1, true);
+            BigDemonBall b = new BigDemonBall(0.25, 0.1, true);
             Player player = getWorld().getObjects(Player.class).get(0);
             
             getWorld().addObject(b, getX(), getY());
@@ -76,11 +77,13 @@ public class BigDemon extends Enemy
     }
     
     public void largeSizeAttack() {
-        BigDemonBall b = new BigDemonBall(3, 0.3, false);
-        Player player = getWorld().getObjects(Player.class).get(0);
-        
-        getWorld().addObject(b, getX(), getY());
-        b.turnTowards(player.getX(), player.getY());
+        if (actCount % 10 == 0) {
+            BigDemonBall b = new BigDemonBall(3.5, 0.3, false);
+            Player player = getWorld().getObjects(Player.class).get(0);
+            
+            getWorld().addObject(b, getX(), getY());
+            b.turnTowards(player.getX(), player.getY());
+        }
     }
     
     public void idleAnimate() {
@@ -100,14 +103,4 @@ public class BigDemon extends Enemy
             run_index %= run_size;
         }
     }
-    
-    /*
-     * attacks:
-     * aura attack
-     * 3 quick targeted attacks
-     * large ball attack
-     * 
-     * movement:
-     * periodically moves toward player
-     */
 }

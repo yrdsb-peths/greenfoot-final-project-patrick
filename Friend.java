@@ -24,6 +24,7 @@ public class Friend extends SmoothMover
     public void act() {
         actCount++;
         idleAnimate();
+        checkTouching();
     }
     
     public void idleAnimate() {
@@ -31,6 +32,21 @@ public class Friend extends SmoothMover
             setImage(idleFacingRight[idle_index]);
             idle_index++;
             idle_index %= idle_size;
+        }
+    }
+
+    public void checkTouching() {
+        if (isTouching(Player.class)) {
+            Level5 world = (Level5) getWorld();
+            // add heart png above friend
+            Image heart1 = new Image("./sprites/ui_heart_full.png", 1.5);
+            world.addObject(heart1, getX(), getY() - 23);
+            // add heart png above player
+            Player player = getWorld().getObjects(Player.class).get(0);
+            Image heart2 = new Image("./sprites/ui_heart_full.png", 1.5);
+            world.addObject(heart2, player.getX(), player.getY() - 23);
+            Greenfoot.delay(280);
+            world.levelPass();
         }
     }
 }

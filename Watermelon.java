@@ -22,11 +22,10 @@ public class Watermelon extends Actor
         setImage(idle[0]);
     }
     
-    public void act()
-    {
+    public void act() {
         actCount++;
         idleAnimate();
-        checkWin();
+        checkTouching();
     }
     
     public void idleAnimate() {
@@ -37,7 +36,7 @@ public class Watermelon extends Actor
         }
     }
     
-    public void checkWin() {
+    public void checkTouching() {
         if (isTouching(Player.class)) {
             switch (level) {
                 case 1: {
