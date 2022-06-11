@@ -7,11 +7,48 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (a version number or a date)
  */
 public class Enemy extends SmoothMover {
-    public int health;
-    public int healthBar_dy = -45;
+    public int actCount = 0;
+    public double speed, scale;
+    public int health, healthBar_dy = -45;
+    public int idle_size = 4, idle_index = 0;
+    public int run_size = 4, run_index = 0;
+    public boolean facingRight;
+    GreenfootImage[] idleFacingRight = new GreenfootImage[idle_size];
+    GreenfootImage[] idleFacingLeft = new GreenfootImage[idle_size];
+    GreenfootImage[] runFacingRight = new GreenfootImage[run_size];
+    GreenfootImage[] runFacingLeft = new GreenfootImage[run_size];
     
-    public Enemy(int health) {
+    public Enemy(int health, String type, double speed, double scale) {
         this.health = health;
+        this.speed = speed;
+        this.scale = scale;
+        String idlePath = "./sprites/" + type + "/" + type + "_idle_anim_f";
+        String runPath = "./sprites/" + type + "/" + type + "_run_anim_f";
+        // initialize sprites
+        for (int i = 0; i < idle_size; i++) {
+            idleFacingRight[i] = new GreenfootImage(idlePath + i + ".png");
+            idleFacingRight[i].scale((int)(idleFacingRight[i].getWidth() * scale), (int)(idleFacingRight[i].getHeight() * scale));
+            idleFacingLeft[i] = new GreenfootImage(idlePath + i + ".png");
+            idleFacingLeft[i].scale((int)(idleFacingLeft[i].getWidth() * scale), (int)(idleFacingLeft[i].getHeight() * scale));
+            idleFacingLeft[i].mirrorHorizontally();
+        }
+        for (int i = 0; i < run_size; i++) {
+            runFacingRight[i] = new GreenfootImage(runPath + i + ".png");
+            runFacingRight[i].scale((int)(runFacingRight[i].getWidth() * scale), (int)(runFacingRight[i].getHeight() * scale));
+            runFacingLeft[i] = new GreenfootImage(runPath + i + ".png");
+            runFacingLeft[i].scale((int)(runFacingLeft[i].getWidth() * scale), (int)(runFacingLeft[i].getHeight() * scale));
+            runFacingLeft[i].mirrorHorizontally();
+        }
+    }
+    
+    public void act() {
+        actCount++;
+        if (actCount == 1) {
+            initHealthBar();
+        }
+        updateHealthBar();
+        moveHealthBar();
+        checkFacingDirection();
     }
     
     public void initHealthBar() {
@@ -45,6 +82,31 @@ public class Enemy extends SmoothMover {
             for (HealthBar bar : arr) {
                 getWorld().removeObject(bar);
             }
+        }
+    }
+    
+    public void checkFacingDirection() {
+        Player player = getWorld().getObjects(Player.class).get(0);
+        if (this.getX() < player.getX())
+            facingRight = true;
+        else facingRight = false;
+    }
+    
+    public void idleAnimate() {
+        if (this.actCount % 8 == 0) {
+            if (facingRight) setImage(idleFacingRight[idle_index]);
+            else setImage(idleFacingLeft[idle_index]);
+            idle_index++;
+            idle_index %= idle_size;
+        }
+    }
+    
+    public void runAnimate() {
+        if (actCount % 8 == 0) {
+            if (facingRight) setImage(runFacingRight[run_index]);
+            else setImage(runFacingLeft[run_index]);
+            run_index++;
+            run_index %= run_size;
         }
     }
 }

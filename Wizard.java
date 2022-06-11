@@ -7,44 +7,22 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (a version number or a date)
  */
 public class Wizard extends Enemy {
-    private int speed = 3;
-    private int idle_size = 4, idle_index = 0;
-    private int run_size = 4, run_index = 0;
-    private int actCount = 0;
     private int transparency = 255;
-    private double scale = 2.5;
-    private boolean facingRight;
     private boolean isFading = false;
-    GreenfootImage[] idleFacingRight = new GreenfootImage[idle_size];
-    GreenfootImage[] idleFacingLeft = new GreenfootImage[idle_size];
     SimpleTimer fadeTimer = new SimpleTimer();
     SimpleTimer mainTimer = new SimpleTimer();
     
-    public Wizard(int health, boolean facingRight) {
-        super(health);
-        this.facingRight = facingRight;
-        for (int i = 0; i < idle_size; i++) {
-            idleFacingRight[i] = new GreenfootImage("./sprites/wizard/wizzard_m_idle_anim_f" + i + ".png");
-            idleFacingRight[i].scale((int)(idleFacingRight[i].getWidth() * scale), (int)(idleFacingRight[i].getHeight() * scale));
-            idleFacingLeft[i] = new GreenfootImage("./sprites/wizard/wizzard_m_idle_anim_f" + i + ".png");
-            idleFacingLeft[i].scale((int)(idleFacingLeft[i].getWidth() * scale), (int)(idleFacingLeft[i].getHeight() * scale));
-            idleFacingLeft[i].mirrorHorizontally();
-        }
-        if (facingRight) setImage(idleFacingRight[0]);
-        else setImage(idleFacingLeft[0]);
+    public Wizard(int health, double speed, double scale) {
+        super(health, "wizard", speed, scale);
     }
     
     public void act() {
-        actCount++;
-        if (actCount == 1) {
-            initHealthBar(); // cannot do this in constructor since initHealthBar() requires the enemy to already be constructed in the world
-        }
+        super.act();
         checkTeleportingState();
         if (isFading) {
             fade();
         }
         idleAnimate();
-        updateHealthBar();
         if (actCount % 200 == 0)
             fire();
     }
@@ -123,14 +101,5 @@ public class Wizard extends Enemy {
     
     public double getDistanceBetween(int x1, int y1, int x2, int y2) {
         return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
-    }
-    
-    public void idleAnimate() {
-        if (actCount % 9 == 0) {
-            if (facingRight) setImage(idleFacingRight[idle_index]);
-            else setImage(idleFacingLeft[idle_index]);
-            idle_index++;
-            idle_index %= idle_size;
-        }
     }
 }

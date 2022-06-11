@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.target=BigDemon
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ BigDemon\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=health\ speed\ scale
+comment1.target=BigDemon(int,\ double,\ double)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ move()
+comment4.params=
+comment4.target=void\ spreadAttack()
+comment5.params=
+comment5.target=void\ targetedAttack()
+comment6.params=
+comment6.target=void\ largeSizeAttack()
+comment7.params=
+comment7.target=void\ idleAnimate()
+comment8.params=
+comment8.target=void\ runAnimate()
+numComments=9

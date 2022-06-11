@@ -31,24 +31,24 @@ public class Level4 extends GameWorld
     public void act() {
         // once last enemy's been killed, spawn watermelon
         if (spawnTimer.millisElapsed() > 500 && !spawned[0]) {
-            sha1 = new Shaman(2, "horizontal", "right", true);
+            sha1 = new Shaman(2, 3, 3, "horizontal", "right");
             addObject(sha1, 72, 100);
-            sha2 = new Shaman(2, "horizontal", "left", true);
+            sha2 = new Shaman(2, 3, 3, "horizontal", "left");
             addObject(sha2, 723, 507);
             spawned[0] = true;
         }
         // once both shamans have been killed, spawn a wizard
         if (spawned[0] && sha1.getWorld() == null && sha2.getWorld() == null && !spawned[1]) {
-            wiz1 = new Wizard(6, true);
+            wiz1 = new Wizard(6, 3, 2.5);
             addObject(wiz1, 50, getHeight() / 2);
             
             spawned[1] = true;
         }
         if (spawned[1] && wiz1.getWorld() == null && !spawned[2]) {
-            i1 = new Imp(1);
-            i2 = new Imp(1);
-            i3 = new Imp(1);
-            i4 = new Imp(1);
+            i1 = new Imp(1, 1.2, 2.5);
+            i2 = new Imp(1, 1.2, 2.5);
+            i3 = new Imp(1, 1.2, 2.5);
+            i4 = new Imp(1, 1.2, 2.5);
             addObject(i1, getWidth() / 2, 0);
             addObject(i2, getWidth(), getHeight() / 2);
             addObject(i3, getWidth() / 2, getHeight());
@@ -56,9 +56,9 @@ public class Level4 extends GameWorld
             spawned[2] = true;
         }
         if (spawned[2] && i1.getWorld() == null && i2.getWorld() == null && i3.getWorld() == null && i4.getWorld() == null && !spawned[3]) {
-            wiz2 = new Wizard(5, false);
+            wiz2 = new Wizard(5, 3, 2.5);
             addObject(wiz2, getWidth() - 50, getHeight() / 2);
-            wiz3 = new Wizard(5, false);
+            wiz3 = new Wizard(5, 3, 2.5);
             addObject(wiz3, getWidth() / 2, 50);
             //sha3 = new Shaman(5, "vertical", "down", true);
             //addObject(sha3, 50, getHeight() / 2);

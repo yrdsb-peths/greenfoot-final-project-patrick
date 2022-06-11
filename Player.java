@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player extends SmoothMover
 {
-    private double speed = 2.6;    
+    private double speed = 2.6, scale = 2.5;    
     private int idle_size = 4, idle_index = 0;
     private int run_size = 4, run_index = 0;
     private int actCount = 0;
@@ -18,7 +18,6 @@ public class Player extends SmoothMover
     private boolean facingRight = false;
     private boolean isDashing = false;
     private int dashLength = 0;
-    private double scale = 2.5;
     private String curWeapon = "spear"; // player always starts a level with the spear
     GreenfootImage[] idleFacingRight = new GreenfootImage[idle_size];
     GreenfootImage[] idleFacingLeft = new GreenfootImage[idle_size];

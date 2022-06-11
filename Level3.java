@@ -56,13 +56,13 @@ public class Level3 extends GameWorld
         addObject(w4, 720, 4);
         // spawn skellies
         for (int i = 0, x = 595, y = 95; i < 9; i++) {
-            Skeleton skel = new Skeleton(1, "down", 150, false);
+            Skeleton skel = new Skeleton(1, 0, 2.5, "down", 150, false);
             addObject(skel, x, y);
             skellies.add(skel);
             x -= 47;
         }
         // spawn shaman
-        Shaman sha = new Shaman(3, "vertical", "up", true);
+        Shaman sha = new Shaman(3, 3, 3, "vertical", "up");
         addObject(sha, 100, 505);
         // spawn watermelon
         Watermelon melon = new Watermelon(3);

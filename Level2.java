@@ -35,18 +35,18 @@ public class Level2 extends GameWorld
             y -= w.getImage().getHeight();
         }
         // spawn skeletons
-        Skeleton skel1 = new Skeleton(1, "left", skelFireRate, true);
+        Skeleton skel1 = new Skeleton(1, 0, 2.5, "left", skelFireRate, true);
         addObject(skel1, skelX, 535);
-        Skeleton skel2 = new Skeleton(1, "left", skelFireRate, true);
+        Skeleton skel2 = new Skeleton(1, 0, 2.5, "left", skelFireRate, true);
         addObject(skel2, skelX, 60);
-        Skeleton skel3 = new Skeleton(1, "left", skelFireRate, true);
+        Skeleton skel3 = new Skeleton(1, 0, 2.5, "left", skelFireRate, true);
         addObject(skel3, skelX, 254);
-        Skeleton skel4 = new Skeleton(1, "left", skelFireRate, true);
+        Skeleton skel4 = new Skeleton(1, 0, 2.5, "left", skelFireRate, true);
         addObject(skel4, skelX, 338);
         // spawn shamans
-        Shaman sha1 = new Shaman(2, "vertical", "up", false);
+        Shaman sha1 = new Shaman(2, 3, 3, "vertical", "up");
         addObject(sha1, shamanX, 245);
-        Shaman sha2 = new Shaman(2, "vertical", "up", false);
+        Shaman sha2 = new Shaman(2, 3, 3, "vertical", "up");
         addObject(sha2, shamanX, 545);
         //Shaman sha3 = new Shaman(2, "vertical", false);
         //addObject(sha3, shamanX - 100, 375);
@@ -54,10 +54,6 @@ public class Level2 extends GameWorld
         Watermelon melon = new Watermelon(2);
         addObject(melon, getWidth() - 50, getHeight() / 2);
     }
-    
-    public void act() {
-    }
-
     
     public void levelPass() {
         Greenfoot.setWorld(new Level2Pass());

@@ -8,50 +8,20 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Shaman extends Enemy
 {
-    private int speed = 3;
     private int stepsTaken = 0;
-    private int idle_size = 4, idle_index = 0;
-    private int run_size = 4, run_index = 0;
-    private int actCount = 0;
-    private double scale = 3.1;
-    private boolean facingRight;
     String pattern, curDirection;
-    GreenfootImage[] idleFacingRight = new GreenfootImage[idle_size];
-    GreenfootImage[] idleFacingLeft = new GreenfootImage[idle_size];
-    GreenfootImage[] runFacingRight = new GreenfootImage[run_size];
-    GreenfootImage[] runFacingLeft = new GreenfootImage[run_size];
     SimpleTimer moveTimer = new SimpleTimer();
     
-    public Shaman(int health, String pattern, String curDirection, boolean facingRight) {
-        super(health);
+    public Shaman(int health, double speed, double scale, String pattern, String curDirection) {
+        super(health, "shaman", speed, scale);
         this.pattern = pattern;
-        this.facingRight = facingRight;
         this.curDirection = curDirection;
-        // init sprites
-        for (int i = 0; i < idle_size; i++) {
-            idleFacingRight[i] = new GreenfootImage("./sprites/shaman/orc_shaman_idle_anim_f" + i + ".png");
-            idleFacingRight[i].scale((int)(idleFacingRight[i].getWidth() * scale), (int)(idleFacingRight[i].getHeight() * scale));
-            idleFacingLeft[i] = new GreenfootImage("./sprites/shaman/orc_shaman_idle_anim_f" + i + ".png");
-            idleFacingLeft[i].scale((int)(idleFacingLeft[i].getWidth() * scale), (int)(idleFacingLeft[i].getHeight() * scale));
-            idleFacingLeft[i].mirrorHorizontally();
-        }
-        for (int i = 0; i < run_size; i++) {
-            runFacingRight[i] = new GreenfootImage("./sprites/shaman/orc_shaman_run_anim_f" + i + ".png");
-            runFacingRight[i].scale((int)(runFacingRight[i].getWidth() * scale), (int)(runFacingRight[i].getHeight() * scale));
-            runFacingLeft[i] = new GreenfootImage("./sprites/shaman/orc_shaman_run_anim_f" + i + ".png");
-            runFacingLeft[i].scale((int)(runFacingLeft[i].getWidth() * scale), (int)(runFacingLeft[i].getHeight() * scale));
-            runFacingLeft[i].mirrorHorizontally();
-        }
-        if (facingRight) setImage(idleFacingRight[0]);
-        else setImage(idleFacingLeft[0]);
+        speed = 3;
+        scale = 3;
     }
     
-    public void act()
-    {
-        actCount++;
-        if (actCount == 1) {
-            initHealthBar(); // cannot do this in constructor since initHealthBar() requires the enemy to already be constructed in the world
-        }
+    public void act() {
+        super.act();
         move();
         if (pattern == "none" || pattern == "vertical")
             idleAnimate();
@@ -60,18 +30,15 @@ public class Shaman extends Enemy
         if (actCount % 220 == 0) {
             fire();
         }
-        moveHealthBar();
-        updateHealthBar();
     }
     
     public void move() {
         if (moveTimer.millisElapsed() > 10) {
             int dx = 0, dy = 0;
             switch (curDirection) {
-                case "up": {
+                case "up":
                     dy -= speed;
                     break;
-                }
                 case "down":
                     dy += speed;
                     break;
@@ -110,15 +77,6 @@ public class Shaman extends Enemy
         GameWorld world = (GameWorld) getWorld();
         ShamanBall b = new ShamanBall();
         world.addObject(b, getX(), getY());
-    }
-    
-    public void idleAnimate() {
-        if (actCount % 10 == 0) {
-            if (curDirection == "right") setImage(idleFacingRight[idle_index]);
-            else setImage(idleFacingLeft[idle_index]);
-            idle_index++;
-            idle_index %= idle_size;
-        }
     }
     
     public void runAnimate() {

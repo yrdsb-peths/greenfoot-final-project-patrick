@@ -34,7 +34,7 @@ public class Level1 extends GameWorld
         }
         // spawn skeletons
         for (int i = 0, x = 220, y = 140; i < 7; x += 60, i++) {
-            Skeleton skel = new Skeleton(1, "down", 0, false);
+            Skeleton skel = new Skeleton(1, 0, 2.5, "down", 0, false);
             addObject(skel, x, y);
             skellies.add(skel);
         }
