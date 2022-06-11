@@ -13,8 +13,29 @@ public class Level5 extends GameWorld
         // spawn player
         Player player = new Player(5);
         addObject(player, getWidth() / 2, getHeight()  - 50);
+        // spawn spear
+        Spear spear = new Spear();
+        addObject(spear, getWidth() / 2, getHeight()  - 50);
+        // create num arrow label
+        NumArrowLabel numArrowLabel = new NumArrowLabel(40);
+        addObject(numArrowLabel, getWidth() - 40, getHeight() - 40);
         // spawn big demon
         BigDemon demon = new BigDemon(25, 2.6, 2.5);
         addObject(demon, getWidth() / 2, getHeight() / 2);
+        // spawn friend
+        Friend friend = new Friend();
+        addObject(friend, 60, 52);
+        // spawn walls around friend
+        for (int i = 0, x = 115, y = 26; i < 3; i++) {
+            Wall w = new Wall("vertical");
+            addObject(w, x, y);
+            y += w.getImage().getHeight() - 10;
+        }
+        for (int i = 0, x = 97, y = 125; i < 3; i++) {
+            Wall w = new Wall("horizontal");
+            w.getImage().mirrorVertically();
+            addObject(w, x, y);
+            x -= w.getImage().getWidth();
+        }
     }
 }

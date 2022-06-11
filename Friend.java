@@ -1,0 +1,36 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class Friend here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class Friend extends SmoothMover
+{
+    private int idle_size = 4, idle_index = 0;
+    private int actCount = 0;
+    private double scale = 2.5;
+    GreenfootImage[] idleFacingRight = new GreenfootImage[idle_size];
+    
+    public Friend() {
+        for (int i = 0; i < idle_size; i++) {
+            idleFacingRight[i] = new GreenfootImage("./sprites/friend/lizard_f_idle_anim_f" + i + ".png");
+            idleFacingRight[i].scale((int)(idleFacingRight[i].getWidth() * scale), (int)(idleFacingRight[i].getHeight() * scale));
+        }
+        setImage(idleFacingRight[0]);
+    }
+    
+    public void act() {
+        actCount++;
+        idleAnimate();
+    }
+    
+    public void idleAnimate() {
+        if (actCount % 8 == 0) {
+            setImage(idleFacingRight[idle_index]);
+            idle_index++;
+            idle_index %= idle_size;
+        }
+    }
+}

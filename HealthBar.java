@@ -13,9 +13,9 @@ public class HealthBar extends Actor
     private Color transparent = new Color(0,0,0,0);
     private int fontSize = 25;
     private double scale = 1.3;
-    private int width = 40, height = 60;
-    private int value_x = 0, value_y = height / 2;
-    private int heart_x = 15, heart_y = height / 2 + 5;
+    private int width = 50, height = 60;
+    public int value_x = 5, value_y = height / 2;
+    public int heart_x = 19, heart_y = height / 2 + 3;
     
     public HealthBar(int hp) {
         // constructor would do the same thing as update() so just call it here
@@ -27,6 +27,9 @@ public class HealthBar extends Actor
         GreenfootImage canvas = new GreenfootImage(width, height);
         // add image of amount of hp on left
         String s = Integer.toString(hp);
+        if (s.length() == 2) { // hp is in double digits
+            heart_x = 28; // place heart png more to the right
+        }
         GreenfootImage value = new GreenfootImage(s, fontSize, fillColor, transparent, lineColor);
         canvas.drawImage(value, value_x, value_y);
         // add image of heart on right

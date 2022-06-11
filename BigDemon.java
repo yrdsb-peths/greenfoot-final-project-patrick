@@ -14,12 +14,33 @@ public class BigDemon extends Enemy
     
     public void act() {
         super.act();
-        if (actCount > 100 & actCount < 200) {
+        // move
+        int t1 = 50;
+        // spread attack
+        int t2 = t1 + 30;
+        int t3 = t2 + 5;
+        // targeted attack
+        int t4 = t3 + 80;
+        int t5 = t4 + 50;
+        // large size attack
+        int t6 = t5 + 50;
+        int t7 = t6 + 5;
+        int x = actCount % (t7 + 20);
+        
+        if (x < t1) {
             move();
             runAnimate();
-        }
-        else {
+        } else {
             idleAnimate();
+        }
+        if (x > t2 && x < t3) {
+            spreadAttack();
+        }
+        if (x > t4 && x < t5) {
+            targetedAttack();
+        }
+        if (x > t6 && x < t7) {
+            largeSizeAttack();
         }
     }
     
@@ -37,23 +58,25 @@ public class BigDemon extends Enemy
         // fires a bunch of fireballs in a circular pattern
         int turnAmount = 0;
         for (int i = 0; i < 12; i++) {
-            BigDemonBall b = new BigDemonBall(3, 2.5, false);
+            BigDemonBall b = new BigDemonBall(3, 0.1, false);
             getWorld().addObject(b, getX(), getY());
-            turn(turnAmount);
+            b.turn(turnAmount);
             turnAmount += 30;
         }
     }
     
     public void targetedAttack() {
-        BigDemonBall b = new BigDemonBall(1, 2.5, true);
-        Player player = getWorld().getObjects(Player.class).get(0);
-        
-        getWorld().addObject(b, getX(), getY());
-        b.turnTowards(player.getX(), player.getY());
+        if (actCount % 10 == 0) {
+            BigDemonBall b = new BigDemonBall(0.1, 0.1, true);
+            Player player = getWorld().getObjects(Player.class).get(0);
+            
+            getWorld().addObject(b, getX(), getY());
+            b.turnTowards(player.getX(), player.getY());    
+        }
     }
     
     public void largeSizeAttack() {
-        BigDemonBall b = new BigDemonBall(0.5, 4.5, false);
+        BigDemonBall b = new BigDemonBall(3, 0.3, false);
         Player player = getWorld().getObjects(Player.class).get(0);
         
         getWorld().addObject(b, getX(), getY());
