@@ -22,7 +22,7 @@ public class Level3 extends GameWorld
         Spear s = new Spear();
         addObject(s, getWidth() - 60, getHeight() / 2);
         // create num arrow label
-        NumArrowLabel numArrowLabel = new NumArrowLabel(20);
+        NumArrowLabel numArrowLabel = new NumArrowLabel(8);
         addObject(numArrowLabel, getWidth() - 40, getHeight() - 40);
         // spawn walls
             // right side
@@ -72,7 +72,7 @@ public class Level3 extends GameWorld
     public void act() {
         actCount++;
         // periodically make skellies shoot
-        if (actCount % 30 == 0 && flip) {
+        if (actCount % 10 == 0 && flip) {
             // even numbers attack
             for (int i = 0; i < skellies.size(); i += 2) {
                 if (skellies.get(i).getWorld() != null)
@@ -80,7 +80,7 @@ public class Level3 extends GameWorld
             }
             flip = false;
         }
-        else if (actCount % 30 == 0 && !flip) {
+        else if (actCount % 10 == 0 && !flip) {
             // odd numbers attack
             for (int i = 1; i < skellies.size(); i += 2) {
                 if (skellies.get(i).getWorld() != null)

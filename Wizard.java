@@ -62,9 +62,12 @@ public class Wizard extends Enemy {
         } while (distance < 350);
         setLocation(rand_x, rand_y);
         // teleport the health bar
-        if (arr.size() == 1) {
-            HealthBar bar = arr.get(0);
-            bar.setLocation(getX(), getY() + (healthBar_dy));
+        if (arr.size() >= 1) {
+            for (HealthBar bar : arr) {
+                if (bar.id == id) {
+                    bar.setLocation(getX(), getY() + healthBar_dy);    
+                }
+            }            
         }
     }
     

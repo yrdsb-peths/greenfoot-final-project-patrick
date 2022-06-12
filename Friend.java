@@ -45,7 +45,7 @@ public class Friend extends SmoothMover
             Player player = getWorld().getObjects(Player.class).get(0);
             Image heart2 = new Image("./sprites/ui_heart_full.png", 1.5);
             world.addObject(heart2, player.getX(), player.getY() - 23);
-            Greenfoot.delay(280);
+            Greenfoot.delay(250);
             world.levelPass();
         }
     }

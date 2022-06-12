@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Level4 extends GameWorld
 {
     SimpleTimer spawnTimer = new SimpleTimer();
-    Shaman sha1, sha2, sha3;
+    Shaman sha1, sha2;
     Wizard wiz1, wiz2, wiz3;
     Imp i1, i2, i3, i4;
     boolean[] spawned = new boolean[5];
@@ -71,6 +71,6 @@ public class Level4 extends GameWorld
     }
     
     public void levelPass() {
-        Greenfoot.setWorld(new Level5());
+        Greenfoot.setWorld(new Level4Pass());
     }
 }
