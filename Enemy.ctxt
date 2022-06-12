@@ -1,14 +1,15 @@
 #BlueJ class context
 comment0.target=Enemy
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ Enemy\ here.\r\n\ \r\n\ @\ Patrick\ Hu\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=health\ type\ speed\ scale
-comment1.target=Enemy(int,\ java.lang.String,\ double,\ double)
+comment1.params=type\ id\ health\ speed\ scale
+comment1.target=Enemy(java.lang.String,\ int,\ int,\ double,\ double)
 comment2.params=
 comment2.target=void\ act()
 comment3.params=
 comment3.target=void\ initHealthBar()
 comment4.params=
 comment4.target=void\ updateHealthBar()
+comment4.text=\r\n\ Updates\ the\ amount\ of\ health\ in\ the\ health\ bar.\r\n
 comment5.params=
 comment5.target=void\ moveHealthBar()
 comment6.params=

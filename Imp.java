@@ -9,8 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Imp extends Enemy {
     String pattern, curDirection;
     
-    public Imp(int health, double speed, double scale) {
-        super(health, "imp", speed, scale);
+    public Imp(int id, int health, double speed, double scale) {
+        super("imp", id, health, speed, scale);
     }
     
     public void act() {

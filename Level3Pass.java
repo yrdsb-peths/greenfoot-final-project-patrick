@@ -10,8 +10,7 @@ public class Level3Pass extends LevelPassWorld
 {
     public Level3Pass() {
         super(800, 600, 1);
-        Label l = new Label("You Passed Level 3!", 40);
-        addObject(l, getWidth() / 2, getHeight() / 2);
+        setBackground("./images/level3pass.png");
     }
     
     public void act() {

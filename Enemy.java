@@ -7,6 +7,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (a version number or a date)
  */
 public class Enemy extends SmoothMover {
+    private int id;
     public int actCount = 0;
     public double speed, scale;
     public int health, healthBar_dy = -45;
@@ -18,7 +19,8 @@ public class Enemy extends SmoothMover {
     GreenfootImage[] runFacingRight = new GreenfootImage[run_size];
     GreenfootImage[] runFacingLeft = new GreenfootImage[run_size];
     
-    public Enemy(int health, String type, double speed, double scale) {
+    public Enemy(String type, int id, int health, double speed, double scale) {
+        this.id = id;
         this.health = health;
         this.speed = speed;
         this.scale = scale;
@@ -54,35 +56,57 @@ public class Enemy extends SmoothMover {
     }
     
     public void initHealthBar() {
-        HealthBar bar = new HealthBar(health);
+        HealthBar bar = new HealthBar(health, id);
         getWorld().addObject(bar, getX(), getY() + healthBar_dy);
     }
     
+    /**
+     * Updates the amount of health in the health bar.
+     */
     public void updateHealthBar() {
         // get the health bar
         var arr = getObjectsAtOffset(0, healthBar_dy, HealthBar.class);
+        // sometimes enemies are stacked on top of each other and multiple health bars are retrieved
+        // in these cases, use ids to grab the correct health bar
         if (arr.size() == 1) {
             HealthBar bar = arr.get(0);
             bar.update(health);    
         }
+        else if (arr.size() > 1) {
+            for (HealthBar bar : arr) {
+                if (bar.id == id) {
+                    bar.update(health);
+                }
+            }
+        }
     }
     
     public void moveHealthBar() {
-        // get the health bar
         var arr = getObjectsAtOffset(0, healthBar_dy, HealthBar.class);
         if (arr.size() == 1) {
             HealthBar bar = arr.get(0);
             bar.setLocation(getX(), getY() + healthBar_dy);
         }
+        else if (arr.size() > 1) {
+            for (HealthBar bar : arr) {
+                if (bar.id == id) {
+                    bar.setLocation(getX(), getY() + healthBar_dy);
+                }
+            }
+        }
     }
     
     public void removeHealthBar() {
         var arr = getObjectsAtOffset(0, healthBar_dy, HealthBar.class);
-        if (arr.size() >= 1) {
-            // sometimes getObjectsAtOffset may grab the wrong enemy's health bar if they are stacked on top of each other
-            // since this case only occurs with multiple imps in the stage, just remove all health bars grabbed because they imps will likely all die
+        if (arr.size() == 1) {
+            HealthBar bar = arr.get(0);
+            getWorld().removeObject(bar);
+        }
+        else if (arr.size() > 1) {
             for (HealthBar bar : arr) {
-                getWorld().removeObject(bar);
+                if (bar.id == id) {
+                    getWorld().removeObject(bar);
+                }
             }
         }
     }

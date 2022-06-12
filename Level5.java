@@ -25,7 +25,7 @@ public class Level5 extends GameWorld
         NumArrowLabel numArrowLabel = new NumArrowLabel(40);
         addObject(numArrowLabel, getWidth() - 40, getHeight() - 40);
         // spawn big demon
-        demon = new BigDemon(25, 2.6, 2.5);
+        demon = new BigDemon(0, 25, 2.6, 2.5);
         addObject(demon, getWidth() / 2, getHeight() / 2);
         // spawn friend
         Friend friend = new Friend();

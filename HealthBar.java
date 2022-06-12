@@ -8,17 +8,19 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class HealthBar extends Actor
 {
-    private Color lineColor = Color.BLACK;
-    private Color fillColor = Color.WHITE;
-    private Color transparent = new Color(0,0,0,0);
+    public int id;
     private int fontSize = 25;
     private double scale = 1.3;
     private int width = 50, height = 60;
     public int value_x = 5, value_y = height / 2;
     public int heart_x = 19, heart_y = height / 2 + 3;
+    private Color lineColor = Color.BLACK;
+    private Color fillColor = Color.WHITE;
+    private Color transparent = new Color(0,0,0,0);
     
-    public HealthBar(int hp) {
-        // constructor would do the same thing as update() so just call it here
+    public HealthBar(int hp, int id) {
+        this.id = id;
+        // the constructor would do the same thing as update() so just call it here
         update(hp);
     }
     

@@ -8,8 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class BigDemon extends Enemy
 {   
-    public BigDemon(int health, double speed, double scale) {
-        super(health, "big_demon", speed, scale);
+    public BigDemon(int id, int health, double speed, double scale) {
+        super("big_demon", id, health, speed, scale);
     }
     
     public void act() {

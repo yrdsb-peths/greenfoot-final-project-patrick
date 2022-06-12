@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.lang.Math;
 
 /**
  * Write a description of class Wizard here.
@@ -12,8 +13,8 @@ public class Wizard extends Enemy {
     SimpleTimer fadeTimer = new SimpleTimer();
     SimpleTimer mainTimer = new SimpleTimer();
     
-    public Wizard(int health, double speed, double scale) {
-        super(health, "wizard", speed, scale);
+    public Wizard(int id, int health, double speed, double scale) {
+        super("wizard", id, health, speed, scale);
     }
     
     public void act() {
@@ -55,8 +56,8 @@ public class Wizard extends Enemy {
         int rand_y;
         double distance;
         do {
-            rand_x = getRandomNumber(20, getWorld().getWidth() - 20);
-            rand_y = getRandomNumber(20, getWorld().getHeight() - 20);
+            rand_x = getRandomNumber(Math.abs(healthBar_dy), getWorld().getWidth() - Math.abs(healthBar_dy));
+            rand_y = getRandomNumber(Math.abs(healthBar_dy), getWorld().getHeight() - Math.abs(healthBar_dy));
             distance = getDistanceBetween(rand_x, player.getX(), rand_y, player.getY());    
         } while (distance < 350);
         setLocation(rand_x, rand_y);

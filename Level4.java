@@ -31,24 +31,24 @@ public class Level4 extends GameWorld
     public void act() {
         // once last enemy's been killed, spawn watermelon
         if (spawnTimer.millisElapsed() > 500 && !spawned[0]) {
-            sha1 = new Shaman(2, 3, 3, "horizontal", "right");
+            sha1 = new Shaman(0, 2, 3, 3, "horizontal", "right");
             addObject(sha1, 72, 100);
-            sha2 = new Shaman(2, 3, 3, "horizontal", "left");
+            sha2 = new Shaman(1, 2, 3, 3, "horizontal", "left");
             addObject(sha2, 723, 507);
             spawned[0] = true;
         }
         // once both shamans have been killed, spawn a wizard
         if (spawned[0] && sha1.getWorld() == null && sha2.getWorld() == null && !spawned[1]) {
-            wiz1 = new Wizard(6, 3, 2.5);
+            wiz1 = new Wizard(2, 6, 3, 2.5);
             addObject(wiz1, 50, getHeight() / 2);
             
             spawned[1] = true;
         }
         if (spawned[1] && wiz1.getWorld() == null && !spawned[2]) {
-            i1 = new Imp(1, 1.2, 2.5);
-            i2 = new Imp(1, 1.2, 2.5);
-            i3 = new Imp(1, 1.2, 2.5);
-            i4 = new Imp(1, 1.2, 2.5);
+            i1 = new Imp(3, 1, 1.2, 2.5);
+            i2 = new Imp(4, 1, 1.2, 2.5);
+            i3 = new Imp(5, 1, 1.2, 2.5);
+            i4 = new Imp(6, 1, 1.2, 2.5);
             addObject(i1, getWidth() / 2, 0);
             addObject(i2, getWidth(), getHeight() / 2);
             addObject(i3, getWidth() / 2, getHeight());
@@ -56,12 +56,10 @@ public class Level4 extends GameWorld
             spawned[2] = true;
         }
         if (spawned[2] && i1.getWorld() == null && i2.getWorld() == null && i3.getWorld() == null && i4.getWorld() == null && !spawned[3]) {
-            wiz2 = new Wizard(5, 3, 2.5);
+            wiz2 = new Wizard(7, 5, 3, 2.5);
             addObject(wiz2, getWidth() - 50, getHeight() / 2);
-            wiz3 = new Wizard(5, 3, 2.5);
-            addObject(wiz3, getWidth() / 2, 50);
-            //sha3 = new Shaman(5, "vertical", "down", true);
-            //addObject(sha3, 50, getHeight() / 2);
+            wiz3 = new Wizard(8, 5, 3, 2.5);
+            addObject(wiz3, 50, getHeight() / 2);
             spawned[3] = true;
         }
         if (spawned[3] && wiz2.getWorld() == null && wiz3.getWorld() == null && !watermelonSpawned) {
@@ -73,6 +71,6 @@ public class Level4 extends GameWorld
     }
     
     public void levelPass() {
-        Greenfoot.setWorld(new Level4Pass());
+        Greenfoot.setWorld(new Level5());
     }
 }

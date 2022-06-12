@@ -9,8 +9,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Level1Pass extends LevelPassWorld
 {
     public Level1Pass() {
-        super(500, 375, 1);
+        super(800, 600, 1);
         setBackground("./images/level1pass.png");
+        
     }
     
     public void act() {

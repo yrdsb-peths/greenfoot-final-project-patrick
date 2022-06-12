@@ -12,8 +12,8 @@ public class Skeleton extends Enemy
     private int fireRate;
     private boolean autoFire;
     
-    public Skeleton(int health, double speed, double scale, String shotDirection, int fireRate, boolean autoFire) {
-        super(health, "skeleton", speed, scale);
+    public Skeleton(int id, int health, double speed, double scale, String shotDirection, int fireRate, boolean autoFire) {
+        super("skeleton", id, health, speed, scale);
         this.shotDirection = shotDirection;
         this.fireRate = fireRate;
         this.autoFire = autoFire;

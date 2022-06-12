@@ -56,13 +56,13 @@ public class Level3 extends GameWorld
         addObject(w4, 720, 4);
         // spawn skellies
         for (int i = 0, x = 595, y = 95; i < 9; i++) {
-            Skeleton skel = new Skeleton(1, 0, 2.5, "down", 150, false);
+            Skeleton skel = new Skeleton(i, 1, 0, 2.5, "down", 150, false);
             addObject(skel, x, y);
             skellies.add(skel);
             x -= 47;
         }
         // spawn shaman
-        Shaman sha = new Shaman(3, 3, 3, "vertical", "up");
+        Shaman sha = new Shaman(0, 3, 3, 3, "vertical", "up");
         addObject(sha, 100, 505);
         // spawn watermelon
         Watermelon melon = new Watermelon(3);
@@ -71,7 +71,7 @@ public class Level3 extends GameWorld
     
     public void act() {
         actCount++;
-        // periodically make ball dispensers shoot
+        // periodically make skellies shoot
         if (actCount % 30 == 0 && flip) {
             // even numbers attack
             for (int i = 0; i < skellies.size(); i += 2) {
