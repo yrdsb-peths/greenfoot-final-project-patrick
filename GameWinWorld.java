@@ -19,10 +19,19 @@ public class GameWinWorld extends World
     Image friend_melon = new Image();
     GreenfootImage[] playerIdleFacingRight = new GreenfootImage[idle_size];
     GreenfootImage[] friendIdleFacingLeft = new GreenfootImage[idle_size];
+    GifImage night;
+    Image gameCompleteText;
     
     public GameWinWorld() {    
         super(800, 600, 1);
-        setBackground("./images/game-complete.png");
+        // initialize starry night gif
+        night = new GifImage("./gifs/blue_sky_pixel_animation.gif");
+        for (GreenfootImage img : night.getImages()) {
+            img.scale((int)(img.getWidth() * 2), (int)(img.getHeight() * 2));
+        }
+        // initialize game complete text
+        gameCompleteText = new Image("./images/game-complete.png", 1);
+        addObject(gameCompleteText, getWidth() / 2, getHeight() / 2);
         // initialize player sprites
         for (int i = 0; i < idle_size; i++) {
             playerIdleFacingRight[i] = new GreenfootImage("./sprites/player/lizard_m_idle_anim_f" + i + ".png");
@@ -57,7 +66,12 @@ public class GameWinWorld extends World
     
     public void act() {
         actCount++;
+        animateBackground();
         idleAnimate();
+    }
+    
+    public void animateBackground() {
+        setBackground(night.getCurrentImage());        
     }
     
      public void idleAnimate() {

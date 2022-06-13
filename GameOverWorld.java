@@ -12,6 +12,7 @@ public class GameOverWorld extends World
     private double scale = 1;
     Image lastLevelButton;
     Image startOverButton;
+    GifImage night;
     
     public GameOverWorld(int lastLevel) {
         super(800, 600, 1);
