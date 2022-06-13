@@ -17,4 +17,8 @@ public class Image extends Actor
         setImage(path);
         getImage().scale((int)(getImage().getWidth() * scale), (int)(getImage().getHeight() * scale));
     }
+    
+    public void scale(double amount) {
+        getImage().scale((int)(getImage().getWidth() * amount), (int)(getImage().getHeight() * amount));
+    }
 }

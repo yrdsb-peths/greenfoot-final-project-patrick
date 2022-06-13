@@ -10,6 +10,7 @@ public class Watermelon extends Actor
 {
     private int idle_size = 10, idle_index = 0;
     private int actCount = 0;
+    private double scale = 0.75;
     private int level;
     GreenfootImage[] idle = new GreenfootImage[idle_size];
     
@@ -17,7 +18,7 @@ public class Watermelon extends Actor
         this.level = level;
         for (int i = 0; i < idle_size; i++) {
             idle[i] = new GreenfootImage("./sprites/watermelon/idle" + i + ".png");
-            idle[i].scale((int)(getImage().getWidth() * 0.25), (int)(getImage().getHeight() * 0.3));
+            idle[i].scale((int)(idle[i].getWidth() * scale), (int)(idle[i].getHeight() * scale));
         }
         setImage(idle[0]);
     }
