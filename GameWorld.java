@@ -15,7 +15,7 @@ public class GameWorld extends World
         setBackground(floor);
     }
     
-    public void gameOver() {
-        Greenfoot.setWorld(new GameOverWorld());
+    public void gameOver(int level) {
+        Greenfoot.setWorld(new GameOverWorld(level));
     }
 }

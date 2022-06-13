@@ -17,21 +17,21 @@ public class GameStartWorld extends World
         
         title = new Image("./images/title.png", 1);
         addObject(title, 220, 115);
-        startButton = new Image("./images/start-game.png", 0.6);
-        addObject(startButton, 146, 279);
+        startButton = new Image("./images/start-game-galactica.png", 0.6);
+        addObject(startButton, 165, 265);
     }
     
     public void act() {
         if (Greenfoot.mouseMoved(startButton)) {
-            startButton.setImage("./images/start-game-green.png");
+            startButton.setImage("./images/start-game-galactica-green.png");
             startButton.scale(0.6);
         }
         if (Greenfoot.mouseMoved(null) && !Greenfoot.mouseMoved(startButton)) {
-            startButton.setImage("./images/start-game.png");
+            startButton.setImage("./images/start-game-galactica.png");
             startButton.scale(0.6);
         }
         if (Greenfoot.mouseClicked(startButton)) {
-            Greenfoot.setWorld(new Level1());
+            Greenfoot.setWorld(new Instructions());
         }
     }
 }

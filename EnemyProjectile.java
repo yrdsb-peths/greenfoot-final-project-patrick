@@ -12,7 +12,8 @@ public class EnemyProjectile extends Projectile
     {
         if (isTouching(Player.class)) {
             GameWorld world = (GameWorld) getWorld();
-            world.gameOver();
+            Player player = getWorld().getObjects(Player.class).get(0);
+            world.gameOver(player.level);
         }
     }
 }

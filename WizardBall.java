@@ -60,11 +60,4 @@ public class WizardBall extends EnemyProjectile
             anim_index %= anim_size;
         }
     }
-    
-    /*
-     * blue fireball colours:
-     * dark blue: 0080ff
-     * light blue: 7ebfff
-     * lightest blue: e4f4ff
-     */
 }

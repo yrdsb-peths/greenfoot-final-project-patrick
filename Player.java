@@ -12,9 +12,9 @@ public class Player extends SmoothMover
     private int idle_size = 4, idle_index = 0;
     private int run_size = 4, run_index = 0;
     private int actCount = 0;
-    private int level;
     private int spear_dx = 13, spear_dy = 0;
     private int bow_dx = 12, bow_dy = 17;
+    public int level;
     private boolean facingRight = false;
     private boolean isDashing = false;
     private int dashLength = 0;
@@ -150,7 +150,7 @@ public class Player extends SmoothMover
         if (getWorld() == null) return;
         if (isTouching(Enemy.class)) {
             GameWorld world = (GameWorld) getWorld();
-            world.gameOver();
+            world.gameOver(level);
         }
     }
     

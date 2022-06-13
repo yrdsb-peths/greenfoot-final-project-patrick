@@ -43,11 +43,4 @@ public class SkeletonBall extends EnemyProjectile
         }
         setLocation(getX() + dx, getY() + dy);
     }
-    
-    public void checkPlayerHit() {
-        if (isTouching(Player.class)) {
-            GameWorld world = (GameWorld) getWorld();
-            world.gameOver();
-        }
-    }
 }
