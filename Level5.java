@@ -26,7 +26,7 @@ public class Level5 extends GameWorld
         addObject(numArrowLabel, getWidth() - 40, getHeight() - 40);
         // spawn big demon
         demon = new BigDemon(0, 25, 2.6, 2.5);
-        addObject(demon, getWidth() / 2, getHeight() / 2);
+        addObject(demon, getWidth() / 2, getHeight() / 2 - 100);
         // spawn friend
         Friend friend = new Friend();
         addObject(friend, 60, 52);
