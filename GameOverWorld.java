@@ -12,7 +12,7 @@ public class GameOverWorld extends World
     private int actCount = 0;
     private int transparency = 255;
     private double scale = 1;
-    // decided to not use lastLevelButton and startOverButton in final product
+    // decided not to use lastLevelButton and startOverButton in final product
     // their functionality remains in this class
     // player automatically returns to GameStartWorld upon death
     Image lastLevelButton; 

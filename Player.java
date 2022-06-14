@@ -8,7 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player extends SmoothMover
 {
-    private double speed = 2.6, scale = 2.5;    
+    private double speed = 2.6, scale = 2.5;
+    public int health = 3, healthBar_dy = -45, id = -1;
     private int idle_size = 4, idle_index = 0;
     private int run_size = 4, run_index = 0;
     private int actCount = 0;
@@ -24,6 +25,7 @@ public class Player extends SmoothMover
     GreenfootImage[] runFacingRight = new GreenfootImage[run_size];
     GreenfootImage[] runFacingLeft = new GreenfootImage[run_size];
     SimpleTimer dashTimer = new SimpleTimer();
+    SimpleTimer enemyTouchTimer = new SimpleTimer();
     
     public Player(int level) {
         this.level = level;
@@ -47,6 +49,11 @@ public class Player extends SmoothMover
     
     public void act() {
         actCount++;
+        if (actCount == 1) {
+            initHealthBar();
+        }
+        updateHealthBar();
+        moveHealthBar();
         move();
         selectWeapon();
         moveWeapon();
@@ -146,11 +153,60 @@ public class Player extends SmoothMover
         setRotation(0); 
     }
     
+    public void initHealthBar() {
+        HealthBar bar = new HealthBar(health, id);
+        getWorld().addObject(bar, getX(), getY() + healthBar_dy);
+    }
+    
+    /**
+     * Updates the amount of health in the health bar.
+     */
+    public void updateHealthBar() {
+        // get the health bar
+        var arr = getObjectsAtOffset(0, healthBar_dy, HealthBar.class);
+        // sometimes enemies are stacked on top of each other and multiple health bars are retrieved
+        // and getObjectsAtOffset gets the wrong health bar if they are too close
+        // in these cases, use ids to grab the correct health bar
+        if (arr.size() >= 1) {
+            for (HealthBar bar : arr) {
+                if (bar.id == id) {
+                    bar.update(health);
+                }
+            }
+        }
+    }
+    
+    public void moveHealthBar() {
+        var arr = getObjectsAtOffset(0, healthBar_dy, HealthBar.class);
+        if (arr.size() >= 1) {
+            for (HealthBar bar : arr) {
+                if (bar.id == id) {                    
+                    bar.setLocation(getX(), getY() + healthBar_dy);
+                }
+            }
+        }
+    }
+    
+    public void removeHealthBar() {
+        var arr = getObjectsAtOffset(0, healthBar_dy, HealthBar.class);
+        if (arr.size() >= 1) {
+            for (HealthBar bar : arr) {
+                if (bar.id == id) {
+                    getWorld().removeObject(bar);
+                }
+            }
+        }
+    }
+    
     public void checkTouchingEnemy() {
         if (getWorld() == null) return;
-        if (isTouching(Enemy.class)) {
+        if (isTouching(Enemy.class) && enemyTouchTimer.millisElapsed() > 2000) {
             GameWorld world = (GameWorld) getWorld();
-            world.gameOver(level);
+            if (health - 1 == 0) {
+                world.gameOver(level);
+            }
+            else health--;
+            enemyTouchTimer.mark();
         }
     }
     
