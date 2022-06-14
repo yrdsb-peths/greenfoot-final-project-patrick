@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class GameStartWorld extends World
 {
+    private double scale = 0.7;
     Image title;
     Image startButton;
     
@@ -15,20 +16,20 @@ public class GameStartWorld extends World
         super(800, 600, 1);
         setBackground("./images/castle2.jpg");
         
-        title = new Image("./images/title.png", 1);
+        title = new Image("./images/future-time-splitters/title.png", 1);
         addObject(title, 220, 115);
-        startButton = new Image("./images/start-game-galactica.png", 0.6);
-        addObject(startButton, 165, 265);
+        startButton = new Image("./images/vecna/start-game.png", scale);
+        addObject(startButton, 151, 260);
     }
     
     public void act() {
         if (Greenfoot.mouseMoved(startButton)) {
-            startButton.setImage("./images/start-game-galactica-green.png");
-            startButton.scale(0.6);
+            startButton.setImage("./images/vecna/start-game-yellow.png");
+            startButton.scale(scale);
         }
         if (Greenfoot.mouseMoved(null) && !Greenfoot.mouseMoved(startButton)) {
-            startButton.setImage("./images/start-game-galactica.png");
-            startButton.scale(0.6);
+            startButton.setImage("./images/vecna/start-game.png");
+            startButton.scale(scale);
         }
         if (Greenfoot.mouseClicked(startButton)) {
             Greenfoot.setWorld(new Instructions());

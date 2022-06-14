@@ -10,7 +10,7 @@ public class Instructions extends World
 {    
     public Instructions() {    
         super(800, 600, 1);
-        setBackground("./images/instructions.png");
+        setBackground("./images/vecna/instructions.png");
     }
     
     public void act() {        

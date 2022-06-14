@@ -10,7 +10,7 @@ public class Level3Pass extends LevelPassWorld
 {
     public Level3Pass() {
         super(800, 600, 1);
-        setBackground("./images/level3pass.png");
+        setBackground("./images/vecna/level3pass.png");
     }
     
     public void act() {

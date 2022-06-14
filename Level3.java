@@ -62,7 +62,7 @@ public class Level3 extends GameWorld
             x -= 47;
         }
         // spawn shaman
-        Shaman sha = new Shaman(0, 3, 3, 3, "vertical", "up");
+        Shaman sha = new Shaman(0, 2, 3, 3, "vertical", "up");
         addObject(sha, 100, 505);
         // spawn watermelon
         Watermelon melon = new Watermelon(3);

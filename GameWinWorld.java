@@ -30,7 +30,7 @@ public class GameWinWorld extends World
             img.scale((int)(img.getWidth() * 2), (int)(img.getHeight() * 2));
         }
         // initialize game complete text
-        gameCompleteText = new Image("./images/game-complete.png", 1);
+        gameCompleteText = new Image("./images/galactica/game-complete.png", 1);
         addObject(gameCompleteText, getWidth() / 2, getHeight() / 2);
         // initialize player sprites
         for (int i = 0; i < idle_size; i++) {
@@ -68,6 +68,9 @@ public class GameWinWorld extends World
         actCount++;
         animateBackground();
         idleAnimate();
+        if (Greenfoot.isKeyDown("enter")) {
+            Greenfoot.setWorld(new GameStartWorld());
+        }
     }
     
     public void animateBackground() {
