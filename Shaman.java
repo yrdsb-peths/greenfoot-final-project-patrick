@@ -12,6 +12,13 @@ public class Shaman extends Enemy
     String pattern, curDirection;
     SimpleTimer moveTimer = new SimpleTimer();
     
+    /*
+     * darkest green:
+     * green2: 
+     * green3: 
+     * green4:
+     */
+    
     public Shaman(int id, int health, double speed, double scale, String pattern, String curDirection) {
         super("shaman", id, health, speed, scale);
         this.pattern = pattern;

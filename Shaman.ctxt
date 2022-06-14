@@ -3,6 +3,7 @@ comment0.target=Shaman
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ Shaman\ here.\r\n\ \r\n\ @\ Patrick\ Hu\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=id\ health\ speed\ scale\ pattern\ curDirection
 comment1.target=Shaman(int,\ int,\ double,\ double,\ java.lang.String,\ java.lang.String)
+comment1.text=\r\n\ darkest\ green\:\r\n\ green2\:\ \r\n\ green3\:\ \r\n\ green4\:\r\n
 comment2.params=
 comment2.target=void\ act()
 comment3.params=

@@ -18,7 +18,7 @@ public class BigDemon extends Enemy
         int t1 = 60;
         // spread attack
         int t2 = t1 + 30;
-        int t3 = t2 + 3;
+        int t3 = t2 + 2;
         // targeted attack
         int t4 = t3 + 80;
         int t5 = t4 + 50;
