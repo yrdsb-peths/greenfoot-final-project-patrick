@@ -14,6 +14,7 @@ public class Level3Pass extends LevelPassWorld
     }
     
     public void act() {
+        super.act();
         if (Greenfoot.isKeyDown("enter")) {
             Greenfoot.setWorld(new Level4());
         }

@@ -16,9 +16,9 @@ public class Level4 extends GameWorld
     boolean watermelonSpawned = false;
     
     public Level4() {
-        super(800, 600, 1);
+        super(800, 600, 1, 4);
         // spawn player
-        Player p = new Player(4);
+        Player p = new Player();
         addObject(p, getWidth() / 2, getHeight() / 2);
         // spawn spear
         Spear s = new Spear();
@@ -29,6 +29,7 @@ public class Level4 extends GameWorld
     }
     
     public void act() {
+        super.act();
         // once last enemy's been killed, spawn watermelon
         if (spawnTimer.millisElapsed() > 500 && !spawned[0]) {
             sha1 = new Shaman(0, 2, 3, 3, "horizontal", "right");

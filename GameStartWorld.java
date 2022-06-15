@@ -15,6 +15,10 @@ public class GameStartWorld extends World
     public GameStartWorld() {
         super(800, 600, 1);
         setBackground("./images/castle2.jpg");
+        Soundtrack.reset();
+        Soundtrack.setVolumes();
+        // start playing castle soundtrack
+        Soundtrack.castle.play();
         
         title = new Image("./images/future-time-splitters/title.png", 1);
         addObject(title, 220, 115);

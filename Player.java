@@ -8,14 +8,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Player extends SmoothMover
 {
+    public static int health = 3;
     private double speed = 2.6, scale = 2.5;
-    public int health = 3, healthBar_dy = -45, id = -1;
+    private int healthBar_dy = -45, id = -1;
     private int idle_size = 4, idle_index = 0;
     private int run_size = 4, run_index = 0;
     private int actCount = 0;
+    private int level;
     private int spear_dx = 13, spear_dy = 0;
     private int bow_dx = 12, bow_dy = 17;
-    public int level;
     private boolean facingRight = false;
     private boolean isDashing = false;
     private int dashLength = 0;
@@ -26,9 +27,10 @@ public class Player extends SmoothMover
     GreenfootImage[] runFacingLeft = new GreenfootImage[run_size];
     SimpleTimer dashTimer = new SimpleTimer();
     SimpleTimer enemyTouchTimer = new SimpleTimer();
+    GreenfootSound dashSound = new GreenfootSound("./sounds/dash1.mp3");
+    GreenfootSound hitSound = new GreenfootSound("./sounds/player-hit.mp3");
     
-    public Player(int level) {
-        this.level = level;
+    public Player() {        
         // initialize sprites
         for (int i = 0; i < idle_size; i++) {
             idleFacingRight[i] = new GreenfootImage("./sprites/player/lizard_m_idle_anim_f" + i + ".png");
@@ -45,6 +47,10 @@ public class Player extends SmoothMover
             runFacingLeft[i].mirrorHorizontally();
         }
         setImage(idleFacingRight[0]);
+        
+        // adjust sound volumes
+        dashSound.setVolume(40);
+        hitSound.setVolume(100);
     }
     
     public void act() {
@@ -57,13 +63,13 @@ public class Player extends SmoothMover
         move();
         selectWeapon();
         moveWeapon();
-        if (level >= 4) {
+        if (((GameWorld) getWorld()).level >= 4) {
             checkDashing();
             if (isDashing) {
                 dash();
             }    
         }
-        checkTouchingEnemy();
+        checkHitByEnemy();
     }
     
     public void move() {
@@ -106,7 +112,7 @@ public class Player extends SmoothMover
             getWorld().addObject(s, getX() + spear_dx, getY() + spear_dy);
             curWeapon = "spear";
         }
-        else if (Greenfoot.isKeyDown("2") && curWeapon == "spear" && level > 1) {
+        else if (Greenfoot.isKeyDown("2") && curWeapon == "spear" && ((GameWorld) getWorld()).level > 1) {
             // switch to bow
             Spear s = getWorld().getObjects(Spear.class).get(0);
             getWorld().removeObject(s);
@@ -131,6 +137,7 @@ public class Player extends SmoothMover
     
     public void checkDashing() {
         if (Greenfoot.isKeyDown("alt")) {
+            dashSound.stop(); dashSound.play();
             isDashing = true;
         }
         else if (dashLength > 25) {
@@ -151,7 +158,7 @@ public class Player extends SmoothMover
         }
         // turn back
         setRotation(0); 
-    }
+    }      
     
     public void initHealthBar() {
         HealthBar bar = new HealthBar(health, id);
@@ -198,12 +205,26 @@ public class Player extends SmoothMover
         }
     }
     
-    public void checkTouchingEnemy() {
+    public void checkHitByEnemy() {
         if (getWorld() == null) return;
-        if (isTouching(Enemy.class) && enemyTouchTimer.millisElapsed() > 2000) {
+        
+        if (isTouching(EnemyProjectile.class)) {
+            hitSound.play();
             GameWorld world = (GameWorld) getWorld();
-            if (health - 1 == 0) {
-                world.gameOver(level);
+            if (health - 1 <= 0) {
+                world.gameOver();
+            }
+            else health--;
+            // remove enemy projectile
+            EnemyProjectile e = (EnemyProjectile) getOneIntersectingObject(EnemyProjectile.class);
+            world.removeObject(e);
+        }
+        
+        if (isTouching(Enemy.class) && enemyTouchTimer.millisElapsed() > 2500) {
+            hitSound.play();
+            GameWorld world = (GameWorld) getWorld();
+            if (health - 1 <= 0) {
+                world.gameOver();
             }
             else health--;
             enemyTouchTimer.mark();

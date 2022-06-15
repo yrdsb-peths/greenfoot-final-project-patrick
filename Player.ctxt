@@ -1,14 +1,14 @@
 #BlueJ class context
 comment0.target=Player
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ Player\ here.\r\n\ \r\n\ @\ Patrick\ Hu\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=level
-comment1.target=Player(int)
+comment1.params=
+comment1.target=Player()
 comment10.params=
 comment10.target=void\ moveHealthBar()
 comment11.params=
 comment11.target=void\ removeHealthBar()
 comment12.params=
-comment12.target=void\ checkTouchingEnemy()
+comment12.target=void\ checkHitByEnemy()
 comment13.params=
 comment13.target=void\ idleAnimate()
 comment14.params=

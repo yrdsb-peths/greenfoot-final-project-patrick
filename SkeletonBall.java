@@ -8,20 +8,18 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class SkeletonBall extends EnemyProjectile
 {
-    private int speed = 3;
-    private double scale = 3.2;
     String direction;
     
     public SkeletonBall(String direction) {
+        super(3, 3.2);
         this.direction = direction;
         setImage("./sprites/bullets/skeleton-bullet.png");
         getImage().scale((int)(getImage().getWidth() * scale), (int)(getImage().getHeight() * scale));
     }
     
-    public void act()
-    {
+    public void act() {
+        super.act();
         move();
-        checkPlayerHit();
         checkAtWall();
     }
     

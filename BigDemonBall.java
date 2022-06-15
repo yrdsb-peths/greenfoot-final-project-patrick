@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class BigDemonBall extends EnemyProjectile
 {
-    private double speed, scale, acceleration = 0.08;
+    private double acceleration = 0.08;
     private int actCount = 0;
     private int anim_size = 5, anim_index = 0;
     private boolean accelerate;
@@ -17,8 +17,7 @@ public class BigDemonBall extends EnemyProjectile
     SimpleTimer timer = new SimpleTimer();
     
     public BigDemonBall(double speed, double scale, boolean accelerate) {
-        this.speed = speed;
-        this.scale = scale;
+        super(speed, scale);
         this.accelerate = accelerate;
         for (int i = 0; i < anim_size; i++) {
             animation[i] = new GreenfootImage("./sprites/fireball-v2/fireball" + i + ".png");
@@ -31,7 +30,6 @@ public class BigDemonBall extends EnemyProjectile
         actCount++;
         move();
         animate();
-        checkPlayerHit();
         checkAtWall();
     }
     

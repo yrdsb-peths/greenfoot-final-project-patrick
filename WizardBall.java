@@ -8,16 +8,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class WizardBall extends EnemyProjectile
 {
-    private double speed = 1.4;
     private double acceleration = 0.4;
-    private int actCount = 0;
     private int anim_size = 5, anim_index = 0, anim_speed = 12;  
     private int t1 = 2000, t2 = 2300;
-    private double scale = 1.9;
     GreenfootImage[] animation = new GreenfootImage[anim_size];
     SimpleTimer timer = new SimpleTimer();
     
     public WizardBall() {
+        super(1.4, 1.9);
         for (int i = 0; i < anim_size; i++) {
             animation[i] = new GreenfootImage("./sprites/blue-fireball-v2/blue-fireball" + i + ".png");
             animation[i].scale((int)(animation[i].getWidth() * scale), (int)(animation[i].getHeight() * scale));
@@ -26,10 +24,9 @@ public class WizardBall extends EnemyProjectile
     }
     
     public void act() {
-        actCount++;
+        super.act();
         move();
         animate();
-        checkPlayerHit();
         checkAtWall();
     }
     

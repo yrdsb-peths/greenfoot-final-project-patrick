@@ -13,6 +13,7 @@ public class Watermelon extends Actor
     private double scale = 0.75;
     private int level;
     GreenfootImage[] idle = new GreenfootImage[idle_size];
+    GreenfootSound melonSound = new GreenfootSound("./sounds/watermelon-sound.mp3");
     
     public Watermelon(int level) {
         this.level = level;
@@ -39,6 +40,7 @@ public class Watermelon extends Actor
     
     public void checkTouching() {
         if (isTouching(Player.class)) {
+            melonSound.play();
             switch (level) {
                 case 1: {
                     Level1 world = (Level1) getWorld();

@@ -40,12 +40,16 @@ public class Friend extends SmoothMover
             Level5 world = (Level5) getWorld();
             // add heart png above friend
             Image heart1 = new Image("./sprites/ui_heart_full.png", 1.5);
-            world.addObject(heart1, getX(), getY() - 23);
+            world.addObject(heart1, getX(), getY() - 27);
             // add heart png above player
             Player player = getWorld().getObjects(Player.class).get(0);
             Image heart2 = new Image("./sprites/ui_heart_full.png", 1.5);
-            world.addObject(heart2, player.getX(), player.getY() - 23);
+            world.addObject(heart2, player.getX(), player.getY() - 27);
+            // remove player health bar
+            player.removeHealthBar();
+            // delay
             Greenfoot.delay(250);
+            
             world.levelPass();
         }
     }

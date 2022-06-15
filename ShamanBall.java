@@ -8,14 +8,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class ShamanBall extends EnemyProjectile
 {
-    private int speed = 3;
-    private int actCount = 0;
     private int anim_size = 5, anim_index = 0;
-    private double scale = 0.1;
     GreenfootImage[] animation = new GreenfootImage[anim_size];
     SimpleTimer timer = new SimpleTimer();
     
     public ShamanBall() {
+        super(3, 0.1);
         for (int i = 0; i < anim_size; i++) {
             animation[i] = new GreenfootImage("./sprites/fireball-v2/fireball" + i + ".png");
             animation[i].scale((int)(animation[i].getWidth() * scale), (int)(animation[i].getHeight() * scale));
@@ -24,10 +22,9 @@ public class ShamanBall extends EnemyProjectile
     }
     
     public void act() {
-        actCount++;
+        super.act();
         move();
         animate();
-        checkPlayerHit();
         checkAtWall();
     }
     

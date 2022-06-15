@@ -13,10 +13,12 @@ public class Arrow extends Projectile
     private int decceleration = 2;
     private int actCount = 0;
     private double scale = 1.2;
+    GreenfootSound hitSound = new GreenfootSound("./sounds/arrow-hit2.mp3");
     
     public Arrow() {
         setImage("sprites/bow/weapon_arrow.png");    
         getImage().scale((int)(getImage().getWidth() * scale), (int)(getImage().getHeight() * scale));
+        hitSound.setVolume(30);
     }
     
     public void act() {
@@ -24,12 +26,12 @@ public class Arrow extends Projectile
         move(speed);
         checkEnemyHit();
         checkAtWall();
-        //deccelerate();
     }
     
     public void checkEnemyHit() {
         Enemy enemy = (Enemy) getOneIntersectingObject(Enemy.class);
         if (enemy != null) {
+            hitSound.play();
             if (enemy.health - damage <= 0) {
                 enemy.removeHealthBar();
                 removeTouching(Enemy.class);

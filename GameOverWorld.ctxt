@@ -1,13 +1,10 @@
 #BlueJ class context
 comment0.target=GameOverWorld
 comment0.text=\r\n\ The\ game\ over\ world\ where\ the\ player\ is\ taken\ once\ they\ die.\r\n\ \r\n\ @\ Patrick\ Hu\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
-comment1.params=lastLevel
-comment1.target=GameOverWorld(int)
+comment1.params=
+comment1.target=GameOverWorld()
 comment2.params=
 comment2.target=void\ act()
 comment3.params=
 comment3.target=void\ fadeText()
-comment4.params=
-comment4.target=void\ checkButtonPress()
-comment4.text=\r\n\ Checks\ for\ the\ hovering\ and\ clicking\ of\ a)\ Button\ to\ restart\ from\ last\ level\ and\ \r\n\ b)\ Button\ to\ start\ over\ from\ the\ level\ 1.\ Since\ these\ buttons\ have\ been\ decided\r\n\ to\ be\ left\ out\ of\ the\ final\ product,\ this\ method\ will\ not\ be\ called\ in\ act().\r\n
-numComments=5
+numComments=4

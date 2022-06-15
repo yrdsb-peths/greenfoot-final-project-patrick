@@ -16,6 +16,8 @@ public class Spear extends SmoothMover
     SimpleTimer animTimer = new SimpleTimer();
     private int animTimerThreshold = 20;
     SimpleTimer attackTimer = new SimpleTimer();
+    GreenfootSound attackSound = new GreenfootSound("./sounds/spear-attack.mp3");
+    GreenfootSound hitSound = new GreenfootSound("./sounds/spear-hit.mp3");
     
     public Spear() {
         for (int i = 0; i < attack_size; i++) {
@@ -23,10 +25,13 @@ public class Spear extends SmoothMover
             attackImages[i].scale((int)(attackImages[i].getWidth() * (scale + 0.05)), (int)(attackImages[i].getHeight() * scale));
         }
         setImage(attackImages[0]);
+        
+        // adjust sound volumes
+        attackSound.setVolume(60);
+        hitSound.setVolume(20);
     }
     
-    public void act()
-    {
+    public void act() {
         faceCursor();
         checkAttack();
         if (isAttacking) {
@@ -43,6 +48,7 @@ public class Spear extends SmoothMover
     
     public void checkAttack() {
         if (Greenfoot.isKeyDown("space")) {
+            attackSound.stop(); attackSound.play();
             isAttacking = true;
         }
         else if (attack_index >= attack_size) {
@@ -65,6 +71,7 @@ public class Spear extends SmoothMover
     public void checkEnemyHit() {
         Enemy enemy = (Enemy) getOneIntersectingObject(Enemy.class);
         if (enemy != null && attackTimer.millisElapsed() > 400) {
+            hitSound.play();
             if (enemy.health - damage == 0) {
                 enemy.removeHealthBar();
                 removeTouching(Enemy.class);    

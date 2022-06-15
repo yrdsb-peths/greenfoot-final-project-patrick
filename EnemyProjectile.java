@@ -8,16 +8,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class EnemyProjectile extends Projectile
 {
-    public void checkPlayerHit()
-    {
-        if (isTouching(Player.class)) {
-            GameWorld world = (GameWorld) getWorld();
-            Player player = getWorld().getObjects(Player.class).get(0);
-            if (player.health - 1 == 0) {
-                world.gameOver(player.level);
-            }
-            else player.health--;
-            world.removeObject(this);
-        }
+    public double speed;
+    public double scale;
+    public int actCount;
+    
+    public EnemyProjectile(double speed, double scale) {
+        this.speed = speed;
+        this.scale = scale;
+    }
+    
+    public void act() {
+        actCount++;
     }
 }

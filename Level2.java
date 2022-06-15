@@ -12,9 +12,9 @@ public class Level2 extends GameWorld
     private int skelX = 680;
     
     public Level2() {
-        super(800, 600, 1);
+        super(800, 600, 1, 2);
         // spawn player
-        Player player = new Player(2);
+        Player player = new Player();
         addObject(player, 100, getHeight() / 2);
         // spawn spear
         Spear s = new Spear();
@@ -46,6 +46,10 @@ public class Level2 extends GameWorld
         // spawn watermelon
         Watermelon melon = new Watermelon(2);
         addObject(melon, getWidth() - 50, getHeight() / 2);
+    }
+    
+    public void act() {
+        super.act();
     }
     
     public void levelPass() {

@@ -9,14 +9,13 @@ import java.util.ArrayList;
  */
 public class Level3 extends GameWorld
 {
-    private int actCount = 0;
     private boolean flip = false;
     ArrayList<Skeleton> skellies = new ArrayList<Skeleton>();
     
     public Level3() {
-        super(800, 600, 1);
+        super(800, 600, 1, 3);
         // spawn player
-        Player p = new Player(3);
+        Player p = new Player();
         addObject(p, getWidth() - 60, getHeight() / 2);
         // spawn spear
         Spear s = new Spear();
@@ -70,7 +69,7 @@ public class Level3 extends GameWorld
     }
     
     public void act() {
-        actCount++;
+        super.act();
         // periodically make skellies shoot
         if (actCount % 10 == 0 && flip) {
             // even numbers attack

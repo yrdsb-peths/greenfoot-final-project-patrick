@@ -14,9 +14,12 @@ public class Level5 extends GameWorld
     private int wallTransparency = 255;
     
     public Level5() {
-        super(800, 600, 1);
+        super(800, 600, 1, 5);
+        Soundtrack.reset();
+        Soundtrack.nightmareKing.setVolume(50);
+        Soundtrack.nightmareKing.play();
         // spawn player
-        Player player = new Player(5);
+        Player player = new Player();
         addObject(player, getWidth() / 2, getHeight()  - 50);
         // spawn spear
         Spear spear = new Spear();
@@ -54,6 +57,8 @@ public class Level5 extends GameWorld
                     removeObject(w);
                 }
             }
+            // stop playing nightmare king
+            Soundtrack.nightmareKing.stop();
         }
     }
     
