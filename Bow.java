@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Pistol here.
+ * The bow that the player wields.
  * 
  * @ Patrick Hu
- * @version (a version number or a date)
+ * @version June 2022
  */
 public class Bow extends Actor
 {
@@ -18,20 +18,21 @@ public class Bow extends Actor
         getImage().scale((int)(getImage().getWidth() * scale), (int)(getImage().getHeight() * scale));
     }
     
-    public void act()
-    {        
+    public void act() {        
         faceCursor();
         fire();
     }
     
+    /**
+     * Fires an arrow in the direction of the cursor.
+     */
     public void fire() {
         if (numArrows == 0)
             return;
                         
         MouseInfo mi = Greenfoot.getMouseInfo();
         if (mi != null && Greenfoot.isKeyDown("space") && fireTimer.millisElapsed() > 300) {
-            fireSound.stop();
-            fireSound.play();
+            fireSound.stop(); fireSound.play();
             numArrows--;
             Arrow arrow = new Arrow();
             getWorld().addObject(arrow, getX() + 10, getY() - 10);     
@@ -40,6 +41,9 @@ public class Bow extends Actor
         }
     }
     
+    /**
+     * Makes the bow face the cursor.
+     */
     public void faceCursor() {
         MouseInfo mi = Greenfoot.getMouseInfo();
         if (mi != null) {

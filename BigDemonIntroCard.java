@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Big Demon's intro card before the actual fight.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Patrick Hu 
+ * @version June 2022
  */
 public class BigDemonIntroCard extends World
 {

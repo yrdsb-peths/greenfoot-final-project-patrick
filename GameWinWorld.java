@@ -73,11 +73,17 @@ public class GameWinWorld extends World
         }
     }
     
+    /**
+     * Animate the background gif.
+     */
     public void animateBackground() {
         setBackground(night.getCurrentImage());        
     }
     
-     public void idleAnimate() {
+    /**
+     * Idle animation for the player and friend.
+     */
+    public void idleAnimate() {
         if (actCount % 9 == 0) {
             player.setImage(playerIdleFacingRight[idle_index]);
             friend.setImage(friendIdleFacingLeft[idle_index]);

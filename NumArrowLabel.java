@@ -18,7 +18,6 @@ public class NumArrowLabel extends Actor
     
     public NumArrowLabel(int numArrows) {
         Bow.numArrows = numArrows;
-        
         // create empty image
         GreenfootImage canvas = new GreenfootImage(width, height);
         // add image of # of arrows on left

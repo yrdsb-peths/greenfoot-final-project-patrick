@@ -18,7 +18,7 @@ public class GameStartWorld extends World
         setBackground("./images/castle2.jpg");
         Soundtrack.stopAllExceptMain(); // sometimes previous audio such as nightmareKing is playing when jumping between worlds when developing
         
-        // place the title text and "start game" text
+        // place the title text and "Start Game" text
         title = new Image("./images/future-time-splitters/title.png", 1);
         addObject(title, 220, 115);
         startButton = new Image("./images/vecna/start-game.png", scale);
@@ -29,7 +29,7 @@ public class GameStartWorld extends World
         {
             Soundtrack.setVolumes();
             Soundtrack.mainSoundtrack.playLoop();
-            // main soundtrack is played ina act() instead of started() or constructor GameStartWorld() because
+            // main soundtrack is played in act() instead of started() or constructor GameStartWorld() because
             // 1. when player dies they are taken back to GameStartWorld but music won't play because started() is only called when "Run" is hit
             // 2. GameStartWorld() will cause the music to play before "Run" is hit due to it being called early
         }

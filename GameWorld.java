@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Super class of all level worlds.
  * 
- * @ Patrick Hu 
- * @ June 2022
+ * @author Patrick Hu 
+ * @version June 2022
  */
 public class GameWorld extends World
 {   
@@ -13,6 +13,14 @@ public class GameWorld extends World
     Player player;
     Spear spear;
 
+    /**
+     * Sets the width, height, pixel size, and level of the game world.
+     * 
+     * @param width         width of world
+     * @param height        hegiht of world
+     * @param pixelSize     size of each pixel
+     * @param level         current level of the game world
+     */
     public GameWorld(int width, int height, int pixelSize, int level) {    
         super(width, height, pixelSize);
         this.level = level;
@@ -37,6 +45,10 @@ public class GameWorld extends World
         }
     }
 
+    /**
+     * Ends the game and displays game over screen.
+     * Sets player health back to full.
+     */
     public void gameOver() {
         Greenfoot.setWorld(new GameOverWorld());
         Player.health = 3;

@@ -1,13 +1,21 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class BigDemon here.
+ * The final boss. Has 3 different attacks and moves towards the player periodically.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Patrick Hu
+ * @version June 2022
  */
 public class BigDemon extends Enemy
 {   
+    /**
+     * Sets big demon's id, health, speed, and scale
+     * 
+     * @param id        big demon's id
+     * @param health    amount of health big demon has
+     * @param speed     move speed of big demon
+     * @param scale     amount to scale big demon's size by
+     */
     public BigDemon(int id, int health, double speed, double scale) {
         super("big_demon", id, health, speed, scale);
     }
@@ -16,7 +24,7 @@ public class BigDemon extends Enemy
         super.act();
         // move
         int t1 = 60;
-        // spread attack
+        // spread attack time frame
         int t2 = t1 + 30;
         int t3 = t2 + 2;
         // targeted attack
@@ -25,7 +33,7 @@ public class BigDemon extends Enemy
         // large size attack
         int t6 = t5 + 80;
         int t7 = t6 + 30;
-        // calculate the number to mod by
+        // calculate the total number to mod by
         int x = actCount % (t7 + 30);
         
         if (x < t1) {
@@ -55,8 +63,10 @@ public class BigDemon extends Enemy
         setRotation(0);
     }
     
+    /**
+     * Fires 12 fireballs in a circular pattern
+     */
     public void spreadAttack() {
-        // fires 12 of fireballs in a circular pattern
         int turnAmount = 0;
         for (int i = 0; i < 12; i++) {
             BigDemonBall b = new BigDemonBall(2.5, 0.1, false);
@@ -66,6 +76,10 @@ public class BigDemon extends Enemy
         }
     }
     
+
+    /**
+     * In specified time frame, fires accelerating fireballs towards the player
+     */
     public void targetedAttack() {
         if (actCount % 10 == 0) {
             BigDemonBall b = new BigDemonBall(0.25, 0.1, true);
@@ -76,6 +90,9 @@ public class BigDemon extends Enemy
         }
     }
     
+    /**
+     * In specified time frame, fires very large fireballs toward player
+     */
     public void largeSizeAttack() {
         if (actCount % 10 == 0) {
             BigDemonBall b = new BigDemonBall(3.5, 0.3, false);

@@ -1,7 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Enemy here.
+ * Super class of all types of enemies. Contains all necessary info such as their id, an actCount, 
+ * speed, scale, and health. Since all enemy sprites came from the same package, they all share
+ * same animation sizes of 4 images for idle and run. 
  * 
  * @ Patrick Hu
  * @version (a version number or a date)
@@ -19,6 +21,16 @@ public class Enemy extends SmoothMover {
     GreenfootImage[] runFacingRight = new GreenfootImage[run_size];
     GreenfootImage[] runFacingLeft = new GreenfootImage[run_size];
     
+    /**
+     * Sets the type of enemy, its id, health, speed, and scale.
+     * Uses the type of enemy to get the sprite path.
+     * 
+     * @param type      the type of enemy
+     * @param id        enemy's id
+     * @param health    enemy's health
+     * @param speed     enemy's move speed
+     * @param scale     amoun to scale enemy's size by
+     */
     public Enemy(String type, int id, int health, double speed, double scale) {
         this.id = id;
         this.health = health;
@@ -45,6 +57,9 @@ public class Enemy extends SmoothMover {
         setImage(idleFacingRight[0]);
     }
     
+    /**
+     * Always updates enemy's health bar.
+     */
     public void act() {
         actCount++;
         if (actCount == 1) {
@@ -55,6 +70,9 @@ public class Enemy extends SmoothMover {
         checkFacingDirection();
     }
     
+    /**
+     * Initializes a health bar for the enemy.
+     */
     public void initHealthBar() {
         HealthBar bar = new HealthBar(health, id);
         getWorld().addObject(bar, getX(), getY() + healthBar_dy);
@@ -68,7 +86,7 @@ public class Enemy extends SmoothMover {
         var arr = getObjectsAtOffset(0, healthBar_dy, HealthBar.class);
         // sometimes enemies are stacked on top of each other and multiple health bars are retrieved
         // and getObjectsAtOffset gets the wrong health bar if they are too close
-        // in these cases, use ids to grab the correct health bar
+        // in these cases, ids are necessary for grabbing the correct health bar
         if (arr.size() >= 1) {
             for (HealthBar bar : arr) {
                 if (bar.id == id) {
@@ -78,6 +96,9 @@ public class Enemy extends SmoothMover {
         }
     }
     
+    /**
+     * Moves the health bar along with the enemy.
+     */
     public void moveHealthBar() {
         var arr = getObjectsAtOffset(0, healthBar_dy, HealthBar.class);
         if (arr.size() >= 1) {
@@ -89,6 +110,9 @@ public class Enemy extends SmoothMover {
         }
     }
     
+    /**
+     * Removes the health bar.
+     */
     public void removeHealthBar() {
         var arr = getObjectsAtOffset(0, healthBar_dy, HealthBar.class);
         if (arr.size() >= 1) {
@@ -100,6 +124,9 @@ public class Enemy extends SmoothMover {
         }
     }
     
+    /**
+     * Checks whether the enemy should face left or right depending on where it is relative to the player.
+     */
     public void checkFacingDirection() {
         Player player = getWorld().getObjects(Player.class).get(0);
         if (this.getX() < player.getX())

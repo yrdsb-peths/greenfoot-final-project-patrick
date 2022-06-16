@@ -1,8 +1,8 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * A subclass of projectile that deals with the bow's arrow. Arrows follow a straight
- * line and travel at a constant speed. They deal 1 damage to enemies.
+ * Subclass of Projectile that deals with the bow's arrow. Arrows follow a straight line and travel
+ * at a constant speed. They deal 1 damage to enemies.
  * 
  * @author Patrick Hu
  * @version June 2022
@@ -29,6 +29,9 @@ public class Arrow extends Projectile
         checkAtWall();
     }
     
+    /**
+     * Checks if arrow has come into contact with an enemy.
+     */
     public void checkEnemyHit() {
         Enemy enemy = (Enemy) getOneIntersectingObject(Enemy.class);
         if (enemy != null) {
@@ -45,6 +48,9 @@ public class Arrow extends Projectile
         }
     }
     
+    /**
+     * Deccelerates the arrow. Not used in final version.
+     */
     public void deccelerate() {
         if (actCount % 10 == 0 && speed > 7) {
             speed -= decceleration;

@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Friend here.
+ * The player's friend who they are trying to rescue.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Patrick Hu
+ * @version June 2022
  */
 public class Friend extends SmoothMover
 {
@@ -29,14 +29,9 @@ public class Friend extends SmoothMover
         checkTouching();
     }
     
-    public void idleAnimate() {
-        if (actCount % 8 == 0) {
-            setImage(idleFacingRight[idle_index]);
-            idle_index++;
-            idle_index %= idle_size;
-        }
-    }
-
+    /**
+     * Checks if player is touching Friend. 
+     */
     public void checkTouching() {
         if (isTouching(Player.class)) {
             melonSound.play();
@@ -54,6 +49,14 @@ public class Friend extends SmoothMover
             Greenfoot.delay(250);
             
             world.levelPass();
+        }
+    }
+
+    public void idleAnimate() {
+        if (actCount % 8 == 0) {
+            setImage(idleFacingRight[idle_index]);
+            idle_index++;
+            idle_index %= idle_size;
         }
     }
 }

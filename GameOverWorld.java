@@ -3,8 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * The game over world where the player is taken once they die.
  * 
- * @ Patrick Hu
- * @ June 2022
+ * @author Patrick Hu
+ * @version June 2022
  */
 public class GameOverWorld extends World
 {    
@@ -41,6 +41,9 @@ public class GameOverWorld extends World
         }
     }
     
+    /**
+     * Lowers the transparency of the "Rescue Failed" text
+     */
     private void fadeText() {
         if (actCount % 6 == 0) {
             transparency -= 15;
