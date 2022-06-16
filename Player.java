@@ -50,7 +50,7 @@ public class Player extends SmoothMover
         
         // adjust sound volumes
         dashSound.setVolume(40);
-        hitSound.setVolume(100);
+        hitSound.setVolume(80);
     }
     
     public void act() {

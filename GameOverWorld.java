@@ -17,7 +17,7 @@ public class GameOverWorld extends World
     public GameOverWorld() {
         super(800, 600, 1);
         // end castle soundtrack
-        Soundtrack.castle.stop();
+        Soundtrack.stopAll();
         
         // set background colour to black
         GreenfootImage black = new GreenfootImage(800, 600);

@@ -8,28 +8,30 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Level4Pass extends LevelPassWorld
 {
-    private int volume = Soundtrack.castle.getVolume();
+    private int volume = Soundtrack.mainSoundtrack.getVolume();
     SimpleTimer timer = new SimpleTimer();
     
     public Level4Pass() {
-        super(800, 600, 1);
+        super(800, 600, 1, 4);
         setBackground("./images/vecna/level4pass.png");
+        Soundtrack.mainSoundtrack.play();
     }
     
     public void act() {
         super.act();
-        fadeCastle();
-        if (Soundtrack.castle.getVolume() <= 0) {
-            Soundtrack.castle.stop();
+        fadeVolume();
+        if (volume <= 0) {
+            Soundtrack.mainSoundtrack.stop();
         }
         if (Greenfoot.isKeyDown("enter")) {
-            Greenfoot.setWorld(new Level5());
+            Greenfoot.setWorld(new BigDemonIntroCard());
         }
     }
     
-    public void fadeCastle() {
-        if (timer.millisElapsed() > 800) {
-            Soundtrack.castle.setVolume(volume);
+    public void fadeVolume() {
+        if (volume < 0) return;
+        Soundtrack.mainSoundtrack.setVolume(volume);
+        if (timer.millisElapsed() > 500) {
             volume -= 10;
             timer.mark();
         }

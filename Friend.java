@@ -12,6 +12,7 @@ public class Friend extends SmoothMover
     private int actCount = 0;
     private double scale = 2.5;
     GreenfootImage[] idleFacingRight = new GreenfootImage[idle_size];
+    GreenfootSound melonSound = new GreenfootSound("./sounds/watermelon-sound.mp3");
     
     public Friend() {
         for (int i = 0; i < idle_size; i++) {
@@ -19,6 +20,7 @@ public class Friend extends SmoothMover
             idleFacingRight[i].scale((int)(idleFacingRight[i].getWidth() * scale), (int)(idleFacingRight[i].getHeight() * scale));
         }
         setImage(idleFacingRight[0]);
+        melonSound.setVolume(90);
     }
     
     public void act() {
@@ -37,6 +39,7 @@ public class Friend extends SmoothMover
 
     public void checkTouching() {
         if (isTouching(Player.class)) {
+            melonSound.play();
             Level5 world = (Level5) getWorld();
             // add heart png above friend
             Image heart1 = new Image("./sprites/ui_heart_full.png", 1.5);

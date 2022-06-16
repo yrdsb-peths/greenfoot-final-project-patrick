@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Level3Pass extends LevelPassWorld
 {
     public Level3Pass() {
-        super(800, 600, 1);
+        super(800, 600, 1, 3);
         setBackground("./images/vecna/level3pass.png");
     }
     

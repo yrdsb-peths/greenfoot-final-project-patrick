@@ -22,6 +22,7 @@ public class Watermelon extends Actor
             idle[i].scale((int)(idle[i].getWidth() * scale), (int)(idle[i].getHeight() * scale));
         }
         setImage(idle[0]);
+        melonSound.setVolume(90);
     }
     
     public void act() {

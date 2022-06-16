@@ -9,10 +9,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Level1Pass extends LevelPassWorld
 {
     public Level1Pass() {
-        super(800, 600, 1);
+        super(800, 600, 1, 1);
         setBackground("./images/vecna/level1pass.png");
-        Soundtrack.reset();
-        Soundtrack.merchant.play();
     }
     
     public void act() {
@@ -20,13 +18,5 @@ public class Level1Pass extends LevelPassWorld
         if (Greenfoot.isKeyDown("enter")) {
             Greenfoot.setWorld(new Level2());
         }
-    }
-    
-    public void started() {
-        Soundtrack.merchant.play();
-    }
-    
-    public void stopped() {
-        Soundtrack.merchant.pause();    
     }
 }

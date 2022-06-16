@@ -18,4 +18,8 @@ public class Instructions extends World
             Greenfoot.setWorld(new Level1());
         }
     }
+    
+    public void stopped() {
+        Soundtrack.mainSoundtrack.pause();
+    }
 }

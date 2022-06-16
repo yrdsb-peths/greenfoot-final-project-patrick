@@ -9,31 +9,24 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class LevelPassWorld extends World
 {
     public int actCount = 0;
+    private int levelPassed;
     
-    public LevelPassWorld(int width, int height, int pixelSize) {
+    public LevelPassWorld(int width, int height, int pixelSize, int levelPassed) {
         super(width, height, pixelSize);
-        Soundtrack.reset();
-        Soundtrack.merchant.play();
+        this.levelPassed = levelPassed;
     }
     
     public void act() {
         actCount++;
-        // check that soundtracks are playing properly for levels 1-4
         Soundtrack.setVolumes();
-        if (!Soundtrack.castle.isPlaying()) {
-            Soundtrack.castle.play();
+        Soundtrack.stopAllExceptMain();
+        if (levelPassed >= 1 && levelPassed <= 3) {
+            Soundtrack.mainSoundtrack.playLoop();
+            // Level4Pass fades the main soundtrack
         }
-        if (Soundtrack.nightmareKing.isPlaying()) {
-            Soundtrack.nightmareKing.stop();
-        }
-    }
-    
-    public void started() {
-        Soundtrack.castle.pause();
-        Soundtrack.merchant.play();
     }
     
     public void stopped() {
-        Soundtrack.merchant.pause();    
+        Soundtrack.mainSoundtrack.pause();    
     }
 }

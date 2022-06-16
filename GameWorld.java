@@ -16,8 +16,6 @@ public class GameWorld extends World
     public GameWorld(int width, int height, int pixelSize, int level) {    
         super(width, height, pixelSize);
         this.level = level;
-        Soundtrack.reset();
-        Soundtrack.castle.play();
         // create player and spear
         player = new Player();
         spear = new Spear();
@@ -29,13 +27,13 @@ public class GameWorld extends World
 
     public void act() {
         actCount++;
-        // check that soundtracks are playing properly for levels 1-4
         Soundtrack.setVolumes();
-        if (!Soundtrack.castle.isPlaying()) {
-            Soundtrack.castle.play();
+        if (level >= 1 && level <= 4) {
+            Soundtrack.stopAllExceptMain();
+            Soundtrack.mainSoundtrack.playLoop();
         }
-        if (Soundtrack.nightmareKing.isPlaying()) {
-            Soundtrack.nightmareKing.stop();
+        else if (level == 5) {
+            Soundtrack.stopAllExceptNightmareKing();
         }
     }
 
@@ -44,11 +42,8 @@ public class GameWorld extends World
         Player.health = 3;
     }
     
-    public void started() {
-        Soundtrack.castle.play();
-    }
-    
     public void stopped() {
-        Soundtrack.castle.pause();
+        Soundtrack.mainSoundtrack.pause();
+        Soundtrack.nightmareKing.pause();
     }
 }

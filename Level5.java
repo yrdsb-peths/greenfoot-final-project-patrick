@@ -45,6 +45,7 @@ public class Level5 extends GameWorld
     }
     
     public void act() {
+        super.act();
         // once the demon's been killed
         if (demon.getWorld() == null) {
             fadeWalls();
@@ -56,6 +57,9 @@ public class Level5 extends GameWorld
             }
             // stop playing nightmare king
             Soundtrack.nightmareKing.stop();
+        }
+        else {
+            Soundtrack.nightmareKing.playLoop();
         }
     }
     
@@ -72,14 +76,5 @@ public class Level5 extends GameWorld
 
     public void levelPass() {
         Greenfoot.setWorld(new GameWinWorld());
-    }
-    
-    public void started() {
-        Soundtrack.setVolumes();
-        Soundtrack.nightmareKing.play();
-    }
-    
-    public void stopped() {
-        Soundtrack.nightmareKing.stop();
     }
 }
