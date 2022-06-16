@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class ExNumArrowLabel here.
+ * A label showing how many arrows are left in a level.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Patrick Hu 
+ * @version June 2022
  */
 public class NumArrowLabel extends Actor
 {
@@ -16,6 +16,12 @@ public class NumArrowLabel extends Actor
     private int value_x = 0, value_y = height / 2;
     private int arrow_x = 35, arrow_y = height / 2 + 3;
     
+    /**
+     * Constructs the label. Essentially a blank GreenfootImage canvas that contains
+     * the number of arrows on the left and an arrow png on the right.
+     * 
+     * @param numArrows     the initial number of arrows to display
+     */
     public NumArrowLabel(int numArrows) {
         Bow.numArrows = numArrows;
         // create empty image
@@ -35,6 +41,9 @@ public class NumArrowLabel extends Actor
         update();
     }
     
+    /**
+     * Re-draws the canvas with the current number of arrows.
+     */
     public void update() {
         // re-draw canvas with current number of arrows
         GreenfootImage canvas = new GreenfootImage(width, height);

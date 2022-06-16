@@ -1,15 +1,17 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Player here.
+ * The main player. On the first level player only has a spear. 
+ * After passing level 1 they obtain a bow.
+ * After passing level 3 they gain the ability to dash.
  * 
- * @ Patrick Hu
- * @version (a version number or a date)
+ * @author Patrick Hu
+ * @version June 2022
  */
 public class Player extends SmoothMover
 {
-    public static int health = 3;
-    private double speed = 2.6, scale = 2.5;
+    public static int health = 3; // variable is static because player's health to carry on across each level
+    private double speed = 2.6, scale = 2.5
     private int healthBar_dy = -45, id = -1;
     private int idle_size = 4, idle_index = 0;
     private int run_size = 4, run_index = 0;
@@ -72,6 +74,9 @@ public class Player extends SmoothMover
         checkHitByEnemy();
     }
     
+    /**
+     * Checks for movement input - WASD.
+     */
     public void move() {
         int dx = 0, dy = 0;
         if (Greenfoot.isKeyDown("w")) {
@@ -95,6 +100,7 @@ public class Player extends SmoothMover
             idleAnimate();
         }
         setLocation(getX() + dx, getY());
+
         // check wall collision
         if (getOneIntersectingObject(Wall.class) != null)
             setLocation(getX() - dx, getY());
@@ -103,6 +109,11 @@ public class Player extends SmoothMover
             setLocation(getX(), getY() - dy);
     }
     
+    /**
+     * Checks for weapon select input - 1 or 2.
+     * When a new weapon is selected, the previous weapon is removed from the world and
+     * the new one is added in its place.
+     */
     public void selectWeapon() {
         if (Greenfoot.isKeyDown("1") && curWeapon == "bow") {
             // switch to spear
@@ -122,6 +133,9 @@ public class Player extends SmoothMover
         }
     }
     
+    /**
+     * Moves the player's current weapon along with them.
+     */
     public void moveWeapon() {
         var spearArr = getWorld().getObjects(Spear.class);
         var bowArr = getWorld().getObjects(Bow.class);
@@ -135,6 +149,9 @@ public class Player extends SmoothMover
         }        
     }
     
+    /**
+     * Checks the current dashing state.
+     */
     public void checkDashing() {
         if (Greenfoot.isKeyDown("alt")) {
             dashSound.stop(); dashSound.play();
@@ -146,6 +163,10 @@ public class Player extends SmoothMover
         }
     }
     
+    /**
+     * Dashes the player by quickly moving them in the direction of the mouse.
+     * Stops dashing once dashLength exceeds a certain amount.
+     */
     public void dash() {
         if (dashLength > 25) return;
         
@@ -160,6 +181,9 @@ public class Player extends SmoothMover
         setRotation(0); 
     }      
     
+    /**
+     * Initializes a health bar.
+     */
     public void initHealthBar() {
         HealthBar bar = new HealthBar(health, id);
         getWorld().addObject(bar, getX(), getY() + healthBar_dy);
@@ -183,6 +207,9 @@ public class Player extends SmoothMover
         }
     }
     
+    /**
+     * Moves the health bar along with the player.
+     */
     public void moveHealthBar() {
         var arr = getObjectsAtOffset(0, healthBar_dy, HealthBar.class);
         if (arr.size() >= 1) {
@@ -194,6 +221,9 @@ public class Player extends SmoothMover
         }
     }
     
+    /**
+     * Removes the health bar.
+     */
     public void removeHealthBar() {
         var arr = getObjectsAtOffset(0, healthBar_dy, HealthBar.class);
         if (arr.size() >= 1) {

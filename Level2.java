@@ -1,10 +1,12 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Bow is unlocked with a limited amount of arrows.
+ * Second level of the game. Bow is unlocked with a limited amount of arrows.
+ * A new enemy - shaman - is introduced. It moves forward and back at a set interval and shoots a fireball.
+ * The fireball follows the player for the first few seconds and then travels in a straight line.
  * 
- * @ Patrick Hu 
- * @version (a version number or a date)
+ * @author Patrick Hu 
+ * @version June 2022
  */
 public class Level2 extends GameWorld
 {

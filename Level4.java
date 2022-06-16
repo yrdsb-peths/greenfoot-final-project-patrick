@@ -1,10 +1,16 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Level4 here.
+ * The 4th level of the game. Contains multiple stages that spawn after the previous
+ * one has been defeated.
+ * Stage 1 - contains 2 shamans on the top left and bottom right that move back and forth.
+ * Stage 2 - a new enemy is introduced - wizard. 1 appears in this stage.
+ * Stage 3 - 4 imps spawn from the top, right, bottom, and left.
+ * Stage 4 - final stage. Contains 2 wizards.
+ * The watermelon spawns after each stage is defeated.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Patrick Hu
+ * @version June 2022
  */
 public class Level4 extends GameWorld
 {
@@ -28,6 +34,9 @@ public class Level4 extends GameWorld
         addObject(numArrowLabel, getWidth() - 40, getHeight() - 40);
     }
     
+    /**
+     * Spawns each stage only after the previous one has been passed.
+     */
     public void act() {
         super.act();
         // once last enemy's been killed, spawn watermelon

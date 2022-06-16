@@ -11,7 +11,7 @@ public class Soundtrack extends Actor
 {
     public static GreenfootSound castle = new GreenfootSound("./sounds/castle.mp3");
     public static GreenfootSound nightmareKing = new GreenfootSound("./sounds/nightmare-king.mp3");
-    public static GreenfootSound mainSoundtrack = new GreenfootSound("./sounds/merchant1.mp3");
+    public static GreenfootSound mainSoundtrack = new GreenfootSound("./sounds/enter-hallownest.mp3");
     
     public static void setVolumes() {
         castle.setVolume(50);

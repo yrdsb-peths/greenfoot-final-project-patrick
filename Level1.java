@@ -5,8 +5,8 @@ import java.util.ArrayList;
  * First level of the game. Contains a line of skeletons that take turns shooting.
  * Player only has a spear and must dodge the enemy projectiles and kill a skeleton to proceed.
  * 
- * @ Patrick Hu 
- * @ June 2022
+ * @author Patrick Hu 
+ * @version June 2022
  */
 public class Level1 extends GameWorld
 {   

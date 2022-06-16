@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class HealthBar here.
+ * The health bar used for enemies and the player.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Patrick Hu
+ * @version June 2022
  */
 public class HealthBar extends Actor
 {
@@ -18,14 +18,26 @@ public class HealthBar extends Actor
     private Color fillColor = Color.WHITE;
     private Color transparent = new Color(0,0,0,0);
     
+    /**
+     * Calls update() to construct a health bar.
+     * 
+     * @param hp        the amount of hp in the health bar
+     * @param id        the id of the character
+     */
     public HealthBar(int hp, int id) {
         this.id = id;
         // the constructor would do the same thing as update() so just call it here
         update(hp);
     }
     
+    /**
+     * Creates a health bar by drawing on a blank GreenfootImage canvas.
+     * The amount of hp is a number displayed on the left while a heart png is displayed on the right.
+     * 
+     * @param hp        the amount of hp
+     */
     public void update(int hp) {
-        // re-draw canvas with current number of hearts
+        // draw canvas with current number of hearts
         GreenfootImage canvas = new GreenfootImage(width, height);
         // add image of amount of hp on left
         String s = Integer.toString(hp);

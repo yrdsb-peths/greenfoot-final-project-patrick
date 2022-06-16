@@ -2,10 +2,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 
 /**
- * Write a description of class Level3 here.
+ * Third level of the game. Player only has a few arrows to pass. 
+ * A line of skeletons fire a fast rate protected within a set of walls.
+ * A shaman also attacks the player from the left.
+ * The way to complete this level is to first kill the shaman and then kill the first skeleton
+ * on the right. This makes it possible to go inside the walls and use the spear to kill the rest
+ * of the skeletons.
  * 
- * @ Patrick Hu
- * @version (a version number or a date)
+ * @author Patrick Hu
+ * @version June 2022
  */
 public class Level3 extends GameWorld
 {

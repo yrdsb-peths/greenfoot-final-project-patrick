@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Level3Pass here.
+ * Level 3 complete screen.
  * 
- * @ Patrick Hu 
- * @version (a version number or a date)
+ * @author Patrick Hu 
+ * @version June 2022
  */
 public class Level3Pass extends LevelPassWorld
 {

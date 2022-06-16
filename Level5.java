@@ -2,10 +2,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.List;
 
 /**
- * Write a description of class Level5 here.
+ * 5th and last level of the game. Contains the final boss - "Big Demon"
+ * The player's friend is trapped inside walls that only disappear once big demon has
+ * been defeated. 
+ * See BigDemon.java for a description on its attacks and movement.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Patrick Hu
+ * @version June 2022
  */
 public class Level5 extends GameWorld
 {
@@ -58,11 +61,14 @@ public class Level5 extends GameWorld
             // stop playing nightmare king
             Soundtrack.nightmareKing.stop();
         }
-        else {
+        else { // big demon is still alive so keep playing the boss music
             Soundtrack.nightmareKing.playLoop();
         }
     }
     
+    /**
+     * Makes the walls fade away. Gradually lowers their transparency.
+     */
     public void fadeWalls() {
         if (wallTransparency == 0) return;
         if (actCount % 10 == 0) {

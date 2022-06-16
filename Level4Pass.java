@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Level4Pass here.
+ * Level 4 complete screen.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Patrick Hu
+ * @version June 2022
  */
 public class Level4Pass extends LevelPassWorld
 {
@@ -28,6 +28,9 @@ public class Level4Pass extends LevelPassWorld
         }
     }
     
+    /**
+     * Slowly lowers the volume of the main soundtrack.
+     */
     public void fadeVolume() {
         if (volume < 0) return;
         Soundtrack.mainSoundtrack.setVolume(volume);

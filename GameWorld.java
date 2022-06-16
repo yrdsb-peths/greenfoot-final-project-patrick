@@ -1,7 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Super class of all level worlds.
+ * Super class of all level worlds. Each level except for level 5 contains a watermelon
+ * that needs to be collected (touched) in order to progress to the next level.
+ * Level 5 is the final level where the player has to rescue their friend, completing the game.
  * 
  * @author Patrick Hu 
  * @version June 2022

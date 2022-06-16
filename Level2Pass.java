@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Level2Pass here.
+ * Level 2 complete screen.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Patrick Hu 
+ * @version June 2022
  */
 public class Level2Pass extends LevelPassWorld
 {
