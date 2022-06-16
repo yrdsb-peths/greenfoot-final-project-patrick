@@ -2,10 +2,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.lang.Math;
 
 /**
- * Write a description of class Wizard here.
+ * The wizard enemy. Shoots 3 blue fireballs in a spread pattern.
+ * After a short period of time, the fireballs turn toward the player and accelerate towards them.
+ * Wizards teleport to a random location at a set interval.
+ * Distance checking is implemented so the wizard does not teleport to a location too close
+ * to the player. 
  * 
- * @ Patrick Hu
- * @version (a version number or a date)
+ * @author Patrick Hu
+ * @version June 2022
  */
 public class Wizard extends Enemy {
     private int transparency = 255;
@@ -13,12 +17,20 @@ public class Wizard extends Enemy {
     SimpleTimer fadeTimer = new SimpleTimer();
     SimpleTimer mainTimer = new SimpleTimer();
     
+    /**
+     * Constructs a wizard.
+     * 
+     * @param id        the wizard's id
+     * @param health    the wizard's health
+     * @param speed     the speed of the wizard. Always 0 since the wizard teleports.
+     * @param scale     amount to scale the wizard by
+     */
     public Wizard(int id, int health, double speed, double scale) {
         super("wizard", id, health, speed, scale);
     }
     
     public void act() {
-        super.act();
+        super.act(); 
         checkTeleportingState();
         if (isFading) {
             fade();
@@ -28,6 +40,11 @@ public class Wizard extends Enemy {
             fire();
     }
     
+    /**
+     * Checks the states of the wizard.
+     * Every 2 seconds the wizard starts fading.
+     * Once its transparency equals 0, isFading becomes false and the wizard teleports.
+     */
     public void checkTeleportingState() {
         // in this time frame the wizard is fading away
         if (mainTimer.millisElapsed() > 2000 && transparency > 0) {
@@ -46,7 +63,10 @@ public class Wizard extends Enemy {
             isFading = false;
         }
     }
-    
+
+    /**
+     * Teleports the wizard to a random location not too close to the player.
+     */
     public void teleport() {
         // grab the health bar before teleporting
         var arr = getObjectsAtOffset(0, healthBar_dy, HealthBar.class);
@@ -80,6 +100,10 @@ public class Wizard extends Enemy {
         }
     }
     
+    /**
+     * Fires 3 blue fireballs in a spread pattern.
+     * After a short period of time they converge onto the player and accelerate.
+     */
     public void fire() {
         WizardBall b1 = new WizardBall();
         WizardBall b2 = new WizardBall();
@@ -98,11 +122,17 @@ public class Wizard extends Enemy {
         b3.turn(-45);
     }
     
+    /**
+     * Gets a random number from the range start to end.
+     */
     public int getRandomNumber(int start, int end) {
         int x = Greenfoot.getRandomNumber(end - start);
         return x + start;
     }
     
+    /**
+     * Gets the distance between 2 points.
+     */
     public double getDistanceBetween(int x1, int y1, int x2, int y2) {
         return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
     }

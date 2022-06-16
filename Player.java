@@ -11,7 +11,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Player extends SmoothMover
 {
     public static int health = 3; // variable is static because player's health to carry on across each level
-    private double speed = 2.6, scale = 2.5
+    private double speed = 2.6, scale = 2.5;
     private int healthBar_dy = -45, id = -1;
     private int idle_size = 4, idle_index = 0;
     private int run_size = 4, run_index = 0;
@@ -235,6 +235,11 @@ public class Player extends SmoothMover
         }
     }
     
+    /**
+     * Checks if player has been hit bit by an enemy projectile or if player
+     * has touched an enemy.
+     * Loses 1 life if so.
+     */
     public void checkHitByEnemy() {
         if (getWorld() == null) return;
         

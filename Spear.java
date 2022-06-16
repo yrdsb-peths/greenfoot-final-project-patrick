@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Spear here.
+ * The player's spear weapon.
  * 
- * @ Patrick Hu
- * @version (a version number or a date)
+ * @author Patrick Hu
+ * @version June 2022
  */
 public class Spear extends SmoothMover
 {
@@ -39,6 +39,9 @@ public class Spear extends SmoothMover
         }
     }
     
+    /**
+     * Makes the spear face the cursor.
+     */
     public void faceCursor() {
         MouseInfo mi = Greenfoot.getMouseInfo();
         if (mi != null) {
@@ -46,10 +49,17 @@ public class Spear extends SmoothMover
         }
     }
     
+    /**
+     * Checks whether the spear in the attacking state.
+     * If so, trigger its attack animation.
+     */
     public void checkAttack() {
         if (Greenfoot.isKeyDown("space")) {
             attackSound.stop(); attackSound.play();
             isAttacking = true;
+            // states are needed as simply calling attackAnimate() here would only call it once since
+            // "space" is only pressed once when the player wants to attack.
+            // Thus a state is needed. If (isAttacking) then animate the spear and check if its touching an enemy.
         }
         else if (attack_index >= attack_size) {
             isAttacking = false;
@@ -78,14 +88,6 @@ public class Spear extends SmoothMover
             }
             else enemy.health -= damage;
             attackTimer.mark();
-        }
-    }
-    
-    // currently not using 
-    public void checkEnemyProjectileHit() {
-        EnemyProjectile p = (EnemyProjectile) getOneIntersectingObject(EnemyProjectile.class);
-        if (p != null) {
-            removeTouching(EnemyProjectile.class);
         }
     }
 }

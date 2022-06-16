@@ -49,7 +49,7 @@ public class Level4 extends GameWorld
         }
         // once both shamans have been killed, spawn a wizard
         if (spawned[0] && sha1.getWorld() == null && sha2.getWorld() == null && !spawned[1]) {
-            wiz1 = new Wizard(2, 6, 3, 2.5);
+            wiz1 = new Wizard(2, 6, 0, 2.5);
             addObject(wiz1, 50, getHeight() / 2);
             
             spawned[1] = true;
@@ -66,9 +66,9 @@ public class Level4 extends GameWorld
             spawned[2] = true;
         }
         if (spawned[2] && i1.getWorld() == null && i2.getWorld() == null && i3.getWorld() == null && i4.getWorld() == null && !spawned[3]) {
-            wiz2 = new Wizard(7, 5, 3, 2.5);
+            wiz2 = new Wizard(7, 5, 0, 2.5);
             addObject(wiz2, getWidth() - 50, getHeight() / 2);
-            wiz3 = new Wizard(8, 5, 3, 2.5);
+            wiz3 = new Wizard(8, 5, 0, 2.5);
             addObject(wiz3, 50, getHeight() / 2);
             spawned[3] = true;
         }

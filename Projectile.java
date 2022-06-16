@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Class for all projectiles such as arrows and the enemies' attacks. 
+ * Superclass for all projectiles such as arrows and the enemies' attacks. 
  * All projectiles that end up at the edges of the world or hit a wall are removed.
  * 
  * @author Patrick Hu

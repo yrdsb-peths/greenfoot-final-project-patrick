@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class WizardBall here.
+ * The wizard's projectile.
  * 
- * @ Patrick Hu
- * @version (a version number or a date)
+ * @author Patrick Hu
+ * @version June 2022
  */
 public class WizardBall extends EnemyProjectile
 {

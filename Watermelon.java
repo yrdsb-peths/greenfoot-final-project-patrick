@@ -1,10 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Watermelon here.
+ * The watermelon that the player needs to collect in order to advance
+ * to the next level.
  * 
- * @ Patrick Hu 
- * @version (a version number or a date)
+ * @author Patrick Hu 
+ * @version June 2022
  */
 public class Watermelon extends Actor
 {
@@ -15,6 +16,11 @@ public class Watermelon extends Actor
     GreenfootImage[] idle = new GreenfootImage[idle_size];
     GreenfootSound melonSound = new GreenfootSound("./sounds/watermelon-sound.mp3");
     
+    /**
+     * Constructs a watermelon.
+     * 
+     * @param level     the current level that the watermlon is in
+     */
     public Watermelon(int level) {
         this.level = level;
         for (int i = 0; i < idle_size; i++) {
@@ -31,6 +37,9 @@ public class Watermelon extends Actor
         checkTouching();
     }
     
+    /**
+     * Animates the watermlon bobbing up and down.
+     */
     public void idleAnimate() {
         if (actCount % 8 == 0) {
             setImage(idle[idle_index]);
@@ -39,6 +48,9 @@ public class Watermelon extends Actor
         }
     }
     
+    /**
+     * Checks if the watermlon is touching the player.
+     */
     public void checkTouching() {
         if (isTouching(Player.class)) {
             melonSound.play();

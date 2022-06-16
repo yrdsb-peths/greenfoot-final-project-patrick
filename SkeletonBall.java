@@ -1,15 +1,20 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class SkeletonBall here.
+ * The skeleton's projectile.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Patrick Hu 
+ * @version June 2022
  */
 public class SkeletonBall extends EnemyProjectile
 {
     String direction;
     
+    /**
+     * Constructs a skeleton projectile with its travel direction.
+     * 
+     * @param direction     the direction that the projectile should travel in
+     */
     public SkeletonBall(String direction) {
         super(3, 3.2);
         this.direction = direction;

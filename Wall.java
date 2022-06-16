@@ -1,15 +1,20 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class WallTile here.
+ * A single segment of a wall.
  * 
- * @ Patrick Hu
- * @version (a version number or a date)
+ * @author Patrick Hu
+ * @version June 2022
  */
 public class Wall extends Actor
 {
     String type;
     
+    /**
+     * Constructs a wall segment. 
+     * 
+     * @param type      the type of wall. Either "vertical" or "horizontal".
+     */
     public Wall(String type) {
         this.type = type;
         switch (type) {
@@ -33,10 +38,5 @@ public class Wall extends Actor
             }
         }
         getImage().scale((int)(getImage().getWidth() * 3), (int)(getImage().getHeight() * 3));
-    }
-    
-    public void act()
-    {
-
     }
 }

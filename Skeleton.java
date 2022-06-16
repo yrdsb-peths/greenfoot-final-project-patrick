@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Skeleton here.
+ * Skeletons are immobile enemies that only shoot balls in a single direction.
  * 
- * @ Patrick Hu
- * @version (a version number or a date)
+ * @author Patrick Hu
+ * @version June 2022
  */
 public class Skeleton extends Enemy
 {
@@ -12,6 +12,18 @@ public class Skeleton extends Enemy
     private int fireRate;
     private boolean autoFire;
     
+    /**
+     * Constrcuts a skeleton with its id, health, speed, scale, shotDirection, fireRate, and whether
+     * or not it should automatically fire.
+     * 
+     * @param id                the skeleton's id
+     * @param health            the skeleton's health
+     * @param speed             the skeleton's speed. Always 0.
+     * @param scale             amount to scale the skeleton by
+     * @param shotDirection     the direction that the skeleton should be firing in
+     * @param fireRate          the skeleton's rate of fire
+     * @param autoFire          whether or not the the skeleton should automatically fire
+     */
     public Skeleton(int id, int health, double speed, double scale, String shotDirection, int fireRate, boolean autoFire) {
         super("skeleton", id, health, speed, scale);
         this.shotDirection = shotDirection;
