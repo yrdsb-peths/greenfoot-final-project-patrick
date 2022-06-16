@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=GameWinWorld
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ GameWinWorld\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ The\ world\ the\ player\ is\ taken\ to\ once\ they\ complete\ the\ game.\r\n\ \r\n\ @author\ Patrick\ Hu\r\n\ @version\ June\ 2022\r\n
 comment1.params=
 comment1.target=GameWinWorld()
 comment2.params=

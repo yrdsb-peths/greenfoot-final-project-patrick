@@ -12,6 +12,8 @@ public class LevelPassWorld extends World
     
     public LevelPassWorld(int width, int height, int pixelSize) {
         super(width, height, pixelSize);
+        Soundtrack.reset();
+        Soundtrack.merchant.play();
     }
     
     public void act() {
@@ -24,5 +26,14 @@ public class LevelPassWorld extends World
         if (Soundtrack.nightmareKing.isPlaying()) {
             Soundtrack.nightmareKing.stop();
         }
+    }
+    
+    public void started() {
+        Soundtrack.castle.pause();
+        Soundtrack.merchant.play();
+    }
+    
+    public void stopped() {
+        Soundtrack.merchant.pause();    
     }
 }

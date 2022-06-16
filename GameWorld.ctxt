@@ -1,10 +1,14 @@
 #BlueJ class context
 comment0.target=GameWorld
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ GameWorld\ here.\r\n\ \r\n\ @\ Patrick\ Hu\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Super\ class\ of\ all\ level\ worlds.\r\n\ \r\n\ @\ Patrick\ Hu\ \r\n\ @\ June\ 2022\r\n
 comment1.params=width\ height\ pixelSize\ level
 comment1.target=GameWorld(int,\ int,\ int,\ int)
 comment2.params=
 comment2.target=void\ act()
 comment3.params=
 comment3.target=void\ gameOver()
-numComments=4
+comment4.params=
+comment4.target=void\ started()
+comment5.params=
+comment5.target=void\ stopped()
+numComments=6

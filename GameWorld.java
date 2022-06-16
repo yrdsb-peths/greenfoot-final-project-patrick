@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class GameWorld here.
+ * Super class of all level worlds.
  * 
  * @ Patrick Hu 
- * @version (a version number or a date)
+ * @ June 2022
  */
 public class GameWorld extends World
 {   
@@ -12,10 +12,12 @@ public class GameWorld extends World
     public int level;
     Player player;
     Spear spear;
-    
+
     public GameWorld(int width, int height, int pixelSize, int level) {    
         super(width, height, pixelSize);
         this.level = level;
+        Soundtrack.reset();
+        Soundtrack.castle.play();
         // create player and spear
         player = new Player();
         spear = new Spear();
@@ -24,7 +26,7 @@ public class GameWorld extends World
         floor.scale((int)(floor.getWidth() * 2), (int)(floor.getHeight() * 2));
         setBackground(floor);
     }
-    
+
     public void act() {
         actCount++;
         // check that soundtracks are playing properly for levels 1-4
@@ -36,9 +38,17 @@ public class GameWorld extends World
             Soundtrack.nightmareKing.stop();
         }
     }
-    
+
     public void gameOver() {
         Greenfoot.setWorld(new GameOverWorld());
         Player.health = 3;
+    }
+    
+    public void started() {
+        Soundtrack.castle.play();
+    }
+    
+    public void stopped() {
+        Soundtrack.castle.pause();
     }
 }

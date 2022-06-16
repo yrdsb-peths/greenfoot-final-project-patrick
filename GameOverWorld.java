@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * The game over world where the player is taken once they die.
  * 
  * @ Patrick Hu
- * @version (a version number or a date)
+ * @ June 2022
  */
 public class GameOverWorld extends World
 {    
@@ -31,15 +31,17 @@ public class GameOverWorld extends World
     
     public void act() {
         actCount++;
+        // after 3 seconds start fading the text
         if (timer.millisElapsed() > 3000) {
             fadeText();
         }
         if (transparency <= 0) {
+            // go back to game start
             Greenfoot.setWorld(new GameStartWorld());
         }
     }
     
-    public void fadeText() {
+    private void fadeText() {
         if (actCount % 6 == 0) {
             transparency -= 15;
         }

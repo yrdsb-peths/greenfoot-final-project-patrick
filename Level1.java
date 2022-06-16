@@ -2,10 +2,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 
 /**
- * Write a description of class Level1 here.
+ * First level of the game. Contains a line of skeletons that take turns shooting.
+ * Player only has a spear and must dodge the enemy projectiles and kill a skeleton to proceed.
  * 
  * @ Patrick Hu 
- * @version (a version number or a date)
+ * @ June 2022
  */
 public class Level1 extends GameWorld
 {   
@@ -43,7 +44,7 @@ public class Level1 extends GameWorld
     
     public void act() {
         super.act();
-        // periodically make ball dispensers shoot
+        // periodically make skellies shoot
         if (actCount % 70 == 0 && flip) {
             // even numbers attack
             for (int i = 0; i < skellies.size(); i += 2) {

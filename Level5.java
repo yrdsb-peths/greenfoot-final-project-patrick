@@ -15,9 +15,6 @@ public class Level5 extends GameWorld
     
     public Level5() {
         super(800, 600, 1, 5);
-        Soundtrack.reset();
-        Soundtrack.nightmareKing.setVolume(50);
-        Soundtrack.nightmareKing.play();
         // spawn player
         Player player = new Player();
         addObject(player, getWidth() / 2, getHeight()  - 50);
@@ -75,5 +72,14 @@ public class Level5 extends GameWorld
 
     public void levelPass() {
         Greenfoot.setWorld(new GameWinWorld());
+    }
+    
+    public void started() {
+        Soundtrack.setVolumes();
+        Soundtrack.nightmareKing.play();
+    }
+    
+    public void stopped() {
+        Soundtrack.nightmareKing.stop();
     }
 }

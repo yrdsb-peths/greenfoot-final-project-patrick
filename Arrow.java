@@ -1,16 +1,17 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Arrow here.
+ * A subclass of projectile that deals with the bow's arrow. Arrows follow a straight
+ * line and travel at a constant speed. They deal 1 damage to enemies.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Patrick Hu
+ * @version June 2022
  */
 public class Arrow extends Projectile
 {
     private int damage = 1;
     private int speed = 15;
-    private int decceleration = 2;
+    private int decceleration = 2; // not used in final product
     private int actCount = 0;
     private double scale = 1.2;
     GreenfootSound hitSound = new GreenfootSound("./sounds/arrow-hit2.mp3");

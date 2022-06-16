@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Arrow
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Arrow\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ A\ subclass\ of\ projectile\ that\ deals\ with\ the\ bow's\ arrow.\ Arrows\ follow\ a\ straight\r\n\ line\ and\ travel\ at\ a\ constant\ speed.\ They\ deal\ 1\ damage\ to\ enemies.\r\n\ \r\n\ @author\ Patrick\ Hu\r\n\ @version\ June\ 2022\r\n
 comment1.params=
 comment1.target=Arrow()
 comment2.params=

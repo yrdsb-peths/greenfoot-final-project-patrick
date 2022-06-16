@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Level1
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Level1\ here.\r\n\ \r\n\ @\ Patrick\ Hu\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ First\ level\ of\ the\ game.\ Contains\ a\ line\ of\ skeletons\ that\ take\ turns\ shooting.\r\n\ Player\ only\ has\ a\ spear\ and\ must\ dodge\ the\ enemy\ projectiles\ and\ kill\ a\ skeleton\ to\ proceed.\r\n\ \r\n\ @\ Patrick\ Hu\ \r\n\ @\ June\ 2022\r\n
 comment1.params=
 comment1.target=Level1()
 comment2.params=

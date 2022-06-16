@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class startButton here.
+ * The starting screen for the game.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Patrick Hu
+ * @version June 2022
  */
 public class GameStartWorld extends World
 {
@@ -15,11 +15,8 @@ public class GameStartWorld extends World
     public GameStartWorld() {
         super(800, 600, 1);
         setBackground("./images/castle2.jpg");
-        Soundtrack.reset();
-        Soundtrack.setVolumes();
-        // start playing castle soundtrack
-        Soundtrack.castle.play();
         
+        // place the title text and "start game" text
         title = new Image("./images/future-time-splitters/title.png", 1);
         addObject(title, 220, 115);
         startButton = new Image("./images/vecna/start-game.png", scale);
@@ -38,5 +35,14 @@ public class GameStartWorld extends World
         if (Greenfoot.mouseClicked(startButton)) {
             Greenfoot.setWorld(new Instructions());
         }
+    }
+    
+    public void started() {
+        Soundtrack.setVolumes();
+        Soundtrack.castle.play();
+    }
+    
+    public void stopped() {
+        Soundtrack.castle.pause();
     }
 }
