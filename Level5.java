@@ -49,7 +49,8 @@ public class Level5 extends GameWorld
     
     public void act() {
         super.act();
-        // once the demon's been killed
+        if (!demon.isDead) Soundtrack.nightmareKing.playLoop();
+        // once the demon's been removed from world
         if (demon.getWorld() == null) {
             fadeWalls();
             if (wallTransparency <= 0) {
@@ -58,11 +59,6 @@ public class Level5 extends GameWorld
                     removeObject(w);
                 }
             }
-            // stop playing nightmare king
-            Soundtrack.nightmareKing.stop();
-        }
-        else { // big demon is still alive so keep playing the boss music
-            Soundtrack.nightmareKing.playLoop();
         }
     }
     

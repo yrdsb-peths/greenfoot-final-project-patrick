@@ -1,8 +1,7 @@
 #BlueJ class context
 comment0.target=Wall
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ WallTile\ here.\r\n\ \r\n\ @\ Patrick\ Hu\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ A\ single\ segment\ of\ a\ wall.\r\n\ \r\n\ @author\ Patrick\ Hu\r\n\ @version\ June\ 2022\r\n
 comment1.params=type
 comment1.target=Wall(java.lang.String)
-comment2.params=
-comment2.target=void\ act()
-numComments=3
+comment1.text=\r\n\ Constructs\ a\ wall\ segment.\ \r\n\ \r\n\ @param\ type\ \ \ \ \ \ the\ type\ of\ wall.\ Either\ "vertical"\ or\ "horizontal".\r\n
+numComments=2

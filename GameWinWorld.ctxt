@@ -11,4 +11,6 @@ comment3.text=\r\n\ Animate\ the\ background\ gif.\r\n
 comment4.params=
 comment4.target=void\ idleAnimate()
 comment4.text=\r\n\ Idle\ animation\ for\ the\ player\ and\ friend.\r\n
-numComments=5
+comment5.params=
+comment5.target=void\ stopped()
+numComments=6

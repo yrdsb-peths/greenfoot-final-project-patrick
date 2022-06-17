@@ -22,11 +22,12 @@ public class LevelPassWorld extends World
     public LevelPassWorld(int width, int height, int pixelSize, int levelPassed) {
         super(width, height, pixelSize);
         this.levelPassed = levelPassed;
+        
+        Soundtrack.setVolumes();
     }
     
     public void act() {
         actCount++;
-        Soundtrack.setVolumes();
         Soundtrack.stopAllExceptMain();
         if (levelPassed >= 1 && levelPassed <= 3) {
             Soundtrack.mainSoundtrack.playLoop();

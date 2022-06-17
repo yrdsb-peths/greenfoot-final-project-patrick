@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Instructions extends World
 {    
-    public Instructions() {    
+    public Instructions() {
         super(800, 600, 1);
         setBackground("./images/vecna/instructions.png");
     }

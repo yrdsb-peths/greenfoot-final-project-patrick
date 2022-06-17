@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (a version number or a date)
  */
 public class Enemy extends SmoothMover {
+    public String type;
     public int id;
     public int actCount = 0;
     public double speed, scale;
@@ -32,6 +33,7 @@ public class Enemy extends SmoothMover {
      * @param scale     amoun to scale enemy's size by
      */
     public Enemy(String type, int id, int health, double speed, double scale) {
+        this.type = type;
         this.id = id;
         this.health = health;
         this.speed = speed;

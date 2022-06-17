@@ -82,11 +82,14 @@ public class Spear extends SmoothMover
         Enemy enemy = (Enemy) getOneIntersectingObject(Enemy.class);
         if (enemy != null && attackTimer.millisElapsed() > 400) {
             hitSound.play();
-            if (enemy.health - damage == 0) {
+            if (enemy.health - damage <= 0) {
                 enemy.removeHealthBar();
-                removeTouching(Enemy.class);    
+                if (enemy.type != "big_demon") {
+                    removeTouching(Enemy.class);
+                    // big demon scream before being removed from world
+                }
             }
-            else enemy.health -= damage;
+            enemy.health -= damage;
             attackTimer.mark();
         }
     }

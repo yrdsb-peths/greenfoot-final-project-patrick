@@ -16,19 +16,19 @@ public class Player extends SmoothMover
     private int idle_size = 4, idle_index = 0;
     private int run_size = 4, run_index = 0;
     private int actCount = 0;
-    private int level;
-    private int spear_dx = 13, spear_dy = 0;
+    private int level; // current level player is in
+    private int spear_dx = 13, spear_dy = 0; // offsets for the spear positioning
     private int bow_dx = 12, bow_dy = 17;
     private boolean facingRight = false;
     private boolean isDashing = false;
-    private int dashLength = 0;
+    private int dashLength = 0; // counter to keep track of how a dash has lasted
     private String curWeapon = "spear"; // player always starts a level with the spear
     GreenfootImage[] idleFacingRight = new GreenfootImage[idle_size];
     GreenfootImage[] idleFacingLeft = new GreenfootImage[idle_size];
     GreenfootImage[] runFacingRight = new GreenfootImage[run_size];
     GreenfootImage[] runFacingLeft = new GreenfootImage[run_size];
     SimpleTimer dashTimer = new SimpleTimer();
-    SimpleTimer enemyTouchTimer = new SimpleTimer();
+    SimpleTimer hitByEnemyTimer = new SimpleTimer(); // provides invicibility frames for player once hit
     GreenfootSound dashSound = new GreenfootSound("./sounds/dash1.mp3");
     GreenfootSound hitSound = new GreenfootSound("./sounds/player-hit.mp3");
     
@@ -243,26 +243,29 @@ public class Player extends SmoothMover
     public void checkHitByEnemy() {
         if (getWorld() == null) return;
         
-        if (isTouching(EnemyProjectile.class)) {
-            hitSound.play();
+        if (isTouching(EnemyProjectile.class) && hitByEnemyTimer.millisElapsed() > 2500) {
+            hitSound.stop(); hitSound.play();
             GameWorld world = (GameWorld) getWorld();
             if (health - 1 <= 0) {
                 world.gameOver();
             }
-            else health--;
+            else health--; // don't always decrement health unlike the enemies. If player dies and hits "Reset" they can start with 1 hp.
             // remove enemy projectile
             EnemyProjectile e = (EnemyProjectile) getOneIntersectingObject(EnemyProjectile.class);
             world.removeObject(e);
+            
+            hitByEnemyTimer.mark();
         }
         
-        if (isTouching(Enemy.class) && enemyTouchTimer.millisElapsed() > 2500) {
-            hitSound.play();
+        if (isTouching(Enemy.class) && hitByEnemyTimer.millisElapsed() > 2500) {
+            hitSound.stop(); hitSound.play();
             GameWorld world = (GameWorld) getWorld();
             if (health - 1 <= 0) {
                 world.gameOver();
             }
             else health--;
-            enemyTouchTimer.mark();
+            
+            hitByEnemyTimer.mark();
         }
     }
     

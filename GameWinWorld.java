@@ -21,6 +21,7 @@ public class GameWinWorld extends World
     GreenfootImage[] friendIdleFacingLeft = new GreenfootImage[idle_size];
     GifImage night;
     Image gameCompleteText;
+    Image credit;
     
     public GameWinWorld() {    
         super(800, 600, 1);
@@ -32,6 +33,9 @@ public class GameWinWorld extends World
         // initialize game complete text
         gameCompleteText = new Image("./images/galactica/game-complete.png", 1);
         addObject(gameCompleteText, getWidth() / 2, getHeight() / 2);
+        // initialize art and music credits
+        credit = new Image("./images/vecna/credit.png", 1);
+        addObject(credit, 237, 44);
         // initialize player sprites
         for (int i = 0; i < idle_size; i++) {
             playerIdleFacingRight[i] = new GreenfootImage("./sprites/player/lizard_m_idle_anim_f" + i + ".png");
@@ -68,6 +72,8 @@ public class GameWinWorld extends World
         actCount++;
         animateBackground();
         idleAnimate();
+        Soundtrack.stopAllExceptGameWin();
+        Soundtrack.gameWinTrack.playLoop();
         if (Greenfoot.isKeyDown("enter")) {
             Greenfoot.setWorld(new GameStartWorld());
         }
@@ -90,5 +96,9 @@ public class GameWinWorld extends World
             idle_index++;
             idle_index %= idle_size;
         }
+    }
+    
+    public void stopped() {
+        Soundtrack.gameWinTrack.pause();
     }
 }

@@ -35,12 +35,15 @@ public class Arrow extends Projectile
     public void checkEnemyHit() {
         Enemy enemy = (Enemy) getOneIntersectingObject(Enemy.class);
         if (enemy != null) {
-            hitSound.play();
+            hitSound.stop(); hitSound.play();
             if (enemy.health - damage <= 0) {
                 enemy.removeHealthBar();
-                removeTouching(Enemy.class);
+                if (enemy.type != "big_demon") {
+                    removeTouching(Enemy.class);
+                    // demon scream before being removed from world
+                }
             }
-            else enemy.health -= damage;
+            enemy.health -= damage;
             
             // remove arrow from world
             if (getWorld() == null) return;

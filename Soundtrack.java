@@ -11,7 +11,8 @@ public class Soundtrack extends Actor
 {
     public static GreenfootSound castle = new GreenfootSound("./sounds/castle.mp3");
     public static GreenfootSound nightmareKing = new GreenfootSound("./sounds/nightmare-king.mp3");
-    public static GreenfootSound mainSoundtrack = new GreenfootSound("./sounds/enter-hallownest.mp3");
+    public static GreenfootSound mainSoundtrack = new GreenfootSound("./sounds/enter-hallownest2.mp3");
+    public static GreenfootSound gameWinTrack = new GreenfootSound("./sounds/dating-start.mp3");
     
     /**
      * Sets the volumes of all soundtracks to an appropriate volume.
@@ -19,13 +20,15 @@ public class Soundtrack extends Actor
     public static void setVolumes() {
         castle.setVolume(50);
         nightmareKing.setVolume(100);
-        mainSoundtrack.setVolume(70);
+        mainSoundtrack.setVolume(60);
+        gameWinTrack.setVolume(80);
     }
     
     public static void stopAll() {
         castle.stop();
         nightmareKing.stop();
         mainSoundtrack.stop();
+        gameWinTrack.stop();
     }
     
     /**
@@ -37,13 +40,21 @@ public class Soundtrack extends Actor
     public static void stopAllExceptMain() {
         castle.stop();
         nightmareKing.stop();
+        gameWinTrack.stop();
     }
     
     /**
-     * Stops all tracks except for nightmare king. Same premise as above method, but for the final boss fight music.
+     * Stops all tracks except for nightmare king.
      */
     public static void stopAllExceptNightmareKing() {
         castle.stop();
         mainSoundtrack.stop();
+        gameWinTrack.stop();
+    }
+    
+    public static void stopAllExceptGameWin() {
+        castle.stop();
+        mainSoundtrack.stop();
+        nightmareKing.stop();
     }
 }

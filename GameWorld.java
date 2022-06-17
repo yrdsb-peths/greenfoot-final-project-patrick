@@ -26,6 +26,9 @@ public class GameWorld extends World
     public GameWorld(int width, int height, int pixelSize, int level) {    
         super(width, height, pixelSize);
         this.level = level;
+        
+        Soundtrack.setVolumes();
+        
         // create player and spear
         player = new Player();
         spear = new Spear();
@@ -37,7 +40,6 @@ public class GameWorld extends World
 
     public void act() {
         actCount++;
-        Soundtrack.setVolumes();
         if (level >= 1 && level <= 4) {
             Soundtrack.stopAllExceptMain();
             Soundtrack.mainSoundtrack.playLoop();

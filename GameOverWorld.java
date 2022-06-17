@@ -32,7 +32,7 @@ public class GameOverWorld extends World
     public void act() {
         actCount++;
         // after 3 seconds start fading the text
-        if (timer.millisElapsed() > 3000) {
+        if (timer.millisElapsed() > 4000) {
             fadeText();
         }
         if (transparency <= 0) {

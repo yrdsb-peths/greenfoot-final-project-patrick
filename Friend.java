@@ -35,6 +35,7 @@ public class Friend extends SmoothMover
     public void checkTouching() {
         if (isTouching(Player.class)) {
             melonSound.play();
+            
             Level5 world = (Level5) getWorld();
             // add heart png above friend
             Image heart1 = new Image("./sprites/ui_heart_full.png", 1.5);

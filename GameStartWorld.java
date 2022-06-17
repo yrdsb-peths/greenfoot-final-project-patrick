@@ -16,16 +16,21 @@ public class GameStartWorld extends World
     public GameStartWorld() {
         super(800, 600, 1);
         setBackground("./images/castle2.jpg");
-        Soundtrack.stopAllExceptMain(); // sometimes previous audio such as nightmareKing is playing when jumping between worlds when developing
         
         // place the title text and "Start Game" text
         title = new Image("./images/future-time-splitters/title.png", 1);
         addObject(title, 220, 115);
         startButton = new Image("./images/vecna/start-game.png", scale);
         addObject(startButton, 151, 260);
+        
+        // whenever user goes back to GameStartWorld their health should be reset
+        Player.health = 3;
+        // although health is also reset after dying, it needs to be reset after winning
+        // health is reset after dying for testing reasons when the user wants to immediately replay a stage after dying
     }
     
     public void act() {
+        Soundtrack.stopAllExceptMain(); // sometimes previous audio is playing when jumping between worlds when testing
         {
             Soundtrack.setVolumes();
             Soundtrack.mainSoundtrack.playLoop();
@@ -33,6 +38,7 @@ public class GameStartWorld extends World
             // 1. when player dies they are taken back to GameStartWorld but music won't play because started() is only called when "Run" is hit
             // 2. GameStartWorld() will cause the music to play before "Run" is hit due to it being called early
         }
+        // hovering effect for start button
         if (Greenfoot.mouseMoved(startButton)) {
             startButton.setImage("./images/vecna/start-game-yellow.png");
             startButton.scale(scale);

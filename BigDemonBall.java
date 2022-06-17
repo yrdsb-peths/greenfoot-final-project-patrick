@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class BigDemonBall extends EnemyProjectile
 {
-    private double acceleration = 0.08;
+    private double acceleration = 0.085;
     private int actCount = 0;
     private int anim_size = 5, anim_index = 0;
     private boolean accelerate;

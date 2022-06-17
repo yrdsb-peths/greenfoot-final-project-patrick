@@ -8,6 +8,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class BigDemon extends Enemy
 {   
+    private int t1, t2, t3, t4, t5, t6, t7, x; // time stamps for demon's attacks
+    public boolean isDead = false;
+    GreenfootSound spreadAttackSound = new GreenfootSound("./sounds/spread-fireball.mp3");
+    GreenfootSound quickFireballSound = new GreenfootSound("./sounds/quick-fireball.mp3");
+    GreenfootSound angryFireballSound = new GreenfootSound("./sounds/angry-fireball.mp3");
+    GreenfootSound scream = new GreenfootSound("./sounds/demon-death-scream.mp3");
+
     /**
      * Sets big demon's id, health, speed, and scale
      * 
@@ -18,91 +25,110 @@ public class BigDemon extends Enemy
      */
     public BigDemon(int id, int health, double speed, double scale) {
         super("big_demon", id, health, speed, scale);
+        // move time frame (between 0 and 70 acts)
+        t1 = 70;
+        // spread attack time frame
+        t2 = t1 + 30;
+        t3 = t2 + 2;
+        // targeted attack
+        t4 = t3 + 90;
+        t5 = t4 + 70;
+        // large size attack
+        t6 = t5 + 80;
+        t7 = t6 + 30;
+        spreadAttackSound.setVolume(100);
     }
-    
+
     public void act() {
         super.act();
-        // move
-        int t1 = 60;
-        // spread attack time frame
-        int t2 = t1 + 30;
-        int t3 = t2 + 2;
-        // targeted attack
-        int t4 = t3 + 80;
-        int t5 = t4 + 50;
-        // large size attack
-        int t6 = t5 + 80;
-        int t7 = t6 + 30;
+        checkDeath();
         // calculate the total number to mod by
-        int x = actCount % (t7 + 30);
-        
-        if (x < t1) {
-            move();
-            runAnimate();
-        } else {
-            idleAnimate();
-        }
-        if (x > t2 && x < t3) {
-            spreadAttack();
-        }
-        if (x > t4 && x < t5) {
-            targetedAttack();
-        }
-        if (x > t6 && x < t7) {
-            largeSizeAttack();
+        x = actCount % (t7 + 30);
+        if (!isDead) {
+            if (x < t1) {
+                move();
+                runAnimate();
+            } else {
+                idleAnimate();
+            }
+            if (x > t2 && x < t3) {
+                spreadAttack();
+            }
+            if (x > t4 && x < t5) {
+                targetedAttack();
+            }
+            if (x > t6 && x < t7) {
+                largeSizeAttack();
+            }
         }
     }
-    
+
     public void move() {
         // moves towards player
         Player player = getWorld().getObjects(Player.class).get(0);
         turnTowards(player.getX(), player.getY());
         move(speed);
-        
+
         // turn back
         setRotation(0);
     }
-    
+
     /**
      * Fires 12 fireballs in a circular pattern
      */
     public void spreadAttack() {
         int turnAmount = 0;
+        spreadAttackSound.stop(); spreadAttackSound.play();
         for (int i = 0; i < 12; i++) {
-            BigDemonBall b = new BigDemonBall(2.5, 0.1, false);
+            BigDemonBall b = new BigDemonBall(2.5, 0.11, false);
             getWorld().addObject(b, getX(), getY());
             b.turn(turnAmount);
             turnAmount += 30;
         }
     }
-    
 
     /**
      * In specified time frame, fires accelerating fireballs towards the player
      */
     public void targetedAttack() {
-        if (actCount % 10 == 0) {
-            BigDemonBall b = new BigDemonBall(0.25, 0.1, true);
+        if (actCount % 20 == 0) {
+            BigDemonBall b = new BigDemonBall(0.25, 0.145, true);
             Player player = getWorld().getObjects(Player.class).get(0);
-            
+
             getWorld().addObject(b, getX(), getY());
-            b.turnTowards(player.getX(), player.getY());    
+            b.turnTowards(player.getX(), player.getY());
+            quickFireballSound.stop(); quickFireballSound.play();
         }
     }
-    
+
     /**
      * In specified time frame, fires very large fireballs toward player
      */
     public void largeSizeAttack() {
-        if (actCount % 10 == 0) {
+        if (actCount % 20 == 0) {
             BigDemonBall b = new BigDemonBall(3.5, 0.3, false);
             Player player = getWorld().getObjects(Player.class).get(0);
-            
+
             getWorld().addObject(b, getX(), getY());
             b.turnTowards(player.getX(), player.getY());
+            angryFireballSound.stop(); angryFireballSound.play();
         }
     }
-    
+
+    /**
+     * Checks if the demon has been killed. Scream once he is defeated.
+     */
+    public void checkDeath() {
+        if (health == 0 && !isDead) {
+            isDead = true;
+            scream.play();
+            Soundtrack.nightmareKing.stop();
+        }
+        if (isDead && !scream.isPlaying()) { // scream has finished
+            getWorld().removeObject(this);
+        }
+    }
+
     public void idleAnimate() {
         if (actCount % 8 == 0) {
             if (facingRight) setImage(idleFacingRight[idle_index]);
@@ -111,7 +137,7 @@ public class BigDemon extends Enemy
             idle_index %= idle_size;
         }
     }
-    
+
     public void runAnimate() {
         if (actCount % 8 == 0) {
             if (facingRight) setImage(runFacingRight[run_index]);
