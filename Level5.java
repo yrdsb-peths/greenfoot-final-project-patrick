@@ -50,15 +50,16 @@ public class Level5 extends GameWorld
     public void act() {
         super.act();
         if (!demon.isDead) Soundtrack.nightmareKing.playLoop();
-        // once the demon's been removed from world
-        if (demon.getWorld() == null) {
+        // once demon is dead and the explosion has finished
+        var arr = getObjects(Explosion.class);
+        if (demon.isDead && !demon.scream.isPlaying() && arr.size() == 0) {
             fadeWalls();
             if (wallTransparency <= 0) {
                 List<Wall> walls = getObjects(Wall.class);
                 for (Wall w : walls) {
                     removeObject(w);
                 }
-            }
+            }   
         }
     }
     

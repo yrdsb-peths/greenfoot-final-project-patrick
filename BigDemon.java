@@ -14,6 +14,7 @@ public class BigDemon extends Enemy
     GreenfootSound quickFireballSound = new GreenfootSound("./sounds/quick-fireball.mp3");
     GreenfootSound angryFireballSound = new GreenfootSound("./sounds/angry-fireball.mp3");
     GreenfootSound scream = new GreenfootSound("./sounds/demon-death-scream.mp3");
+    
 
     /**
      * Sets big demon's id, health, speed, and scale
@@ -25,6 +26,7 @@ public class BigDemon extends Enemy
      */
     public BigDemon(int id, int health, double speed, double scale) {
         super("big_demon", id, health, speed, scale);
+        // initialize attack and movement time frames
         // move time frame (between 0 and 70 acts)
         t1 = 70;
         // spread attack time frame
@@ -36,6 +38,7 @@ public class BigDemon extends Enemy
         // large size attack
         t6 = t5 + 80;
         t7 = t6 + 30;
+        
         spreadAttackSound.setVolume(100);
     }
 
@@ -125,7 +128,9 @@ public class BigDemon extends Enemy
             Soundtrack.nightmareKing.stop();
         }
         if (isDead && !scream.isPlaying()) { // scream has finished
-            getWorld().removeObject(this);
+            Explosion explosion = new Explosion();
+            getWorld().addObject(explosion, getX(), getY());
+            getWorld().removeObject(this); // remove the demon from world
         }
     }
 
