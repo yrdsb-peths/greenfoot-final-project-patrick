@@ -17,7 +17,7 @@ public class GameStartWorld extends World
         super(800, 600, 1);
         setBackground("./images/castle2.jpg");
         
-        // place the title text and "Start Game" text
+        // place all text images
         title = new Image("./images/future-time-splitters/title.png", 1);
         addObject(title, 220, 115);
         startButton = new Image("./images/vecna/start-game.png", scale);
