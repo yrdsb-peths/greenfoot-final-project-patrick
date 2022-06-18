@@ -15,7 +15,6 @@ public class BigDemon extends Enemy
     GreenfootSound angryFireballSound = new GreenfootSound("./sounds/angry-fireball.mp3");
     GreenfootSound scream = new GreenfootSound("./sounds/demon-death-scream.mp3");
     
-
     /**
      * Sets big demon's id, health, speed, and scale
      * 
@@ -40,6 +39,7 @@ public class BigDemon extends Enemy
         t7 = t6 + 30;
         
         spreadAttackSound.setVolume(100);
+        scream.setVolume(70);
     }
 
     public void act() {

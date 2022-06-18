@@ -11,6 +11,7 @@ public class Explosion extends Actor
     private int actCount = 0;
     private int explosion_size = 71, explosion_index = 0;
     GreenfootImage[] explosion = new GreenfootImage[explosion_size];
+    GreenfootSound explosionSound = new GreenfootSound("./sounds/explosion.mp3");
     
     public Explosion() {
         // initialize explosion sprites 
@@ -24,6 +25,8 @@ public class Explosion extends Actor
             explosion[i] = new GreenfootImage("./sprites/explosion/frame" + x + ".png");
             explosion[i].scale(explosion[i].getWidth() * 4, explosion[i].getHeight() * 4);
         }
+        
+        explosionSound.play();
     }
     
     public void act() {
