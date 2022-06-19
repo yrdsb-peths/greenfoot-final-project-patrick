@@ -69,7 +69,7 @@ public class Wizard extends Enemy {
      */
     public void teleport() {
         // grab the health bar before teleporting
-        var arr = getObjectsAtOffset(0, healthBar_dy, HealthBar.class);
+        HealthBar bar = getHealthBar();
         // get random coordinates that aren't too close to player
         Player player = getWorld().getObjects(Player.class).get(0);
         int rand_x;
@@ -82,13 +82,7 @@ public class Wizard extends Enemy {
         } while (distance < 350);
         setLocation(rand_x, rand_y);
         // teleport the health bar
-        if (arr.size() >= 1) {
-            for (HealthBar bar : arr) {
-                if (bar.id == id) {
-                    bar.setLocation(getX(), getY() + healthBar_dy);    
-                }
-            }            
-        }
+        if (bar != null) bar.setLocation(getX(), getY() + healthBar_dy);    
     }
     
     public void fade() {

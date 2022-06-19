@@ -190,49 +190,56 @@ public class Player extends SmoothMover
     }
     
     /**
-     * Updates the amount of health in the health bar.
+     * Grabs the health bar using getObjectsAtOffset().
+     * A corner case occurs when the character is at the far top edge of the map, causing the health bar to 
+     * compress downwards and getObjectsAtOffset() to fail. In this case, use getObjectsInRange() to grab
+     * the health bar.
      */
-    public void updateHealthBar() {
-        // get the health bar
-        var arr = getObjectsAtOffset(0, healthBar_dy, HealthBar.class);
+    public HealthBar getHealthBar() {
         // sometimes enemies are stacked on top of each other and multiple health bars are retrieved
-        // and getObjectsAtOffset gets the wrong health bar if they are too close
-        // in these cases, use ids to grab the correct health bar
+        // and getObjectsAtOffset().get(0) gets the wrong health bar if they are too close
+        // in these cases, ids are necessary for grabbing the correct health bar
+        var arr = getObjectsAtOffset(0, healthBar_dy, HealthBar.class);
+        var arr2 = getObjectsInRange(20, HealthBar.class);
+        HealthBar res = null;
         if (arr.size() >= 1) {
+            // loop through the multiple health bars and determine the right one
             for (HealthBar bar : arr) {
-                if (bar.id == id) {
-                    bar.update(health);
-                }
+                if (bar.id == id) res = bar;
             }
         }
+        else if (arr2.size() >= 1) {
+            for (HealthBar bar : arr2) {
+                if (bar.id == id) res = bar;
+            }
+        }
+        
+        return res;
     }
     
     /**
-     * Moves the health bar along with the player.
+     * Updates the amount of health in the health bar.
+     */
+    public void updateHealthBar() {
+        HealthBar bar = getHealthBar();
+        if (bar != null) bar.update(health);
+    }
+    
+    /**
+     * Moves the health bar along with the enemy.
+     * 
      */
     public void moveHealthBar() {
-        var arr = getObjectsAtOffset(0, healthBar_dy, HealthBar.class);
-        if (arr.size() >= 1) {
-            for (HealthBar bar : arr) {
-                if (bar.id == id) {                    
-                    bar.setLocation(getX(), getY() + healthBar_dy);
-                }
-            }
-        }
+        HealthBar bar = getHealthBar();
+        if (bar != null) bar.setLocation(getX(), getY() + healthBar_dy);
     }
     
     /**
      * Removes the health bar.
      */
     public void removeHealthBar() {
-        var arr = getObjectsAtOffset(0, healthBar_dy, HealthBar.class);
-        if (arr.size() >= 1) {
-            for (HealthBar bar : arr) {
-                if (bar.id == id) {
-                    getWorld().removeObject(bar);
-                }
-            }
-        }
+        HealthBar bar = getHealthBar();
+        if (bar != null) getWorld().removeObject(bar);
     }
     
     /**
